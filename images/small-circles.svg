@@ -1,0 +1,12 @@
+<svg id="n-circles" xmlns="http://www.w3.org/2000/svg" width="406" height="406" viewBox="0 0 406 406">
+  <g id="circles">
+    <g id="Ellipse_3" data-name="Ellipse 3" fill="none" stroke="#edf2d1" stroke-width="2">
+      <circle cx="203" cy="203" r="203" stroke="none"/>
+      <circle cx="203" cy="203" r="202" fill="none"/>
+    </g>
+  </g>
+  <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(68 68)" fill="none" stroke="#edf2d1" stroke-width="2">
+    <circle cx="135.5" cy="135.5" r="135.5" stroke="none"/>
+    <circle cx="135.5" cy="135.5" r="134.5" fill="none"/>
+  </g>
+</svg>

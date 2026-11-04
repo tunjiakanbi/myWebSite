@@ -1,0 +1,23 @@
+ <svg id="torqoise-hatch" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="114.515" height="212.726" viewBox="0 0 114.515 212.726">
+            <defs>
+              <clipPath id="clip-path">
+                <rect width="212.726" height="114.515" fill="none"/>
+              </clipPath>
+            </defs>
+            <g id="Group_6" data-name="Group 6" transform="translate(50.5 -282.5)">
+              <g id="Repeat_Grid_4" data-name="Repeat Grid 4" transform="translate(-50.5 495.226) rotate(-90)" clip-path="url(#clip-path)">
+                <g transform="translate(-2404 -218.885)">
+                  <path id="Path_4" data-name="Path 4" d="M2346.966-2404h46.1l-87.89,157.788H2259.7Z" transform="translate(67.299 2626.885)" fill="#66d6d4"/>
+                </g>
+                <g transform="translate(-2337 -218.885)">
+                  <path id="Path_4-2" data-name="Path 4" d="M2346.966-2404h46.1l-87.89,157.788H2259.7Z" transform="translate(67.299 2626.885)" fill="#66d6d4"/>
+                </g>
+                <g transform="translate(-2270 -218.885)">
+                  <path id="Path_4-3" data-name="Path 4" d="M2346.966-2404h46.1l-87.89,157.788H2259.7Z" transform="translate(67.299 2626.885)" fill="#66d6d4"/>
+                </g>
+                <g transform="translate(-2203 -218.885)">
+                  <path id="Path_4-4" data-name="Path 4" d="M2346.966-2404h46.1l-87.89,157.788H2259.7Z" transform="translate(67.299 2626.885)" fill="#66d6d4"/>
+                </g>
+              </g>
+            </g>
+          </svg>
