@@ -255,40 +255,4 @@ document.addEventListener("DOMContentLoaded", init);
 
 // requestAnimationFrame(raf)
 
-// const galleryLinks = document.querySelectorAll("section#gallery > ul > li");
-const galleryLinks = document.querySelectorAll("section#gallery .gallery-links");
-const galleryDisplay = document.getElementById("gallery-display");
-const gallery = document.getElementById("gallery");
-const boxes = document.querySelectorAll("#gallery-content > .box");
-// console.log(galleryLinks);
-for (let i = 0; i < boxes.length; i++) {
-  galleryLinks[i].addEventListener("click", (function(index) {
-    return function() {
-      gallery.style.display = "none";
-      galleryDisplay.style.display = "block";
-      boxes[index].classList.remove("box-hidden");
-      boxes[index].classList.add("box-show");
-    }; 
-  })(i));
-  const closeBtn = document.getElementById("close-btn");
-  closeBtn.addEventListener("click", ()=> {
-    gallery.style.display = "block";
-    galleryDisplay.style.display = "none";
-    boxes[i].classList.remove("box-show");
-    boxes[i].classList.add("box-hidden");
-  })
-}
-// OR  //for the galleryLinks part
-// for (let i = 0; i < boxes.length; i++) {
-//   galleryLinks[i].addEventListener("click", ()=> {
-//     gallery.style.display = "none";
-//     galleryDisplay.style.display = "block";
-//     boxes[i].classList.remove("box-hidden");
-//     boxes[i].classList.add("box-show");
-//     console.log("...OKKK");
-//   })
-// }
-
-
-
-
+// Gallery page behaviour (category viewer, lightbox) now lives in js/gallery.js

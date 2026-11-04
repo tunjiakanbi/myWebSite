@@ -58,71 +58,79 @@
         </div>
     </nav>
     <div id="container1">
-        <section id="gallery-display">
-            <nav id="gallery-nav">
-                <div id="close-btn">
-                    <section class="bars bar1"></section>
-                    <section class="bars bar2"></section>
-                    <section class="bars bar3"></section>
+        <section id="gallery-display" aria-label="Gallery viewer">
+            <nav id="gallery-nav" aria-label="Gallery categories">
+                <div id="gallery-tabs" role="tablist" aria-label="Gallery categories">
+                    <button type="button" role="tab" class="gallery-tab" id="tab-photoshop" data-category="photoshop" aria-controls="box1" aria-selected="false" tabindex="-1">Photoshop</button>
+                    <button type="button" role="tab" class="gallery-tab" id="tab-illustrator" data-category="illustrator" aria-controls="box2" aria-selected="false" tabindex="-1">Illustrator</button>
+                    <button type="button" role="tab" class="gallery-tab" id="tab-ui-ux" data-category="ui-ux" aria-controls="box3" aria-selected="false" tabindex="-1">UI/UX</button>
+                    <button type="button" role="tab" class="gallery-tab" id="tab-multi-media" data-category="multi-media" aria-controls="box4" aria-selected="false" tabindex="-1">Multi-media</button>
                 </div>
+                <button type="button" id="close-btn" aria-label="Close gallery and return to the category list">
+                    <span class="bars bar1"></span>
+                    <span class="bars bar2"></span>
+                    <span class="bars bar3"></span>
+                </button>
             </nav>
             <div id="gallery-content">
-                <div class="box box-hidden" id="box1">
-                    <img src="images/gallery/photoshop/16dec07brushestestA-513x662.jpg" alt="#">
-                    <img src="images/gallery/photoshop/abstractbrushtestAInverted-438x537.jpg" alt="#">
-                    <img src="images/gallery/photoshop/apollo-Glitch001.jpg" alt="#">
-                    <img src="images/gallery/photoshop/brushZtest-735x1727.jpg" alt="#">
-                    <img src="images/gallery/photoshop/brushZtestcopyinverted-734x1725.jpg" alt="#">
-                    <img src="images/gallery/photoshop/circuitexpttunjicopy-934x613.jpg" alt="#">
-                    <img src="images/gallery/photoshop/deconstructivism-demo.jpg" alt="#">
-                    <img src="images/gallery/photoshop/extruded3D-copy-Recovered.jpg" alt="#">
-                    <img src="images/gallery/photoshop/furge-fashion-demowithGlitch.jpg" alt="#">
-                    <img src="images/gallery/photoshop/Glitch-007.jpg" alt="#">
-                    <img src="images/gallery/photoshop/Glitch-008.jpg" alt="#">
-                    <img src="images/gallery/photoshop/Glitch-009.jpg" alt="#">
-                    <img src="images/gallery/photoshop/Glitch-011-editted.jpg" alt="#">
-                    <img src="images/gallery/photoshop/ink2Water-test02.jpg" alt="#">
-                    <img src="images/gallery/photoshop/ink2Water-test03.jpg" alt="#">
-                    <img src="images/gallery/photoshop/morph-demo01_00000.jpg" alt="#">
-                    <img src="images/gallery/photoshop/newtextureinvert-449x665.jpg" alt="#">
-                    <img src="images/gallery/photoshop/Nneka_Goforth1abstract_copy.jpg" alt="#">
-                    <img src="images/gallery/photoshop/nudefigabstractII-598x915.jpg" alt="#">
-                    <img src="images/gallery/photoshop/reggie001edit-537x658.jpg" alt="#">
-                    <img src="images/gallery/photoshop/reggie02copyX-594x776.jpg" alt="#">
-                    <img src="images/gallery/photoshop/sports-and-fitness-concept-sexy-woman-with-fit-b-2021-08-27-08-23-59-utc-copy-2.jpg"
-                        alt="#">
-                    <img src="images/gallery/photoshop/theportal-783x640.jpg" alt="#">
-                    <img src="images/gallery/photoshop/zackfsrtheediTcopy-665x665.jpg" alt="#">
+                <div class="box" id="box1" role="tabpanel" aria-labelledby="tab-photoshop" data-category="photoshop" hidden>
+                    <ul class="thumb-grid">
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/16dec07brushestestA-513x662.jpg" data-title="Brush texture study"><img src="images/gallery/thumbs/photoshop/16dec07brushestestA-513x662.jpg" alt="Abstract brush texture study with green, red and blue strokes" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/Glitch-007.jpg" data-title="Glitch 007"><img src="images/gallery/thumbs/photoshop/Glitch-007.jpg" alt="Glitch-effect photo of a skyscraper and monument against a cloudy sky" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/Glitch-008.jpg" data-title="Glitch 008"><img src="images/gallery/thumbs/photoshop/Glitch-008.jpg" alt="Glitch-effect photo of a dinosaur skeleton" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/Glitch-009.jpg" data-title="Glitch 009"><img src="images/gallery/thumbs/photoshop/Glitch-009.jpg" alt="Glitch-effect photo of a stone memorial arch" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/Glitch-011-editted.jpg" data-title="Glitch 011"><img src="images/gallery/thumbs/photoshop/Glitch-011-editted.jpg" alt="Glitch-style web design poster with a blue sphere and diagonal stripe accents" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/Nneka_Goforth1abstract_copy.jpg" data-title="Abstract portrait"><img src="images/gallery/thumbs/photoshop/Nneka_Goforth1abstract_copy.jpg" alt="Abstract portrait with colorful textured overlays" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/abstractbrushtestAInverted-438x537.jpg" data-title="Abstract brush test, inverted"><img src="images/gallery/thumbs/photoshop/abstractbrushtestAInverted-438x537.jpg" alt="Pale inverted brush texture in soft blues and greens" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/apollo-Glitch001.jpg" data-title="Apollo glitch"><img src="images/gallery/thumbs/photoshop/apollo-Glitch001.jpg" alt="Glitch poster of a marble bust with halftone dots and blue stripes" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/brushZtest-735x1727.jpg" data-title="Brush test Z"><img src="images/gallery/thumbs/photoshop/brushZtest-735x1727.jpg" alt="Layered ring and swirl brush patterns in purple" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/brushZtestcopyinverted-734x1725.jpg" data-title="Brush test Z, inverted"><img src="images/gallery/thumbs/photoshop/brushZtestcopyinverted-734x1725.jpg" alt="Layered ring and swirl brush patterns in green and teal" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/circuitexpttunjicopy-934x613.jpg" data-title="Circuit experiment"><img src="images/gallery/thumbs/photoshop/circuitexpttunjicopy-934x613.jpg" alt="Overlapping translucent geometric shapes in warm and cool colors" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/deconstructivism-demo.jpg" data-title="Deconstructivism demo"><img src="images/gallery/thumbs/photoshop/deconstructivism-demo.jpg" alt="Deconstructivist poster reading P-ism, with geometric shapes over a city photo" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/extruded3D-copy-Recovered.jpg" data-title="Extruded 3D waves"><img src="images/gallery/thumbs/photoshop/extruded3D-copy-Recovered.jpg" alt="Web design poster with blue 3D waves, for Century College Visual Communications Careers" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/furge-fashion-demowithGlitch.jpg" data-title="Furge fashion poster"><img src="images/gallery/thumbs/photoshop/furge-fashion-demowithGlitch.jpg" alt="Glitch-effect fashion poster for Furge &#x27;22" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/ink2Water-test02.jpg" data-title="Ink in water, test 02"><img src="images/gallery/thumbs/photoshop/ink2Water-test02.jpg" alt="Blue and red ink swirling through water, with the word Lorem" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/ink2Water-test03.jpg" data-title="Ink in water, test 03"><img src="images/gallery/thumbs/photoshop/ink2Water-test03.jpg" alt="Ink-in-water texture with the words Web Design in white" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/morph-demo01_00000.jpg" data-title="Morph demo"><img src="images/gallery/thumbs/photoshop/morph-demo01_00000.jpg" alt="Teal Creative 3D Design poster with twisting pink 3D forms" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/newtextureinvert-449x665.jpg" data-title="Texture, inverted"><img src="images/gallery/thumbs/photoshop/newtextureinvert-449x665.jpg" alt="Inverted blue-green line texture" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/nudefigabstractII-598x915.jpg" data-title="Figure abstract II"><img src="images/gallery/thumbs/photoshop/nudefigabstractII-598x915.jpg" alt="Painterly abstract of figures in orange and blue" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/reggie001edit-537x658.jpg" data-title="Reggie 001"><img src="images/gallery/thumbs/photoshop/reggie001edit-537x658.jpg" alt="Dark abstract 3D composition with spiky purple and blue forms" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/reggie02copyX-594x776.jpg" data-title="Reggie 02"><img src="images/gallery/thumbs/photoshop/reggie02copyX-594x776.jpg" alt="Colorful faceted abstract in teal, orange and lime" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/sports-and-fitness-concept-sexy-woman-with-fit-b-2021-08-27-08-23-59-utc-copy-2.jpg" data-title="Motion dispersion"><img src="images/gallery/thumbs/photoshop/sports-and-fitness-concept-sexy-woman-with-fit-b-2021-08-27-08-23-59-utc-copy-2.jpg" alt="Grayscale athlete running, with the figure breaking into fragments" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/theportal-783x640.jpg" data-title="The portal"><img src="images/gallery/thumbs/photoshop/theportal-783x640.jpg" alt="Teal 3D spiral sphere surrounded by glowing forms" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/photoshop/zackfsrtheediTcopy-665x665.jpg" data-title="Tangled lines"><img src="images/gallery/thumbs/photoshop/zackfsrtheediTcopy-665x665.jpg" alt="Tangled white lines over a magenta and purple gradient" loading="lazy" decoding="async"></button></li>
+                    </ul>
                 </div>
-                <div class="box box-hidden" id="box2">
-                    <img src="images/gallery/illustrator/furge-logo.webp" alt="#">
-                    <img src="images/gallery/illustrator/morph007B.jpg" alt="#">
-                    <img src="images/gallery/illustrator/morph008.jpg" alt="#">
-                    <img src="images/gallery/illustrator/morph009.webp" alt="#">
-                    <img src="images/gallery/illustrator/morph010.jpg" alt="#">
+                <div class="box" id="box2" role="tabpanel" aria-labelledby="tab-illustrator" data-category="illustrator" hidden>
+                    <ul class="thumb-grid">
+                        <li><button type="button" class="thumb" data-full="images/gallery/illustrator/furge-logo.webp" data-title="Furge logo"><img src="images/gallery/thumbs/illustrator/furge-logo.webp" alt="Furge logo: a white circle with a stylized wing mark above the word FURGE" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/illustrator/morph007B.jpg" data-title="Chrome lettering"><img src="images/gallery/thumbs/illustrator/morph007B.jpg" alt="Chrome extruded letterforms on a black background" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/illustrator/morph008.jpg" data-title="Ribbon swirl"><img src="images/gallery/thumbs/illustrator/morph008.jpg" alt="Multicolored ribbon swirl on dark blue" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/illustrator/morph009.webp" data-title="Striped letterform"><img src="images/gallery/thumbs/illustrator/morph009.webp" alt="Black and white striped letterform on a red background" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/illustrator/morph010.jpg" data-title="3D blob"><img src="images/gallery/thumbs/illustrator/morph010.jpg" alt="Pink and blue 3D blob on a yellow background" loading="lazy" decoding="async"></button></li>
+                    </ul>
                 </div>
-                <div class="box box-hidden" id="box3">
-                    <img src="images/gallery/ui-ux/callie-walseth-splash.webp" alt="#">
-                    <img src="images/gallery/ui-ux/crypto-app-signup.png" alt="#">
-                    <img src="images/gallery/ui-ux/data-vis.png" alt="#">
-                    <img src="images/gallery/ui-ux/react-three-fiber.png" alt="#">
-                    <img src="images/gallery/ui-ux/unity-bank.png" alt="#">
-                    <img src="images/gallery/ui-ux/Web Design Mood Board.jpg" alt="#">
+                <div class="box" id="box3" role="tabpanel" aria-labelledby="tab-ui-ux" data-category="ui-ux" hidden>
+                    <ul class="thumb-grid thumb-grid--contain">
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/callie-walseth-splash.webp" data-title="Portfolio splash screen"><img src="images/gallery/thumbs/ui-ux/callie-walseth-splash.webp" alt="Portfolio splash screen reading UI/UX Web Designer, with geometric shapes" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/crypto-app-signup.png" data-title="Crypto app sign-up"><img src="images/gallery/thumbs/ui-ux/crypto-app-signup.jpg" alt="Two mobile screens for a crypto app: a landing page and a create-account form" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/data-vis.png" data-title="Data visualization"><img src="images/gallery/thumbs/ui-ux/data-vis.jpg" alt="Gradient stacked area chart on a dark background, built with ECharts" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/react-three-fiber.png" data-title="React Three Fiber demo"><img src="images/gallery/thumbs/ui-ux/react-three-fiber.jpg" alt="3D scene of floating boxes rendered with React Three Fiber" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/unity-bank.png" data-title="Unity Bank login"><img src="images/gallery/thumbs/ui-ux/unity-bank.jpg" alt="Mobile banking login screen for Unity Bank" loading="lazy" decoding="async"></button></li>
+                        <li><button type="button" class="thumb" data-full="images/gallery/ui-ux/web-design-mood-board.jpg" data-title="Web design mood board"><img src="images/gallery/thumbs/ui-ux/web-design-mood-board.jpg" alt="Mood board of dark web layouts, geometric patterns and bold typography" loading="lazy" decoding="async"></button></li>
+                    </ul>
                 </div>
-                <div class="box box-hidden" id="box4">
-                    <video controls
-                        src="images/gallery/multi-media/newestsiteanime-ezgif.com-gif-to-mp4-converter.mp4"></video>
-                    <video controls
-                        src="images/gallery/multi-media/tunjiarrows-ezgif.com-gif-to-mp4-converter.mp4"></video>
-                    <video controls
-                        src="images/gallery/multi-media/tunjicold2-ezgif.com-gif-to-mp4-converter.mp4"></video>
-                    <video controls
-                        src="images/gallery/multi-media/tunjitoxic-ezgif.com-gif-to-mp4-converter.mp4"></video>
-                    <video controls
-                        src="images/gallery/multi-media/tunjitwister-ezgif.com-gif-to-mp4-converter.mp4"></video>
-                    <video controls src="images/gallery/multi-media/designkraft_world.mp4"></video>
-                    <video controls src="images/gallery/multi-media/carcommercialmovie.mp4"></video>
-                    <video controls src="images/gallery/multi-media/CityscapebynightX.mov"></video>
+                <div class="box" id="box4" role="tabpanel" aria-labelledby="tab-multi-media" data-category="multi-media" hidden>
+                    <ul class="video-grid">
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/newestsiteanime-ezgif.com-gif-to-mp4-converter.mp4#t=0.1" aria-label="Site animation"></video><figcaption>Site animation</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/tunjiarrows-ezgif.com-gif-to-mp4-converter.mp4#t=0.1" aria-label="Arrows"></video><figcaption>Arrows</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/tunjicold2-ezgif.com-gif-to-mp4-converter.mp4#t=0.1" aria-label="Cold"></video><figcaption>Cold</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/tunjitoxic-ezgif.com-gif-to-mp4-converter.mp4#t=0.1" aria-label="Toxic"></video><figcaption>Toxic</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/tunjitwister-ezgif.com-gif-to-mp4-converter.mp4#t=0.1" aria-label="Twister"></video><figcaption>Twister</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/designkraft_world.mp4#t=0.1" aria-label="Designkraft world"></video><figcaption>Designkraft world</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/carcommercialmovie.mp4#t=0.1" aria-label="Car commercial"></video><figcaption>Car commercial</figcaption></figure></li>
+                        <li><figure class="video-card"><video controls playsinline preload="metadata" src="images/gallery/multi-media/CityscapebynightX-ezgif.com-video-to-mp4-converter.mp4#t=0.1" aria-label="Cityscape by night"></video><figcaption>Cityscape by night</figcaption></figure></li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -135,10 +143,10 @@
                     Adobe
                     After Effects.</p>
                 <ul>
-                    <li class="gallery-links" id="photoshop"><span>Adobe</span><span>Photoshop</span></li>
-                    <li class="gallery-links" id="illustrator"><span>Adobe</span><span>Illustrator</span></li>
-                    <li class="gallery-links" id="ui-ux"><span>UI/UX</span><span>Prototypes</span></li>
-                    <li class="gallery-links" id="multi-media"><span>Multi-Media</span><span>Projects</span></li>
+                    <li class="gallery-links"><a href="#photoshop" data-category="photoshop"><span>Adobe</span><span>Photoshop</span></a></li>
+                    <li class="gallery-links"><a href="#illustrator" data-category="illustrator"><span>Adobe</span><span>Illustrator</span></a></li>
+                    <li class="gallery-links"><a href="#ui-ux" data-category="ui-ux"><span>UI/UX</span><span>Prototypes</span></a></li>
+                    <li class="gallery-links"><a href="#multi-media" data-category="multi-media"><span>Multi-Media</span><span>Projects</span></a></li>
                 </ul>
             </section>
             <section></section>
@@ -158,15 +166,15 @@
             <div id="block-12"></div>
         </section>
 
-        <img src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch">
-        <img src="images/white-dots.svg" alt="#" id="white-dots">
-        <img src="images/white-dots.svg" alt="#" id="white-dots2">
-        <img src="images/gold-hatch.svg" alt="#" id="gold-hatch">
-        <img src="images/small-circles.svg" alt="#" id="small-circles">
-        <img src="images/small-circles.svg" alt="#" id="small-circles2">
-        <img src="images/gold-dots.svg" alt="#" id="gold-dots">
-        <img src="images/white-line.svg" alt="#" id="white-line">
-        <img src="images/white-line.svg" alt="#" id="white-line2">
+        <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots2">
+        <img src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles2">
+        <img src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line2">
         <?xml version="1.0" encoding="UTF-8"?>
         <svg id="large-circles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 501">
             <defs>
@@ -225,11 +233,11 @@
 
         <!-- for media query beyond 1080px height -->
 
-        <img class="pos-abs-1080h" src="images/gold-dots.svg" alt="#" id="gold-dots2">
-        <img class="pos-abs-1080h" src="images/white-dots.svg" alt="#" id="white-dots3">
-        <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch2">
-        <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="#" id="gold-hatch3">
-        <img class="pos-abs-1080h" src="images/small-circles.svg" alt="#" id="small-circles3">
+        <img class="pos-abs-1080h" src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots2">
+        <img class="pos-abs-1080h" src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots3">
+        <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch2">
+        <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch3">
+        <img class="pos-abs-1080h" src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles3">
     </div>
     <footer>
         <section id="social">
@@ -252,6 +260,22 @@
         <section id="copyright">&copy; Tunji Akanbi 2025</section>
     </footer>
 
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
+        <button type="button" class="lb-btn lb-close" aria-label="Close image viewer">
+            <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+        <button type="button" class="lb-btn lb-prev" aria-label="Previous image">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M15 4l-8 8 8 8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <figure class="lb-figure">
+            <img class="lb-img" alt="">
+            <figcaption><span class="lb-title"></span><span class="lb-count" aria-live="polite"></span></figcaption>
+        </figure>
+        <button type="button" class="lb-btn lb-next" aria-label="Next image">
+            <svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M9 4l8 8-8 8" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="js/TextPlugin.min.js"></script>
@@ -260,6 +284,7 @@
     <script src="js/GSDevTools.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script src="js/app.js"></script>
+    <script src="js/gallery.js"></script>
 </body>
 
 </html>
