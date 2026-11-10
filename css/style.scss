@@ -86,6 +86,11 @@ nav {
   div#hamburger:hover section.bars {
     background: $torqoise;
   }
+  div#hamburger:focus-visible {
+    outline: 2px solid #c4b900;
+    outline-offset: 4px;
+    border-radius: 4px;
+  }
   div#landing {
     position: absolute;
     top: 70px;
@@ -374,7 +379,7 @@ nav {
     // top: -100px;
     z-index: 1;
     picture {
-      img#gpt-3 {
+      img.proj-img {
         width: 100%;
         height: auto;
       }
@@ -556,7 +561,7 @@ footer {
     div#desktop-nav {
       display: block;
       margin-left: auto;
-      ul#nav-links {
+      ul#nav-links-desktop {
         display: flex;
         justify-content: space-between;
         width: 300px;
@@ -718,7 +723,7 @@ footer {
     section.proj-wrap {
       // padding: 60px 100px;// needs fixing
       picture {
-        img#gpt-3 {
+        img.proj-img {
           margin: 0 auto;
           padding: 2em 8em;
         }

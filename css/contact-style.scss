@@ -85,6 +85,11 @@
     div#hamburger:hover section.bars {
       background: $torqoise;
     }
+    div#hamburger:focus-visible {
+      outline: 2px solid #c4b900;
+      outline-offset: 4px;
+      border-radius: 4px;
+    }
     div#landing {
       position: absolute;
       top: 70px;
@@ -501,7 +506,7 @@
       div#desktop-nav {
         display: block;
         margin-left: auto;
-        ul#nav-links {
+        ul#nav-links-desktop {
           display: flex;
           justify-content: space-between;
           width: 300px;

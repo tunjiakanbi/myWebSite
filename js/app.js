@@ -43,6 +43,31 @@ const scrollDownChevron = document.getElementById("down-chevron");
 // gsap.set("#large-circles", {opacity: 0});
 // gsap.set("#large-circles2", {opacity: 0});
 console.log(scrollDownChevron);
+// Accessibility: the hamburger is a <div>, so give it button semantics and keyboard support,
+// and keep the closed overlay's links out of the tab order.
+hamburger.setAttribute("role", "button");
+hamburger.setAttribute("tabindex", "0");
+hamburger.setAttribute("aria-label", "Menu");
+hamburger.setAttribute("aria-controls", "landing");
+function syncMenuA11y() {
+  const open = landing.classList.contains("open");
+  hamburger.setAttribute("aria-expanded", open ? "true" : "false");
+  landing.inert = !open;
+}
+syncMenuA11y();
+hamburger.addEventListener("keydown", (e) => {
+  if (e.key === "Enter" || e.key === " ") {
+    e.preventDefault();
+    hamburger.click();
+  }
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape" && landing.classList.contains("open")) {
+    hamburger.click();
+    hamburger.focus();
+  }
+});
+
 hamburger.addEventListener("click", () => {
   landing.classList.toggle("open");
   links.forEach((link) => {
@@ -51,6 +76,7 @@ hamburger.addEventListener("click", () => {
   bar1.classList.toggle("bar1");
   bar2.classList.toggle("bar2");
   bar3.classList.toggle("bar3");
+  syncMenuA11y();
 });
 
 if (landing.classList.contains("open")) {

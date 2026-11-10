@@ -74,6 +74,11 @@ nav div#hamburger .bar3 {
 nav div#hamburger:hover section.bars {
   background: #66d6d4;
 }
+nav div#hamburger:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
 nav div#landing {
   position: absolute;
   top: 70px;
@@ -548,27 +553,27 @@ footer #copyright {
     display: block;
     margin-left: auto;
   }
-  nav div#desktop-nav ul#nav-links {
+  nav div#desktop-nav ul#nav-links-desktop {
     display: flex;
     justify-content: space-between;
     width: 300px;
   }
-  nav div#desktop-nav ul#nav-links li {
+  nav div#desktop-nav ul#nav-links-desktop li {
     list-style: none;
     text-align: center;
     font-family: gill-sans-regular;
     cursor: pointer;
   }
-  nav div#desktop-nav ul#nav-links li a {
+  nav div#desktop-nav ul#nav-links-desktop li a {
     color: #66d6d4;
     text-decoration: none;
     text-transform: uppercase;
     transition: all 250ms ease;
   }
-  nav div#desktop-nav ul#nav-links li a:hover {
+  nav div#desktop-nav ul#nav-links-desktop li a:hover {
     color: #fff;
   }
-  nav div#desktop-nav ul#nav-links li:before {
+  nav div#desktop-nav ul#nav-links-desktop li:before {
     content: "";
     position: relative;
     top: 30px;
@@ -578,7 +583,7 @@ footer #copyright {
     display: block;
     transition: width 500ms ease;
   }
-  nav div#desktop-nav ul#nav-links li:hover:before {
+  nav div#desktop-nav ul#nav-links-desktop li:hover:before {
     width: 100%;
   }
   #container1 section#about-description {

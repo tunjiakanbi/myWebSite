@@ -11,8 +11,9 @@
     <meta property="og:title" content="Tunji Akanbi">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.tunjiakanbi.com">
-    <meta property="og:image" content="images/website_image.png">
+    <meta property="og:image" content="https://www.tunjiakanbi.com/images/website_image.png">
     <title>Tunji Akanbi</title>
+    <noscript><style>body{visibility:visible !important}</style></noscript>
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
@@ -48,7 +49,7 @@
             </ul>
         </div>
         <div id="desktop-nav">
-            <ul id="nav-links">
+            <ul id="nav-links-desktop">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
@@ -76,16 +77,15 @@
             <div id="block-11"></div>
             <div id="block-12"></div>
         </section>
-        <img src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch">
-        <img src="images/white-dots.svg" alt="#" id="white-dots">
-        <img src="images/white-dots.svg" alt="#" id="white-dots2">
-        <img src="images/gold-hatch.svg" alt="#" id="gold-hatch">
-        <img src="images/small-circles.svg" alt="#" id="small-circles">
-        <img src="images/small-circles.svg" alt="#" id="small-circles2">
-        <img src="images/gold-dots.svg" alt="#" id="gold-dots">
-        <img src="images/white-line.svg" alt="#" id="white-line">
-        <img src="images/white-line.svg" alt="#" id="white-line2">
-        <?xml version="1.0" encoding="UTF-8"?>
+        <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots2">
+        <img src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles2">
+        <img src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line2">
         <svg id="large-circles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 501">
             <defs>
                 <style>
@@ -141,28 +141,27 @@
             </g>
         </svg>
         <!-- for media query beyond 1080px height -->
-        <img class="pos-abs-1080h" src="images/gold-dots.svg" alt="#" id="gold-dots2">
-        <img class="pos-abs-1080h" src="images/white-dots.svg" alt="#" id="white-dots3">
-        <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch2">
-        <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="#" id="gold-hatch3">
-        <img class="pos-abs-1080h" src="images/small-circles.svg" alt="#" id="small-circles3">
+        <img class="pos-abs-1080h" src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots2">
+        <img class="pos-abs-1080h" src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots3">
+        <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch2">
+        <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch3">
+        <img class="pos-abs-1080h" src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles3">
     </div>
     <div id="container2" class="projects">
         <section id="scroll-indicator">
             <div id="scroll-indicator-div">
             <h3 id="scrollHeading">Scroll Down</h3>
-            <?xml version="1.0" encoding="UTF-8"?>
             <svg id="down-chevron" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 40 40">
                 <polygon class="st0" points="2.5 7.5 20.62 15 38.75 7.5 38.75 15 20.62 22.5 2.5 15 2.5 7.5" />
             </svg>
         </div>
         </section>
-        <img src="images/white-dots.svg" alt="#" id="white-dots4">
-        <img src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch3">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots4">
+        <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch3">
         <section id="cont1" class="proj-wrap">
             <picture>
                 <source media="(min-width: 576px)" srcset="images/gpt3-desktop.jpg" />
-                <img id="gpt-3" src="images/gpt3-mobile.jpg" alt="GPT-3 website project image">
+                <img class="proj-img" src="images/gpt3-mobile.jpg" alt="GPT-3 website project image">
             </picture>
             <section class="proj-details">
                 <h1>GPT-3</h1>
@@ -176,14 +175,14 @@
                         properties
                         such as flex and grid, animations, complex gradients, media queries and the use of CSS BEM
                         model. </p>
-                    <a href="./gpt-3-build/index.html" target="_blank">
-                        <svg class="proj-button" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
+                    <a href="./gpt-3-build/index.html" target="_blank" rel="noopener" aria-label="View GPT-3 project (opens in a new tab)">
+                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
                             viewBox="0 0 289 82">
                             <g class="Rectangle_33" data-name="Rectangle 33">
                                 <rect width="289" height="82" rx="23" stroke="none" />
                                 <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
                             </g>
-                            <text id="View_Project" data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
+                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
                                 font-size="22" font-family="HelveticaNeue, Helvetica Neue">
                                 <tspan x="0" y="0">View Project</tspan>
                             </text>
@@ -192,15 +191,15 @@
                 </section>
             </section>
         </section>
-        <!-- <img src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch3"> -->
+        <!-- <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch3"> -->
     </div>
     <div id="container3" class="projects">
-        <img src="images/torqoise-hatch.svg" alt="#" id="torqoise-hatch4">
-        <img src="images/gold-dots.svg" alt="#" id="gold-dots3">
+        <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch4">
+        <img src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots3">
         <section class="proj-wrap">
             <picture>
                 <source media="(min-width: 576px)" srcset="images/everyday-things-desktop.jpg" />
-                <img id="gpt-3" src="images/everyday-things-mobile.jpg" alt="Everyday things website project image">
+                <img class="proj-img" src="images/everyday-things-mobile.jpg" alt="Everyday things website project image">
             </picture>
             <section class="proj-details">
                 <h1>EVERYDAY THINGS</h1>
@@ -217,14 +216,14 @@
                         menus with full touch support, and how to use CSS pseudo-elements and adapt layouts for print to
                         save ink
                         and paper.</p>
-                    <a href="./everyday-things/index.html" target="_blank">
-                        <svg class="proj-button" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
+                    <a href="./everyday-things/index.html" target="_blank" rel="noopener" aria-label="View Everyday Things project (opens in a new tab)">
+                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
                             viewBox="0 0 289 82">
                             <g class="Rectangle_33" data-name="Rectangle 33">
                                 <rect width="289" height="82" rx="23" stroke="none" />
                                 <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
                             </g>
-                            <text id="View_Project" data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
+                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
                                 font-size="22" font-family="HelveticaNeue, Helvetica Neue">
                                 <tspan x="0" y="0">View Project</tspan>
                             </text>
@@ -235,12 +234,12 @@
         </section>
     </div>
     <div id="container4" class="projects">
-        <img src="images/white-dots.svg" alt="#" id="white-dots5">
-        <img src="images/gold-hatch.svg" alt="#" id="gold-hatch4">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots5">
+        <img src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch4">
         <section class="proj-wrap">
             <picture>
                 <source media="(min-width: 576px)" srcset="images/jottly-desktop.jpg" />
-                <img id="gpt-3" src="images/jottly-mobile.jpg" alt="Jottly website project image">
+                <img class="proj-img" src="images/jottly-mobile.jpg" alt="Jottly website project image">
             </picture>
             <section class="proj-details">
                 <h1>JOTTLY</h1>
@@ -251,14 +250,14 @@
                         Joey Kirk. The exercise was focused on utilizing normalize.css, animate.css and skeleton.css. It
                         exposed me
                         to new CSS3 properties while implementing some custom css animations.</p>
-                    <a href="./jottly/html/index.html" target="_blank">
-                        <svg class="proj-button" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
+                    <a href="./jottly/html/index.html" target="_blank" rel="noopener" aria-label="View Jottly project (opens in a new tab)">
+                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
                             viewBox="0 0 289 82">
                             <g class="Rectangle_33" data-name="Rectangle 33">
                                 <rect width="289" height="82" rx="23" stroke="none" />
                                 <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
                             </g>
-                            <text id="View_Project" data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
+                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
                                 font-size="22" font-family="HelveticaNeue, Helvetica Neue">
                                 <tspan x="0" y="0">View Project</tspan>
                             </text>
@@ -270,17 +269,17 @@
     </div>
     <footer>
         <section id="social">
-            <a href="https://github.com/tunjiakanbi" target="_blank">
+            <a href="https://github.com/tunjiakanbi" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="30.713" viewBox="0 0 31.5 30.713"
-                    id="git-hub">
+                    id="git-hub" aria-hidden="true" focusable="false">
                     <path id="Icon_awesome-github" data-name="Icon awesome-github"
                         d="M10.536,25.293c0,.127-.146.229-.33.229-.21.019-.356-.083-.356-.229,0-.127.146-.229.33-.229C10.371,25.045,10.536,25.146,10.536,25.293Zm-1.975-.286c-.044.127.083.273.273.311a.3.3,0,0,0,.394-.127c.038-.127-.083-.273-.273-.33A.326.326,0,0,0,8.561,25.007Zm2.807-.108c-.184.044-.311.165-.292.311.019.127.184.21.375.165s.311-.165.292-.292S11.552,24.88,11.368,24.9ZM15.547.563A15.229,15.229,0,0,0,0,16.058,15.922,15.922,0,0,0,10.765,31.25c.813.146,1.1-.356,1.1-.768,0-.394-.019-2.566-.019-3.9,0,0-4.446.953-5.379-1.893,0,0-.724-1.848-1.766-2.324,0,0-1.454-1,.1-.978a3.352,3.352,0,0,1,2.451,1.639,3.357,3.357,0,0,0,4.63,1.327,3.53,3.53,0,0,1,1.016-2.14c-3.55-.394-7.132-.908-7.132-7.018a4.813,4.813,0,0,1,1.5-3.741A6,6,0,0,1,7.43,7.142c1.327-.413,4.382,1.715,4.382,1.715a15,15,0,0,1,7.977,0s3.055-2.134,4.382-1.715a6,6,0,0,1,.165,4.312,4.937,4.937,0,0,1,1.639,3.741c0,6.129-3.741,6.618-7.291,7.018a3.756,3.756,0,0,1,1.08,2.947c0,2.14-.019,4.789-.019,5.309,0,.413.292.915,1.1.768A15.775,15.775,0,0,0,31.5,16.058C31.5,7.25,24.355.563,15.547.563Zm-9.374,21.9c-.083.064-.064.21.044.33.1.1.248.146.33.064.083-.064.064-.21-.044-.33C6.4,22.428,6.256,22.384,6.173,22.466Zm-.686-.514c-.044.083.019.184.146.248a.189.189,0,0,0,.273-.044c.044-.083-.019-.184-.146-.248C5.633,21.869,5.532,21.889,5.487,21.952Zm2.058,2.261c-.1.083-.064.273.083.394.146.146.33.165.413.064.083-.083.044-.273-.083-.394C7.818,24.13,7.627,24.111,7.545,24.213Zm-.724-.934c-.1.064-.1.229,0,.375s.273.21.356.146a.29.29,0,0,0,0-.394C7.088,23.26,6.922,23.2,6.821,23.279Z"
                         transform="translate(0 -0.563)" />
                 </svg>
             </a>
-            <a href="https://www.linkedin.com/in/tunjiakanbi/" target="_blank">
+            <a href="https://www.linkedin.com/in/tunjiakanbi/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile (opens in a new tab)">
                 <svg xmlns="http://www.w3.org/2000/svg" width="31.5" height="31.499" viewBox="0 0 31.5 31.499"
-                    id="linkedIn">
+                    id="linkedIn" aria-hidden="true" focusable="false">
                     <path id="Icon_awesome-linkedin-in" data-name="Icon awesome-linkedin-in"
                         d="M7.051,31.5H.52V10.47H7.051ZM3.782,7.6A3.8,3.8,0,1,1,7.564,3.783,3.814,3.814,0,0,1,3.782,7.6ZM31.493,31.5H24.976V21.263c0-2.44-.049-5.569-3.4-5.569-3.4,0-3.916,2.651-3.916,5.393V31.5H11.142V10.47h6.263v2.869H17.5a6.862,6.862,0,0,1,6.179-3.4c6.609,0,7.824,4.352,7.824,10.005V31.5Z"
                         transform="translate(0 -0.001)" />
@@ -291,6 +290,7 @@
     </footer>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script> -->
+    <script src="js/reveal-fallback.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
     <script src="js/TextPlugin.min.js"></script>

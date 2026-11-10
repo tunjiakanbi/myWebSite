@@ -295,14 +295,4 @@
   /* ---------- go ---------- */
 
   render(); // honour a deep link such as gallery.html#ui-ux
-
-  // Safety net: the page starts hidden (body { visibility: hidden }) and GSAP, loaded from a CDN,
-  // reveals it. If that script is blocked or offline the page would stay blank, so reveal it anyway.
-  window.addEventListener("load", function () {
-    window.setTimeout(function () {
-      if (window.getComputedStyle(document.body).visibility === "hidden") {
-        document.body.style.visibility = "visible";
-      }
-    }, 2500);
-  });
 })();
