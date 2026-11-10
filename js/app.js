@@ -80,18 +80,172 @@ hamburger.addEventListener("click", () => {
   syncMenuA11y();
 });
 
-// ----------------------------------------------------------------- intro animations
-gsap.registerPlugin(GSDevTools, SplitText, TextPlugin, ScrollTrigger);
+// ----------------------------------------------------------------- animations: setup
+// GSAP 3.15.1 + plugins are self-hosted in /js (see the <script> tags at the end of each page).
+gsap.registerPlugin(SplitText, ScrollTrigger, DrawSVGPlugin);
 let elemLoaded = false;
+const isHomePage = body.classList.contains("page-home");
+
 function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
+  if (isHomePage) {
+    homeIntro();
+  } else {
+    pageIntro();
+  }
+}
+
+// ----------------------------------------------------------------- home page intro (~4 seconds)
+// One timeline, four labelled beats:   roles -> grid -> decor -> settle
+// To retime the intro, change the label positions (seconds) below - nothing else needs editing.
+const INTRO = {
+  roles: 0.15,  // job titles start
+  grid: 0.9,    // colour blocks start
+  decor: 1.5,   // dots, hatches, lines and circles start
+};
+
+function homeIntro() {
+  const roles = [uiUx, fEd, fSd].filter(Boolean);
+  const blocks = [block2, block5, block6, block7, block8, block9, block10, block11].filter(Boolean);
+  // where each decoration slides in from (px). Short hops, so the whole intro stays brief.
+  const decor = [
+    { el: torqoise, x: -60 },
+    { el: whiteDots, x: 120 },
+    { el: goldHatch, y: 120 },
+    { el: smallCircles, y: 120 },
+    { el: goldDots, x: 120, ease: "back.out(1.6)" },
+    { el: whiteLine, x: -160 },
+    { el: smallCircles2, y: 120 },
+    { el: whiteLine2, x: -160 },
+    { el: whiteDots2, x: 120 },
+    { el: smallCircles3, y: 80 },
+    { el: goldHatch3, x: 80 },
+    { el: whiteDots3, x: 120 },
+    { el: torqoise2, x: -60 },
+    { el: goldDots2, x: 120, ease: "back.out(1.6)" },
+  ].filter((d) => d.el);
+  const circles = [largeCircles, largeCircles2].filter(Boolean);
+  const isShown = (el) => getComputedStyle(el).display !== "none";
+
+  // gsap.matchMedia() picks the right version for the visitor and cleans up if the setting changes
+  const mm = gsap.matchMedia();
+  mm.add(
+    {
+      motion: "(prefers-reduced-motion: no-preference)",
+      reduce: "(prefers-reduced-motion: reduce)",
+    },
+    (context) => {
+      // Decorations that are display:none at this screen size are simply made visible,
+      // so they are there if the window is resized to a layout that shows them.
+      const shownDecor = decor.filter((d) => isShown(d.el));
+      const shownCircles = circles.filter(isShown);
+      const notShown = [...decor.map((d) => d.el), ...circles].filter((el) => !isShown(el));
+      if (notShown.length) gsap.set(notShown, { autoAlpha: 1 });
+
+      // ---- visitors who asked their device for less motion: one quick fade, nothing moves or loops
+      if (context.conditions.reduce) {
+        gsap.set("#scrollHeading", { animation: "none" });
+        gsap.fromTo(
+          [...blocks, ...shownDecor.map((d) => d.el), ...shownCircles, "#scroll-indicator-div"],
+          { autoAlpha: 0 },
+          { autoAlpha: 1, duration: 0.4, ease: "none" }
+        );
+        return;
+      }
+
+      // ---- the intro
+      const tl = gsap.timeline({ defaults: { duration: 0.6, ease: "power3.out" } });
+      tl.addLabel("roles", INTRO.roles).addLabel("grid", INTRO.grid).addLabel("decor", INTRO.decor);
+
+      // background settles in from the nav colour
+      tl.from("#container1", { backgroundColor: "#170046", duration: 1.2, ease: "power2.inOut" }, 0);
+
+      // 1. roles: each title is revealed once, letter by letter, then stays readable
+      roles.forEach((heading, i) => {
+        const split = SplitText.create(heading, { type: "words, chars" });
+        tl.from(split.chars, { autoAlpha: 0, yPercent: 50, duration: 0.45, stagger: 0.02 }, "roles+=" + i * 0.28);
+      });
+
+      // 2. grid: the colour blocks pop in from the middle outwards
+      tl.fromTo(
+        blocks,
+        { autoAlpha: 0, scale: 0 },
+        { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)", stagger: { each: 0.06, from: "center" }, clearProps: "transform" },
+        "grid"
+      );
+
+      // 3. decor: each piece slides a short way into place
+      shownDecor.forEach((d, i) => {
+        tl.fromTo(
+          d.el,
+          { autoAlpha: 0, x: d.x || 0, y: d.y || 0 },
+          { autoAlpha: 1, x: 0, y: 0, duration: 0.7, ease: d.ease || "power3.out", clearProps: "transform" },
+          "decor+=" + i * 0.09
+        );
+      });
+      //    ...while the large circle outlines draw themselves and their markers pop on
+      if (shownCircles.length) {
+        const rings = shownCircles.flatMap((svg) => gsap.utils.toArray("circle.cls-1", svg));
+        const markers = shownCircles.flatMap((svg) => gsap.utils.toArray("circle.cls-2", svg));
+        tl.set(shownCircles, { autoAlpha: 1 }, "decor+=0.2");
+        tl.from(rings, { drawSVG: 0, duration: 1.3, ease: "power2.inOut", stagger: 0.12 }, "decor+=0.2");
+        tl.from(markers, { scale: 0, transformOrigin: "50% 50%", duration: 0.4, ease: "back.out(2)", stagger: 0.12 }, "decor+=1.1");
+      }
+
+      // 4. settle: the scroll cue arrives last, once there is something to scroll past
+      tl.addLabel("settle", "-=0.3");
+      tl.fromTo("#scroll-indicator-div", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, "settle");
+
+      // ---- ambient motion (keeps going after the intro, but only while the hero is on screen)
+      const ambient = [
+        gsap.to("#big-c", { rotation: 360, transformOrigin: "center", repeat: -1, duration: 10, ease: "none" }),
+        gsap.to("#small-c", { rotation: -360, transformOrigin: "center", repeat: -1, duration: 6, ease: "none" }),
+        gsap.to(scrollDownChevron, { y: -8, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 }),
+      ];
+      ScrollTrigger.create({
+        trigger: "#container1",
+        start: "top bottom",
+        end: "bottom top",
+        onToggle: (self) => ambient.forEach((tween) => tween.paused(!self.isActive)),
+      });
+    }
+  );
+
+  // hover: decorations grow slightly
+  elemLoaded = true;
+  [torqoise, whiteDots, goldHatch, goldDots, smallCircles].forEach(changeScale);
+
+  // scroll cue hides once you start scrolling and returns near the top
+  // (a plain fade, without the 20px slide, for visitors who prefer reduced motion)
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const indicatorTween = gsap.to(scrollIndicator, {
+    autoAlpha: 0,
+    ...(reduceMotion ? {} : { y: 20 }),
+    duration: 0.25,
+    paused: true
+  });
+  ScrollTrigger.create({
+    start: 0,      // start watching immediately
+    end: 99999,    // whole page
+    onUpdate: (self) => {
+      if (self.direction === 1 && self.scroll() > 50) {
+        // scrolling down past 50px: hide
+        indicatorTween.play();
+      } else if (self.direction === -1 && self.scroll() < 200) {
+        // scrolling up near top again: show
+        indicatorTween.reverse();
+      }
+    }
+  });
+}
+
+// ----------------------------------------------------------------- about / contact / gallery intro
+// The original sequence, unchanged in timing. Helpers skip elements a page does not have.
+function pageIntro() {
   // Block1X or Y(elem, x or yPos, dur, delay, ease, autoAlpha)
   bGFadeIn("#container1");
 
   splitText2("#about-description", 0.5, 1.5, 0.2);
-  splitText(uiUx, 0.5);
-  splitText(fEd, 1.5);
-  splitText(fSd, 3);
   Block1Y(block2, -100, 0.5, 4, "power4.out", 0);
   Block1X(block5, -100, 0.5, 4.5, "power4.out", 0);
   Block1X(block6, 100, 0.5, 4.75, "power4.out", 0);
@@ -123,44 +277,11 @@ function init() {
   changeScale(goldHatch);
   changeScale(goldDots);
   changeScale(smallCircles);
-  //scroll indicator animation
-  gsap.fromTo("#scroll-indicator-div",
-    {autoAlpha: 0, y: 20},
-    {autoAlpha: 1, y: 0, duration: 1, ease: "power4.out", delay: 4}
-  );
-  splitText(scrollHeading, 0.5);
-  gsap.to(scrollDownChevron, {
-    y: -8,          // move up 8px (relative to its current position)
-    duration: 0.6,
-    ease: "sine.inOut", // smooth, subtle
-    yoyo: true,     // go back and forth
-    repeat: -1      // infinite
-  });
-  //testing scrolltrigger
-  const indicatorTween = gsap.to(scrollIndicator, {
-    autoAlpha: 0,
-    y: 20,
-    duration: 0.25,
-    paused: true
-  });
-
-  ScrollTrigger.create({
-    start: 0,      // start watching immediately
-    end: 99999,    // whole page
-    onUpdate: (self) => {
-      if (self.direction === 1 && self.scroll() > 50) {
-        // scrolling down past 50px: hide
-        indicatorTween.play();
-      } else if (self.direction === -1 && self.scroll() < 200) {
-        // scrolling up near top again: show
-        indicatorTween.reverse();
-      }
-    }
-  });
 }
 
 // ----------------------------------------------------------------- animation helpers
 function changeScale(elem) {
+  if (!elem) return;
   if (elemLoaded === true) {
     elem.addEventListener("mouseenter", (e) => {
       gsap.to(elem, { transformOrigin: "bottom center", scale: 1.2, duration: 0.25, ease: "power4.inOut" });
@@ -179,19 +300,8 @@ function bGFadeIn(a) {
     delay: 1,
   });
 }
-function splitText(a, b) {
-  let split = new SplitText(a, { type: "chars" });
-  gsap.from(split.chars, {
-    duration: 0.175,
-    opacity: 0,
-    stagger: 0.1,
-    ease: "back",
-    delay: b,
-    repeat: -1,
-    yoyo: true
-  });
-}
 function splitText2(a, b, c, d) {
+  if (!document.querySelector(a)) return;
   let split = new SplitText(a, { type: "words" });
   gsap.from(split.words, {
     duration: c,//0.175
@@ -203,6 +313,7 @@ function splitText2(a, b, c, d) {
   });
 }
 function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
+  if (!elem) return;
   gsap.from(elem, {
     y: yPos,
     autoAlpha: autoAlpha,
@@ -212,6 +323,7 @@ function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
   });
 }
 function Block1X(elem, xPos, dur, delay, ease, autoAlpha) {
+  if (!elem) return;
   gsap.from(elem, {
     x: xPos,
     autoAlpha: autoAlpha,
@@ -238,7 +350,6 @@ function rotateCircles() {
 
 // ----------------------------------------------------------------- start
 document.addEventListener("DOMContentLoaded", init);
-//note to self, re-order sequence of animations, and introduce timelines and ,aster timelines
 
 
 // =============================================================================
@@ -312,3 +423,39 @@ document.addEventListener("DOMContentLoaded", init);
 // }
 //
 // requestAnimationFrame(raf)
+
+// --- (home intro) the previous home page intro, replaced by homeIntro() above.
+//     It ran inside the shared init(): every step had its own hand-set delay (about 12.5s in
+//     total) and the job titles looped forever instead of settling. The block/decoration steps
+//     of that sequence are still in use, unchanged, as pageIntro() for the other pages.
+// splitText(uiUx, 0.5);
+// splitText(fEd, 1.5);
+// splitText(fSd, 3);
+// //scroll indicator animation
+// gsap.fromTo("#scroll-indicator-div",
+//   {autoAlpha: 0, y: 20},
+//   {autoAlpha: 1, y: 0, duration: 1, ease: "power4.out", delay: 4}
+// );
+// splitText(scrollHeading, 0.5);
+//
+// function splitText(a, b) {
+//   let split = new SplitText(a, { type: "chars" });
+//   gsap.from(split.chars, {
+//     duration: 0.175,
+//     opacity: 0,
+//     stagger: 0.1,
+//     ease: "back",
+//     delay: b,
+//     repeat: -1,
+//     yoyo: true
+//   });
+// }
+
+// --- (setup) plugins that used to be registered but were never used.
+//     GSDevTools is a development tool and should not ship; to use it while tuning the intro, add
+//     <script src="js/GSDevTools.min.js"></script> and  GSDevTools.create({ animation: tl })
+// gsap.registerPlugin(GSDevTools, SplitText, TextPlugin, ScrollTrigger);
+
+// --- (start) note to self
+// //note to self, re-order sequence of animations, and introduce timelines and ,aster timelines
+//     (done for the home page: see homeIntro)
