@@ -88,6 +88,7 @@ let elemLoaded = false;
 function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
   heroIntro();
+  sectionColors();
 }
 
 // ----------------------------------------------------------------- page intro (~4 seconds, every page)
@@ -241,6 +242,58 @@ function heroIntro() {
         indicatorTween.reverse();
       }
     }
+  });
+}
+
+// ----------------------------------------------------------------- home: section colours on scroll
+// As you scroll from the hero into the projects, and from one project to the next, each project
+// section arrives in a contrasting palette colour and resolves to its own background colour.
+//
+//   * The destination is always whatever the stylesheet says (read at run time), so changing a
+//     section's background in style.scss needs no change here.
+//   * "from" is the colour a section starts on. Sea blue, green, torqoise and gold keep the white,
+//     torqoise and gold text readable for the whole change; lime and white do not.
+//   * The change is tied to scroll (scrub). It starts when the section's top edge enters the
+//     bottom of the screen. It is timed so that the colour is always SECTION_COLOR_AT_TEXT of the
+//     way to its destination at the moment the section's text first appears - on every screen
+//     size, whatever the height of the project image - and it finishes a little further on.
+const SECTION_COLORS = [
+  { section: "#container2.projects", from: "#64a7e9" }, // hero -> GPT-3              ($seaBlue)
+  { section: "#container3.projects", from: "#66d6d4" }, // GPT-3 -> Everyday Things   ($torqoise)
+  { section: "#container4.projects", from: "#66a293" }, // Everyday Things -> Jottly  ($green)
+];
+const SECTION_COLOR_AT_TEXT = 0.65; // 0.65 = 65% changed when the text scrolls into view (raise for a quicker change)
+
+function sectionColors() {
+  const mm = gsap.matchMedia();
+  // visitors who prefer reduced motion simply get the final colours
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    // created top to bottom, in page order
+    SECTION_COLORS.forEach(({ section, from }) => {
+      const el = document.querySelector(section);
+      if (!el) return;
+      const text = el.querySelector(".proj-details") || el;
+      const to = getComputedStyle(el).backgroundColor;
+      gsap.fromTo(
+        el,
+        { backgroundColor: from },
+        {
+          backgroundColor: to,
+          ease: "none",
+          scrollTrigger: {
+            trigger: el,
+            start: "clamp(top bottom)",
+            // distance from the section's top to its text, stretched so the text arrives at the
+            // chosen point of the change; never beyond the end of the page (the last section)
+            end: (self) => {
+              const toText = text.getBoundingClientRect().top - el.getBoundingClientRect().top;
+              return Math.min(self.start + toText / SECTION_COLOR_AT_TEXT, ScrollTrigger.maxScroll(window));
+            },
+            scrub: 0.3,
+          },
+        }
+      );
+    });
   });
 }
 

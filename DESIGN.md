@@ -104,3 +104,8 @@ Depth comes from the darker surface colour on the lighter ground.
 - Project screenshots are shown whole, never cropped mid-content.
 - Motion: one short intro per page (about 4 seconds), ambient loops only while visible, and a
   plain fade for visitors who prefer reduced motion. See `js/app.js`.
+- Scroll colour (home): each project section arrives in a contrasting palette colour and resolves
+  to its own background as you scroll to it: sea blue, then torqoise, then green. The stylesheet
+  colour is always the destination. Only sea blue, green, torqoise and gold may be used as
+  starting colours; lime and white make the torqoise titles and gold tech lines unreadable
+  mid-change. The change is 65% complete when a section's text first appears.
