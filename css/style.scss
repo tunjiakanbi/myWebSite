@@ -28,29 +28,20 @@ body {
   visibility: hidden;
 }
 
+// Display face - brand statements and page titles
 @font-face {
   font-family: pirulen;
   src: url("../fonts/pirulen\ rg.ttf");
+  font-display: swap;
 }
 
+// Everything else - Outfit (SIL Open Font License), one variable file for all weights
 @font-face {
-  font-family: gill-sans-bold;
-  src: url("../fonts/Gill\ Sans\ Bold.otf");
-}
-
-@font-face {
-  font-family: gill-sans-regular;
-  src: url("../fonts/Gill\ Sans.otf");
-}
-
-@font-face {
-  font-family: Muller;
-  src: url("../fonts/MullerExtraBold.woff");
-}
-
-@font-face {
-  font-family: Helvetica;
-  src: url("../fonts/HelveticaNeueThin.otf");
+  font-family: "Outfit";
+  src: url("../fonts/outfit-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 $white: #fff;
 $darkBlue: #170046;
@@ -63,12 +54,10 @@ $torqoise: #66d6d4;
 $darkGray: #707070;
 $myBlack: #080909;
 $pirulen: pirulen;
-$gill-sans-bold: gill-sans-bold;
-$gill-sans-regular: gill-sans-regular;
-$muller: Muller;
-$helvetica: Helvetica;
+$font-sans: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
 
 body {
+  font-family: $font-sans;
   max-width: 575px;
   height: 100%;
   min-height: 680px;
@@ -83,7 +72,8 @@ nav {
   padding: 0 1.5em;
   // border-bottom: 1px solid $white;
   h3#brand {
-    font-family: $gill-sans-bold;
+    font-family: $font-sans;
+    font-weight: 700;
     color: $lime;
     text-transform: uppercase;
     font-size: 1.5em;
@@ -154,7 +144,8 @@ nav {
       li {
         list-style: none;
         text-align: center;
-        font-family: $gill-sans-regular;
+        font-family: $font-sans;
+        font-weight: 400;
         opacity: 0;
         cursor: pointer;
         a {
@@ -285,14 +276,16 @@ nav {
           color: $white;
           // padding-bottom: 0.5em;
           margin-bottom: 1.5em;
-          font-family: $helvetica;
+          font-family: $font-sans;
+          font-weight: 400;
           padding: 0.5em;
           transition: all 200ms linear;
         }
         input::placeholder, textarea::placeholder {
           opacity: 1;
           color: $torqoise;
-          font-family: $gill-sans-bold;
+          font-family: $font-sans;
+          font-weight: 700;
           margin-left: 1em;
         }
         input:focus, textarea:focus {
@@ -362,7 +355,8 @@ nav {
             border-radius: 999px;
             background: transparent;
             color: $torqoise;
-            font-family: $gill-sans-bold;
+            font-family: $font-sans;
+            font-weight: 700;
             font-size: 14px;
             letter-spacing: 0.03em;
             text-transform: uppercase;
@@ -508,7 +502,8 @@ nav {
           figcaption {
             margin-top: 0.4em;
             color: $lime;
-            font-family: $gill-sans-regular;
+            font-family: $font-sans;
+            font-weight: 400;
             font-size: 0.8em;
             letter-spacing: 0.04em;
             text-transform: uppercase;
@@ -535,7 +530,8 @@ nav {
       section {
         p {
           color: $white;
-          font-family: $helvetica;
+          font-family: $font-sans;
+          font-weight: 400;
           line-height: 26px;
         }
         ul {
@@ -565,7 +561,8 @@ nav {
           li {
             span:nth-child(1) {
               color: $torqoise;
-              font-family: $gill-sans-bold;
+              font-family: $font-sans;
+              font-weight: 700;
               text-transform: uppercase;
               transition: all 200ms linear;
             }
@@ -771,12 +768,13 @@ nav {
         justify-content: center;
         align-items: center;
         h3 {
-          font-family: $gill-sans-regular;
+          font-family: $font-sans;
+          font-weight: 600;
           color: $white;
           text-transform: uppercase;
-          letter-spacing: 2px;
+          letter-spacing: 0.12em;
           animation: scrollAnim 2s infinite;
-          font-size: 0.5em;
+          font-size: 0.75em;
         }
         svg#down-chevron {
           width: 60px;
@@ -803,13 +801,15 @@ nav {
       padding: 2em;
       h1 {
         // margin-top: 1em;
-        font-family: $muller;
+        font-family: $font-sans;
+        font-weight: 800;
         font-size: 2.5em;
         color: $torqoise;
         margin-bottom: 0.5em;
       }
       h3 {
-        font-family: $gill-sans-regular;
+        font-family: $font-sans;
+        font-weight: 500;
         font-size: 1.5em;
         color: $gold;
         margin-bottom: 0.25em;
@@ -820,9 +820,10 @@ nav {
         p {
           color: $white;
           // font-family: Arial, Helvetica, sans-serif;
-          font-family: $helvetica;
-          line-height: 33px;
-          letter-spacing: 2px;
+          font-family: $font-sans;
+          font-weight: 400;
+          line-height: 1.6;
+          max-width: 34em;
         }
         a {
           text-align: center;
@@ -881,7 +882,8 @@ nav {
     section#about-left-panel {
       width: 100%;
       h1 {
-        font-family: $gill-sans-bold;
+        font-family: $font-sans;
+        font-weight: 700;
         font-size: 1.25em;
         color: $gold;
         text-transform: uppercase;
@@ -893,9 +895,11 @@ nav {
         }
       }
       p {
-        font-family: $helvetica;
+        font-family: $font-sans;
+        font-weight: 400;
         color: $white;
-        line-height: 26px;
+        line-height: 1.6;
+        max-width: 34em;
         margin-bottom: 2em;
         // letter-spacing: 2px;// add at larger breakpoint
         span {
@@ -1017,7 +1021,8 @@ footer {
   }
   #copyright {
     color: $white;
-    font-family: $gill-sans-bold;
+    font-family: $font-sans;
+    font-weight: 700;
     color: $lime;
     text-transform: uppercase;
   }
@@ -1103,8 +1108,6 @@ footer {
       padding-top: 3em;
       section#about-left-panel {
         p {
-          line-height: 2em;
-          letter-spacing: 2px;
           margin-top: 0.5em;
           padding: 1em;
         }
@@ -1203,8 +1206,6 @@ footer {
       }
       section#about-left-panel {
         p {
-          line-height: 1.75em;
-          letter-spacing: 1.75px;
           margin-top: 0.5em;
           padding: 1em;
         }
@@ -1264,7 +1265,8 @@ footer {
         li {
           list-style: none;
           text-align: center;
-          font-family: $gill-sans-regular;
+          font-family: $font-sans;
+          font-weight: 400;
           // opacity: 0;
           cursor: pointer;
           a {
@@ -1429,8 +1431,6 @@ footer {
       }
       section#about-left-panel {
         p {
-          line-height: 1.75em;
-          letter-spacing: 1.75px;
           margin-top: 0.5em;
           padding: 1em;
         }
@@ -1754,7 +1754,8 @@ html.lb-open {
     align-items: baseline;
     gap: 1em;
     color: $lime;
-    font-family: $gill-sans-regular;
+    font-family: $font-sans;
+    font-weight: 400;
     letter-spacing: 0.04em;
   }
   #lightbox .lb-count {
@@ -1856,4 +1857,11 @@ html.lb-open {
       transition: none;
     }
   }
+}
+
+// About page: the statement section was removed, so the bio is the first thing on the page.
+// Let it fill the screen above the footer.
+:where(body.page-about) #container2 {
+  min-height: calc(100vh - 170px);
+  min-height: calc(100dvh - 170px);
 }

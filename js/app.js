@@ -293,6 +293,7 @@ function changeScale(elem) {
 }
 
 function bGFadeIn(a) {
+  if (!document.querySelector(a)) return;
   gsap.from(a, {
     backgroundColor: "#170046",
     duration: 5,

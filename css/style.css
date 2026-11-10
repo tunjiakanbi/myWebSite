@@ -9,24 +9,17 @@ body {
 @font-face {
   font-family: pirulen;
   src: url("../fonts/pirulen\ rg.ttf");
+  font-display: swap;
 }
 @font-face {
-  font-family: gill-sans-bold;
-  src: url("../fonts/Gill\ Sans\ Bold.otf");
-}
-@font-face {
-  font-family: gill-sans-regular;
-  src: url("../fonts/Gill\ Sans.otf");
-}
-@font-face {
-  font-family: Muller;
-  src: url("../fonts/MullerExtraBold.woff");
-}
-@font-face {
-  font-family: Helvetica;
-  src: url("../fonts/HelveticaNeueThin.otf");
+  font-family: "Outfit";
+  src: url("../fonts/outfit-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
 }
 body {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   max-width: 575px;
   height: 100%;
   min-height: 680px;
@@ -39,7 +32,8 @@ nav {
   padding: 0 1.5em;
 }
 nav h3#brand {
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   color: #ebf3cd;
   text-transform: uppercase;
   font-size: 1.5em;
@@ -110,7 +104,8 @@ nav div#landing ul#nav-links {
 nav div#landing ul#nav-links li {
   list-style: none;
   text-align: center;
-  font-family: gill-sans-regular;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   opacity: 0;
   cursor: pointer;
 }
@@ -231,7 +226,8 @@ nav div#desktop-nav {
   border-radius: 0;
   color: #fff;
   margin-bottom: 1.5em;
-  font-family: Helvetica;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   padding: 0.5em;
   transition: all 200ms linear;
 }
@@ -239,7 +235,8 @@ nav div#desktop-nav {
 :where(body.page-contact) #container1 section#contact form#myForm textarea::placeholder {
   opacity: 1;
   color: #66d6d4;
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   margin-left: 1em;
 }
 :where(body.page-contact) #container1 section#contact form#myForm input:focus,
@@ -308,7 +305,8 @@ nav div#desktop-nav {
   border-radius: 999px;
   background: transparent;
   color: #66d6d4;
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   font-size: 14px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
@@ -457,7 +455,8 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card figcaption {
   margin-top: 0.4em;
   color: #ebf3cd;
-  font-family: gill-sans-regular;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   font-size: 0.8em;
   letter-spacing: 0.04em;
   text-transform: uppercase;
@@ -481,7 +480,8 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery section p {
   color: #fff;
-  font-family: Helvetica;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   line-height: 26px;
 }
 :where(body.page-gallery) #container1 section#gallery section ul {
@@ -511,7 +511,8 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery section ul li span:nth-child(1) {
   color: #66d6d4;
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   text-transform: uppercase;
   transition: all 200ms linear;
 }
@@ -712,12 +713,13 @@ nav div#desktop-nav {
   align-items: center;
 }
 :where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div h3 {
-  font-family: gill-sans-regular;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: 0.12em;
   animation: scrollAnim 2s infinite;
-  font-size: 0.5em;
+  font-size: 0.75em;
 }
 :where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div svg#down-chevron {
   width: 60px;
@@ -737,13 +739,15 @@ nav div#desktop-nav {
   padding: 2em;
 }
 :where(body.page-home) .projects section.proj-details h1 {
-  font-family: Muller;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 800;
   font-size: 2.5em;
   color: #66d6d4;
   margin-bottom: 0.5em;
 }
 :where(body.page-home) .projects section.proj-details h3 {
-  font-family: gill-sans-regular;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 500;
   font-size: 1.5em;
   color: #c4b900;
   margin-bottom: 0.25em;
@@ -754,9 +758,10 @@ nav div#desktop-nav {
 }
 :where(body.page-home) .projects section.proj-details section.project-content p {
   color: #fff;
-  font-family: Helvetica;
-  line-height: 33px;
-  letter-spacing: 2px;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  max-width: 34em;
 }
 :where(body.page-home) .projects section.proj-details section.project-content a {
   text-align: center;
@@ -804,7 +809,8 @@ nav div#desktop-nav {
   width: 100%;
 }
 :where(body.page-about) #container2 section#about-left-panel h1 {
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   font-size: 1.25em;
   color: #c4b900;
   text-transform: uppercase;
@@ -816,9 +822,11 @@ nav div#desktop-nav {
   color: #ebf3cd;
 }
 :where(body.page-about) #container2 section#about-left-panel p {
-  font-family: Helvetica;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   color: #fff;
-  line-height: 26px;
+  line-height: 1.6;
+  max-width: 34em;
   margin-bottom: 2em;
 }
 :where(body.page-about) #container2 section#about-left-panel p span {
@@ -915,7 +923,8 @@ footer #social a svg#linkedIn:hover path#Icon_awesome-linkedin-in:hover {
 }
 footer #copyright {
   color: #fff;
-  font-family: gill-sans-bold;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 700;
   color: #ebf3cd;
   text-transform: uppercase;
 }
@@ -977,8 +986,6 @@ footer #copyright {
     padding-top: 3em;
   }
   :where(body.page-about) #container2 section#about-left-panel p {
-    line-height: 2em;
-    letter-spacing: 2px;
     margin-top: 0.5em;
     padding: 1em;
   }
@@ -1067,8 +1074,6 @@ footer #copyright {
     width: 50%;
   }
   :where(body.page-about) #container2 section#about-left-panel p {
-    line-height: 1.75em;
-    letter-spacing: 1.75px;
     margin-top: 0.5em;
     padding: 1em;
   }
@@ -1122,7 +1127,8 @@ footer #copyright {
   nav div#desktop-nav ul#nav-links-desktop li {
     list-style: none;
     text-align: center;
-    font-family: gill-sans-regular;
+    font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-weight: 400;
     cursor: pointer;
   }
   nav div#desktop-nav ul#nav-links-desktop li a {
@@ -1274,8 +1280,6 @@ footer #copyright {
     width: 50%;
   }
   :where(body.page-about) #container2 section#about-left-panel p {
-    line-height: 1.75em;
-    letter-spacing: 1.75px;
     margin-top: 0.5em;
     padding: 1em;
   }
@@ -1517,7 +1521,8 @@ html.lb-open {
   align-items: baseline;
   gap: 1em;
   color: #ebf3cd;
-  font-family: gill-sans-regular;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 400;
   letter-spacing: 0.04em;
 }
 :where(body.page-gallery) #lightbox .lb-count {
@@ -1605,4 +1610,8 @@ html.lb-open {
   :where(body.page-gallery) #lightbox .lb-img {
     transition: none;
   }
+}
+:where(body.page-about) #container2 {
+  min-height: calc(100vh - 170px);
+  min-height: calc(100dvh - 170px);
 }
