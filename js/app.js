@@ -1,3 +1,10 @@
+// =============================================================================
+// app.js - shared by every page: mobile menu + GSAP intro animations
+// (Gallery page behaviour lives in js/gallery.js)
+// Unused / retired code is kept, commented out, at the bottom of this file.
+// =============================================================================
+
+// ----------------------------------------------------------------- elements
 const body = document.querySelector("body");
 const hamburger = document.querySelector("div#hamburger");
 const landing = document.querySelector("div#landing");
@@ -27,22 +34,16 @@ const whiteLine2 = document.querySelector("#white-line2");
 const largeCircles = document.querySelector("#large-circles");
 const largeCircles2 = document.querySelector("#large-circles2");
 const goldDots = document.querySelector("#gold-dots");
-const gridBlock = document.querySelector("#block-grid");
-const colorBlocks = [block2, block5, block6, block7, block8, block9, block10, block11];
-const blockColors = ["#ebf3cd", "#64a7e9", "#66a293", "#66d6d4", "#707070", "ffffff", "#170046", "080909"];
 const goldDots2 = document.querySelector("#gold-dots2");
 const whiteDots3 = document.querySelector("#white-dots3");
 const torqoise2 = document.querySelector("#torqoise-hatch2");
 const goldHatch3 = document.querySelector("#gold-hatch3");
 const smallCircles3 = document.querySelector("#small-circles3");
 const scrollIndicator = document.getElementById("scroll-indicator");
-// const scrollHeading = document.getElementById("scrollHeading");
 const scrollHeading = document.querySelector("#scrollHeading");
 const scrollDownChevron = document.getElementById("down-chevron");
 
-// gsap.set("#large-circles", {opacity: 0});
-// gsap.set("#large-circles2", {opacity: 0});
-console.log(scrollDownChevron);
+// ----------------------------------------------------------------- mobile menu
 // Accessibility: the hamburger is a <div>, so give it button semantics and keyboard support,
 // and keep the closed overlay's links out of the tab order.
 hamburger.setAttribute("role", "button");
@@ -79,17 +80,7 @@ hamburger.addEventListener("click", () => {
   syncMenuA11y();
 });
 
-if (landing.classList.contains("open")) {
-  links.forEach((link) => {
-    link.addEventListener("click", () => {
-      landing.classList.toggle("open");
-      bar1.classList.toggle("bar1");
-      bar2.classList.toggle("bar2");
-      bar3.classList.toggle("bar3");
-    })
-  });
-}
-
+// ----------------------------------------------------------------- intro animations
 gsap.registerPlugin(GSDevTools, SplitText, TextPlugin, ScrollTrigger);
 let elemLoaded = false;
 function init() {
@@ -133,12 +124,12 @@ function init() {
   changeScale(goldDots);
   changeScale(smallCircles);
   //scroll indicator animation
-  gsap.fromTo("#scroll-indicator-div", 
-    {autoAlpha: 0, y: 20}, 
+  gsap.fromTo("#scroll-indicator-div",
+    {autoAlpha: 0, y: 20},
     {autoAlpha: 1, y: 0, duration: 1, ease: "power4.out", delay: 4}
   );
   splitText(scrollHeading, 0.5);
-    gsap.to(scrollDownChevron, {
+  gsap.to(scrollDownChevron, {
     y: -8,          // move up 8px (relative to its current position)
     duration: 0.6,
     ease: "sine.inOut", // smooth, subtle
@@ -167,36 +158,21 @@ function init() {
     }
   });
 }
-//
-  // changeBlock(gridBlock, 1.5, 1.25);
 
-  function changeScale(elem) {
-    if (elemLoaded === true) {
-      elem.addEventListener("mouseenter", (e) => {
-        gsap.to(elem, { transformOrigin: "bottom center", scale: 1.2, duration: 0.25, ease: "power4.inOut" });
-      });
-      elem.addEventListener("mouseleave", (e) => {
-        gsap.to(elem, { scale: 1, duration: 0.25, ease: "power4.inOut" });
-      });
-    }
+// ----------------------------------------------------------------- animation helpers
+function changeScale(elem) {
+  if (elemLoaded === true) {
+    elem.addEventListener("mouseenter", (e) => {
+      gsap.to(elem, { transformOrigin: "bottom center", scale: 1.2, duration: 0.25, ease: "power4.inOut" });
+    });
+    elem.addEventListener("mouseleave", (e) => {
+      gsap.to(elem, { scale: 1, duration: 0.25, ease: "power4.inOut" });
+    });
   }
-//only for the grid block
-  function changeBlock(elem, scale1, scale2) {//1.2, 1
-    if (elemLoaded === true) {
-      elem.addEventListener("mouseenter", (e) => {
-        gsap.to(elem, { z: 100,transformOrigin: "center center", scale: scale1, duration: 0.25, ease: "power4.inOut" });
-        // gsap.to(block2, {background: "$green", duration: 1});
-      });
-      elem.addEventListener("mouseleave", (e) => {
-        gsap.to(elem, { scale: scale2, duration: 0.25, ease: "power4.inOut" });
-        // gsap.to(block2, {background: "white", duration: 1});
-      });
-    }
-  }
+}
 
 function bGFadeIn(a) {
   gsap.from(a, {
-    // autoAlpha: 0,
     backgroundColor: "#170046",
     duration: 5,
     ease: "power4.inOut",
@@ -224,7 +200,6 @@ function splitText2(a, b, c, d) {
     ease: "back",
     delay: b,
     repeat: -1,
-    // yoyo: true
   });
 }
 function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
@@ -233,10 +208,7 @@ function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
     autoAlpha: autoAlpha,
     duration: dur, //0.55
     delay: delay,
-    // ease: "bounce.out"
     ease: ease, //"elastic.inOut"
-    // repeat: -1,
-    // yoyo: true
   });
 }
 function Block1X(elem, xPos, dur, delay, ease, autoAlpha) {
@@ -245,10 +217,7 @@ function Block1X(elem, xPos, dur, delay, ease, autoAlpha) {
     autoAlpha: autoAlpha,
     duration: dur, //0.55
     delay: delay,
-    // ease: "bounce.out"
     ease: ease, //"elastic.inOut"
-    // repeat: -1, 
-    // yoyo: true
   });
 }
 
@@ -266,19 +235,80 @@ function rotateCircles() {
     duration: 6, // Adjust duration as needed
   });
 }
-// window.addEventListener("load", init);
+
+// ----------------------------------------------------------------- start
 document.addEventListener("DOMContentLoaded", init);
 //note to self, re-order sequence of animations, and introduce timelines and ,aster timelines
 
 
-//lenis for smooth scrolling
-// const lenis = new Lenis()
+// =============================================================================
+// UNUSED CODE - kept for reference, not running
+// Each block notes where it used to sit. Nothing above depends on any of it.
+// =============================================================================
 
+// --- (elements) constants that nothing uses any more.
+//     gridBlock was only passed to the changeBlock() call below, which is itself commented out.
+//     colorBlocks / blockColors were never referenced. (If you revive blockColors: "ffffff" and
+//     "080909" are missing their leading #.)
+// const gridBlock = document.querySelector("#block-grid");
+// const colorBlocks = [block2, block5, block6, block7, block8, block9, block10, block11];
+// const blockColors = ["#ebf3cd", "#64a7e9", "#66a293", "#66d6d4", "#707070", "ffffff", "#170046", "080909"];
+
+// --- (elements) earlier way of selecting the scroll heading
+// const scrollHeading = document.getElementById("scrollHeading");
+
+// --- (after the element list) hiding the large circles up front, and a debug log
+// gsap.set("#large-circles", {opacity: 0});
+// gsap.set("#large-circles2", {opacity: 0});
+// console.log(scrollDownChevron);
+
+// --- (mobile menu) meant to close the menu when one of its links is clicked.
+//     It never ran: the "if" is checked once, at page load, when the menu is always closed,
+//     so the click handlers were never attached.
+// if (landing.classList.contains("open")) {
+//   links.forEach((link) => {
+//     link.addEventListener("click", () => {
+//       landing.classList.toggle("open");
+//       bar1.classList.toggle("bar1");
+//       bar2.classList.toggle("bar2");
+//       bar3.classList.toggle("bar3");
+//     })
+//   });
+// }
+
+// --- (after init) hover effect for the block grid: the call was already commented out,
+//     which left the changeBlock function with no callers.
+// changeBlock(gridBlock, 1.5, 1.25);
+//
+// //only for the grid block
+// function changeBlock(elem, scale1, scale2) {//1.2, 1
+//   if (elemLoaded === true) {
+//     elem.addEventListener("mouseenter", (e) => {
+//       gsap.to(elem, { z: 100,transformOrigin: "center center", scale: scale1, duration: 0.25, ease: "power4.inOut" });
+//       // gsap.to(block2, {background: "$green", duration: 1});
+//     });
+//     elem.addEventListener("mouseleave", (e) => {
+//       gsap.to(elem, { scale: scale2, duration: 0.25, ease: "power4.inOut" });
+//       // gsap.to(block2, {background: "white", duration: 1});
+//     });
+//   }
+// }
+
+// --- (animation helpers) alternative settings that were commented out inside the tweens
+// bGFadeIn      ->  autoAlpha: 0,
+// splitText2    ->  yoyo: true
+// Block1Y       ->  ease: "bounce.out"      repeat: -1,      yoyo: true
+// Block1X       ->  ease: "bounce.out"      repeat: -1,      yoyo: true
+
+// --- (start) earlier trigger for init
+// window.addEventListener("load", init);
+
+// --- (end of file) lenis for smooth scrolling
+// const lenis = new Lenis()
+//
 // function raf(time) {
 // lenis.raf(time)
 // requestAnimationFrame(raf)
 // }
-
+//
 // requestAnimationFrame(raf)
-
-// Gallery page behaviour (category viewer, lightbox) now lives in js/gallery.js
