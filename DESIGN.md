@@ -109,3 +109,8 @@ Depth comes from the darker surface colour on the lighter ground.
   colour is always the destination. Only sea blue, green, torqoise and gold may be used as
   starting colours; lime and white make the torqoise titles and gold tech lines unreadable
   mid-change. The change is 65% complete when a section's text first appears.
+- Scroll colour (about): the page opens on `$myBlack` and warms to its violet over the first 60%
+  of a screen of scrolling. Its text is visible from the start, so only a dark starting colour
+  keeps the gold, lime and white text readable.
+- Project screenshots are inset on every screen size (1em on phones, more on wider screens), so
+  the section colour frames them.

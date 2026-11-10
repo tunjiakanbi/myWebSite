@@ -89,6 +89,7 @@ function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
   heroIntro();
   sectionColors();
+  aboutColor();
 }
 
 // ----------------------------------------------------------------- page intro (~4 seconds, every page)
@@ -294,6 +295,41 @@ function sectionColors() {
         }
       );
     });
+  });
+}
+
+// ----------------------------------------------------------------- about: page colour on scroll
+// The About page is one section, and its text is on screen from the moment the page opens. So its
+// starting colour has to keep the gold headings and the lime and white text readable at 0%, which
+// rules out every light palette colour. It opens on the palette's near-black and warms to the
+// stylesheet colour over the first stretch of scrolling.
+const ABOUT_COLOR_FROM = "#080909";   // $myBlack
+const ABOUT_COLOR_DISTANCE = 0.6;     // finished after scrolling 60% of the screen height
+
+function aboutColor() {
+  const el = document.querySelector("body.page-about #container2");
+  if (!el) return;
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const to = getComputedStyle(el).backgroundColor;
+    if (ScrollTrigger.maxScroll(window) < 100) {
+      // the whole page fits on the screen, so there is nothing to scroll: play it once instead
+      gsap.fromTo(el, { backgroundColor: ABOUT_COLOR_FROM }, { backgroundColor: to, duration: 1.4, delay: 0.3, ease: "power2.inOut" });
+      return;
+    }
+    gsap.fromTo(
+      el,
+      { backgroundColor: ABOUT_COLOR_FROM },
+      {
+        backgroundColor: to,
+        ease: "none",
+        scrollTrigger: {
+          start: 0,
+          end: () => Math.min(window.innerHeight * ABOUT_COLOR_DISTANCE, ScrollTrigger.maxScroll(window)),
+          scrub: 0.3,
+        },
+      }
+    );
   });
 }
 
