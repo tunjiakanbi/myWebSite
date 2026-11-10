@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="I am a multidisciplinary designer focused on web design, UI/UX, front end development and full stack development. Graduated from the full stack coding bootcamp at the University of Minnesota.">
+    <meta name="description" content="Contact Tunji Akanbi about web development and UI/UX work. Send a message or connect on LinkedIn and GitHub.">
     <meta name="keywords"
         content="web design, front end development, full stack developer, HTML5, CSS3, JavaScript, React.js">
-    <meta property="og:title" content="Tunji Akanbi">
+    <meta property="og:title" content="Contact | Tunji Akanbi">
+    <meta property="og:description" content="Contact Tunji Akanbi about web development and UI/UX work. Send a message or connect on LinkedIn and GitHub.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.tunjiakanbi.com">
     <meta property="og:image" content="https://www.tunjiakanbi.com/images/website_image.png">
     <title>Contact | Tunji Akanbi</title>
     <noscript><style>body{visibility:visible !important}</style></noscript>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
+    <link rel="icon" href="images/favicon-48.png" type="image/png" sizes="48x48">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <!-- Google tag (gtag.js) -->
@@ -33,8 +33,9 @@
 </head>
 
 <body class="page-contact">
+    <a class="skip-link" href="#main">Skip to content</a>
     <nav>
-        <h3 id="brand">Tunji Akanbi</h3>
+        <a id="brand" href="index.html">Tunji Akanbi</a>
         <div id="hamburger">
             <section class="bars"></section>
             <section class="bars"></section>
@@ -58,16 +59,42 @@
             </ul>
         </div>
     </nav>
+    <main id="main">
     <div id="container1">
         <section id="contact">
-            <h1>contact me:</h1>
-            <!-- <form id="myForm" action="POST" action="https://script.google.com/macros/s/AKfycbysGcScKrKuZWdsPL60-7RxS6lxRNc0dhEgOwliX_sMJGb_gNssXyP6UZIqEQvQ85U/exec"> -->
+            <div id="contact-intro">
+                <h1>Contact me</h1>
+                <p class="contact-lead">Send a message and I'll get back to you. Or reach me directly:</p>
+                <ul class="contact-direct">
+                    <li><span>LinkedIn</span>
+                        <a href="https://www.linkedin.com/in/tunjiakanbi/" target="_blank" rel="noopener noreferrer">linkedin.com/in/tunjiakanbi</a>
+                    </li>
+                    <li><span>GitHub</span>
+                        <a href="https://github.com/tunjiakanbi" target="_blank" rel="noopener noreferrer">github.com/tunjiakanbi</a>
+                    </li>
+                </ul>
+            </div>
             <form id="myForm">
-                <input type="text" placeholder="Name:" name="name" id="name" required autocomplete="on">
-                <input type="tel" placeholder="Phone:" name="tel" id="tel" required autocomplete="on">
-                <input type="email" placeholder="EMail:" name="email" id="email" required autocomplete="on">
-                <textarea placeholder="Message:" name="message" id="message" rows="10"></textarea>
-                <button type="submit">submit</button>
+                <div class="field-row">
+                    <div class="field">
+                        <label for="name">Name</label>
+                        <input type="text" name="name" id="name" required autocomplete="name">
+                    </div>
+                    <div class="field">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" required autocomplete="email">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="tel">Phone <span>(optional)</span></label>
+                    <input type="tel" name="tel" id="tel" autocomplete="tel">
+                </div>
+                <div class="field">
+                    <label for="message">Message</label>
+                    <textarea name="message" id="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn btn--fill">Send message</button>
+                <p id="form-status" role="status" aria-live="polite"></p>
             </form>
         </section>
         <section id="block-grid">
@@ -157,6 +184,7 @@
         <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch3">
         <img class="pos-abs-1080h" src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles3">
     </div>
+    </main>
     <footer>
         <section id="social">
             <a href="https://github.com/tunjiakanbi" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">
@@ -175,7 +203,7 @@
                         transform="translate(0 -0.001)" />
                 </svg></a>
         </section>
-        <section id="copyright">&copy; Tunji Akanbi 2025</section>
+        <section id="copyright">&copy; Tunji Akanbi 2026</section>
     </footer>
     <script src="js/reveal-fallback.js"></script>
     <!-- GSAP 3.15.1, self-hosted (no CDN). ?v= busts old cached copies when the version changes. -->
@@ -184,30 +212,7 @@
     <script src="js/SplitText.min.js?v=3.15.1"></script>
     <script src="js/DrawSVGPlugin.min.js?v=3.15.1"></script>
     <script src="js/app.js"></script>
-    <script>
-        const URL =
-"https://script.google.com/macros/s/AKfycbywoIU1Hp1AvdFHWnZsat3F0CmH09TA42mzDaQ8TXXTNku3rNdajSGT4nZYRqNWIP8/exec";
-const form = document.getElementById('myForm');
-                form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            fetch(URL, {
-                    method: 'POST',
-                    body: new FormData(form)
-                }).then(response => response.json())
-                .then(data => {
-                    if (data.result === 'success') {
-                        alert('Form submitted successfully!');
-                        // name.value = "";
-                        // phone.value  = "";
-                        // email.value  = "";
-                        // message.value  = "";
-                        form.reset();
-                    } else {
-                        alert('There was an error submitting the form.');
-                    }
-                });
-        });
-    </script>
+    <script src="js/contact.js"></script>
 </body>
 
 </html>

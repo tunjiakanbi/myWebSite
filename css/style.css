@@ -31,7 +31,8 @@ nav {
   align-items: center;
   padding: 0 1.5em;
 }
-nav h3#brand {
+nav #brand {
+  text-decoration: none;
   font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 700;
   color: #ebf3cd;
@@ -39,8 +40,9 @@ nav h3#brand {
   font-size: 1.5em;
 }
 nav div#hamburger {
-  width: 40px;
-  height: 40px;
+  position: relative;
+  width: 44px;
+  height: 44px;
   margin-left: auto;
   cursor: pointer;
   display: flex;
@@ -165,20 +167,21 @@ nav div#desktop-nav {
   position: relative;
   margin-top: 2em;
 }
-:where(body.page-home) #container1 section#job-role h1.job-roles {
+:where(body.page-home) #container1 section#job-role .job-roles {
+  font-weight: 700;
   color: white;
   font-family: pirulen;
   text-align: left;
   font-size: 16px;
   padding: 0.35em 0;
 }
-:where(body.page-home) #container1 section#job-role h1:nth-child(1) {
+:where(body.page-home) #container1 section#job-role .job-roles:nth-child(1) {
   color: #c4b900;
 }
-:where(body.page-home) #container1 section#job-role h1:nth-child(2) {
+:where(body.page-home) #container1 section#job-role .job-roles:nth-child(2) {
   color: #64a7e9;
 }
-:where(body.page-home) #container1 section#job-role h1:nth-child(3) {
+:where(body.page-home) #container1 section#job-role .job-roles:nth-child(3) {
   color: #fff;
 }
 :where(body.page-about) #container1 section#about-description {
@@ -196,71 +199,6 @@ nav div#desktop-nav {
 }
 :where(body.page-about) #container1 section#about-description .m-blue {
   color: #64a7e9;
-}
-:where(body.page-contact) #container1 section#contact {
-  position: relative;
-  z-index: 2;
-  margin-top: 2.5em;
-  padding: 1em;
-  background: #170046;
-  width: 85%;
-  border: 1px solid #fff;
-  border-radius: 1em;
-}
-:where(body.page-contact) #container1 section#contact h1 {
-  font-family: pirulen;
-  color: #fff;
-  font-size: 1.15em;
-  margin-bottom: 2em;
-}
-:where(body.page-contact) #container1 section#contact form#myForm {
-  margin-top: 2em;
-}
-:where(body.page-contact) #container1 section#contact form#myForm input,
-:where(body.page-contact) #container1 section#contact form#myForm textarea {
-  width: 100%;
-  padding: 0;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #fff;
-  border-radius: 0;
-  color: #fff;
-  margin-bottom: 1.5em;
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
-  padding: 0.5em;
-  transition: all 200ms linear;
-}
-:where(body.page-contact) #container1 section#contact form#myForm input::placeholder,
-:where(body.page-contact) #container1 section#contact form#myForm textarea::placeholder {
-  opacity: 1;
-  color: #66d6d4;
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  margin-left: 1em;
-}
-:where(body.page-contact) #container1 section#contact form#myForm input:focus,
-:where(body.page-contact) #container1 section#contact form#myForm textarea:focus {
-  background: #280078;
-  outline: none;
-}
-:where(body.page-contact) #container1 section#contact form#myForm button {
-  width: 180px;
-  height: 60px;
-  margin: 1.5em auto;
-  display: block;
-  text-transform: uppercase;
-  border: 3px solid #66d6d4;
-  border-radius: 1em;
-  color: #fff;
-  background-color: #280078;
-  cursor: pointer;
-  transition: all 200ms linear;
-}
-:where(body.page-contact) #container1 section#contact form#myForm button:hover {
-  background-color: #64a7e9;
-  border: 3px solid #fff;
-  color: #170046;
 }
 :where(body.page-gallery) #container1 section#gallery-display {
   display: none;
@@ -282,7 +220,7 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav {
   flex: 0 0 auto;
   height: auto;
-  padding: 0.6em 0.6em 0.6em 0.75em;
+  padding: 0.35em 0.6em 0 0.9em;
   gap: 0.5em;
   border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
@@ -290,7 +228,7 @@ nav div#desktop-nav {
   flex: 1 1 auto;
   min-width: 0;
   display: flex;
-  gap: 0.5em;
+  gap: 1.4em;
   overflow-x: auto;
   scrollbar-width: none;
 }
@@ -299,32 +237,31 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab {
   flex: 0 0 auto;
-  min-height: 40px;
-  padding: 0 1em;
-  border: 1px solid #66d6d4;
-  border-radius: 999px;
+  min-height: 48px;
+  padding: 0 0.1em;
+  border: 0;
+  border-bottom: 3px solid transparent;
+  border-radius: 0;
   background: transparent;
-  color: #66d6d4;
+  color: rgba(235, 243, 205, 0.8);
   font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 14px;
   letter-spacing: 0.03em;
   text-transform: uppercase;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: color 200ms ease, border-color 200ms ease;
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab:hover {
   color: #fff;
-  border-color: #fff;
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab[aria-selected="true"] {
-  background: #66d6d4;
-  border-color: #66d6d4;
-  color: #170046;
+  color: #66d6d4;
+  border-bottom-color: #c4b900;
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab:focus-visible {
   outline: 2px solid #c4b900;
-  outline-offset: 2px;
+  outline-offset: -2px;
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn {
   flex: 0 0 auto;
@@ -497,7 +434,7 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery section ul li a {
   display: block;
-  padding: 0.75em 0;
+  padding: 1.05em 0;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
@@ -600,6 +537,9 @@ nav div#desktop-nav {
 :where(body.page-about) #container1 img#torqoise-hatch {
   display: none;
 }
+:where(body.page-home) #container1 img#torqoise-hatch {
+  top: 505px;
+}
 #container1 img#torqoise-hatch:hover {
   transform: scale(1.2);
 }
@@ -697,37 +637,6 @@ nav div#desktop-nav {
   background: #280078;
   overflow: hidden;
 }
-:where(body.page-home) .projects section#scroll-indicator {
-  position: relative;
-  top: -100px;
-  z-index: 2;
-  height: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div h3 {
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 600;
-  color: #fff;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  animation: scrollAnim 2s infinite;
-  font-size: 0.75em;
-}
-:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div svg#down-chevron {
-  width: 60px;
-}
-:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div svg#down-chevron .st0 {
-  fill: #ebf3cd;
-  stroke-miterlimit: 10;
-}
 :where(body.page-home) .projects section.proj-wrap {
   z-index: 1;
 }
@@ -738,7 +647,7 @@ nav div#desktop-nav {
 :where(body.page-home) .projects section.proj-details {
   padding: 2em;
 }
-:where(body.page-home) .projects section.proj-details h1 {
+:where(body.page-home) .projects section.proj-details h2 {
   font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-weight: 800;
   font-size: 2.5em;
@@ -763,22 +672,9 @@ nav div#desktop-nav {
   line-height: 1.6;
   max-width: 34em;
 }
-:where(body.page-home) .projects section.proj-details section.project-content a {
-  text-align: center;
-}
-:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button {
-  margin: 1.5em auto;
-}
-:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button g.Rectangle_33 {
-  fill: #280078;
-  stroke: #83d3d3;
-  stroke-width: 4px;
-  transition: all 200ms linear;
-  cursor: pointer;
-}
-:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button:hover g.Rectangle_33 {
-  stroke: #fff;
-  fill: #080909;
+:where(body.page-home) .projects section.proj-details section.project-content .btn {
+  align-self: flex-start;
+  margin: 1.5em 0 0.5em;
 }
 :where(body.page-about) #container2 {
   overflow: hidden;
@@ -899,6 +795,13 @@ footer section {
 footer #social {
   justify-content: space-between;
 }
+footer #social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+}
 footer #social a svg#git-hub {
   margin-right: 0.5em;
   cursor: pointer;
@@ -985,10 +888,6 @@ footer #copyright {
   :where(body.page-about) #container2 {
     padding-top: 3em;
   }
-  :where(body.page-about) #container2 section#about-left-panel p {
-    margin-top: 0.5em;
-    padding: 1em;
-  }
   :where(body.page-about) #container2 section#background-panel {
     position: absolute;
     width: 100%;
@@ -1017,9 +916,6 @@ footer #copyright {
     min-width: 1024px;
   }
   :where(body.page-about) #container1 section#about-description {
-    width: 600px;
-  }
-  :where(body.page-contact) #container1 section#contact {
     width: 600px;
   }
   :where(body.page-gallery) #container1 section#gallery {
@@ -1072,10 +968,6 @@ footer #copyright {
   }
   :where(body.page-about) #container2 section {
     width: 50%;
-  }
-  :where(body.page-about) #container2 section#about-left-panel p {
-    margin-top: 0.5em;
-    padding: 1em;
   }
   :where(body.page-about) #container2 section#about-right-panel img {
     width: 70%;
@@ -1157,10 +1049,6 @@ footer #copyright {
     width: 600px;
     padding: 0;
     left: -116px;
-  }
-  :where(body.page-contact) #container1 section#contact {
-    width: 600px;
-    left: -185px;
   }
   :where(body.page-gallery) #container1 section#gallery {
     width: 600px;
@@ -1279,10 +1167,6 @@ footer #copyright {
   :where(body.page-about) #container2 section {
     width: 50%;
   }
-  :where(body.page-about) #container2 section#about-left-panel p {
-    margin-top: 0.5em;
-    padding: 1em;
-  }
   :where(body.page-about) #container2 section#about-right-panel img {
     width: 50%;
     height: auto;
@@ -1366,11 +1250,10 @@ footer #copyright {
   :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content p {
     width: 60%;
   }
-  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content a {
-    display: flex;
-    margin-left: 100px;
-    margin-top: 100px;
-    width: 40%;
+  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content .btn {
+    align-self: flex-end;
+    flex: 0 0 auto;
+    margin: 0 0 0 3em;
   }
   :where(body.page-home) #container2 img#white-dots4 {
     position: absolute;
@@ -1423,23 +1306,6 @@ footer #copyright {
   }
   :where(body.page-home) #container4 .proj-wrap {
     position: relative;
-  }
-}
-@media (min-height: 667px) and (max-height: 799px) {
-  :where(body.page-contact) #container1 section#contact {
-    margin-top: 1em;
-  }
-  :where(body.page-contact) #container1 section#contact h1 {
-    margin-bottom: 1em;
-  }
-  :where(body.page-contact) #container1 section#contact form#myForm {
-    margin-top: 1em;
-  }
-  :where(body.page-contact) #container1 section#contact form#myForm textarea {
-    margin-bottom: 0.5em;
-  }
-  :where(body.page-contact) #container1 section#contact form#myForm button {
-    margin: 0.75em auto;
   }
 }
 @media (max-width: 575px) {
@@ -1614,4 +1480,368 @@ html.lb-open {
 :where(body.page-about) #container2 {
   min-height: calc(100vh - 170px);
   min-height: calc(100dvh - 170px);
+}
+html {
+  scroll-behavior: smooth;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 0.75em;
+  z-index: 1001;
+  padding: 0.75em 1em;
+  border-radius: 0.5em;
+  background: #66d6d4;
+  color: #170046;
+  font-weight: 700;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0.75em;
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+  padding: 0 1.5em;
+  border: 1.5px solid #66d6d4;
+  border-radius: 0.5em;
+  background: transparent;
+  color: #66d6d4;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.btn:hover {
+  background: #66d6d4;
+  color: #170046;
+}
+.btn:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+.btn--fill {
+  background: #66d6d4;
+  color: #170046;
+}
+.btn--fill:hover {
+  background: #ebf3cd;
+  border-color: #ebf3cd;
+}
+.btn[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}
+nav div#hamburger::after {
+  content: "";
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  bottom: -4px;
+  left: -4px;
+}
+:where(body.page-home) #container1 section#scroll-indicator {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1em;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+}
+:where(body.page-home) #container1 section#scroll-indicator #scroll-indicator-div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35em;
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0.5em 0.9em;
+  border-radius: 0.5em;
+  text-decoration: none;
+}
+:where(body.page-home) #container1 section#scroll-indicator #scroll-indicator-div:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+:where(body.page-home) #container1 section#scroll-indicator #scrollHeading {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75em;
+}
+:where(body.page-home) #container1 section#scroll-indicator svg#down-chevron {
+  display: block;
+  width: 40px;
+  height: auto;
+}
+:where(body.page-home) #container1 section#scroll-indicator svg#down-chevron .st0 {
+  fill: #ebf3cd;
+}
+:where(html) {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(html) {
+    scroll-behavior: auto;
+  }
+}
+:where(body.page-about) #container2 section#about-left-panel p {
+  margin-bottom: 1em;
+}
+:where(body.page-about) #container2 section#about-left-panel .bio-lead {
+  color: #ebf3cd;
+  font-size: 1.15em;
+  font-weight: 600;
+  line-height: 1.4;
+}
+:where(body.page-about) #container2 section#about-left-panel h2 {
+  margin: 1.75em 0 0.5em;
+  color: #c4b900;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1.05em;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+:where(body.page-about) #container2 section#about-left-panel .bio-list {
+  list-style: none;
+  margin-bottom: 1em;
+}
+:where(body.page-about) #container2 section#about-left-panel .bio-list li {
+  position: relative;
+  max-width: 34em;
+  margin-bottom: 0.6em;
+  padding-left: 1.1em;
+  color: #fff;
+  line-height: 1.6;
+}
+:where(body.page-about) #container2 section#about-left-panel .bio-list li::before {
+  content: "";
+  position: absolute;
+  top: 0.65em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  background: #66d6d4;
+}
+:where(body.page-about) #container2 section#about-left-panel .bio-list strong {
+  color: #ebf3cd;
+  font-weight: 600;
+}
+:where(body.page-contact) #container1 {
+  height: auto;
+  min-height: calc(100vh - 170px);
+  min-height: calc(100dvh - 170px);
+  padding-bottom: 2.5em;
+}
+:where(body.page-contact) #container1 section#contact {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  gap: 1.5em;
+  width: 90%;
+  max-width: 440px;
+  margin-top: 1.5em;
+  padding: 1.25em;
+  background: #170046;
+  border: 1px solid #fff;
+  border-radius: 1em;
+}
+:where(body.page-contact) #container1 section#contact h1 {
+  margin-bottom: 0.6em;
+  color: #fff;
+  font-family: pirulen;
+  font-size: 1.15em;
+}
+:where(body.page-contact) #container1 section#contact .contact-lead {
+  color: #ebf3cd;
+  line-height: 1.6;
+}
+:where(body.page-contact) #container1 section#contact .contact-direct {
+  list-style: none;
+  margin-top: 1em;
+  padding-top: 0.75em;
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+}
+:where(body.page-contact) #container1 section#contact .contact-direct span {
+  display: block;
+  margin-top: 0.5em;
+  color: #c4b900;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+:where(body.page-contact) #container1 section#contact .contact-direct a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: #66d6d4;
+  font-weight: 500;
+  text-decoration: none;
+}
+:where(body.page-contact) #container1 section#contact .contact-direct a:hover {
+  text-decoration: underline;
+}
+:where(body.page-contact) #container1 section#contact .contact-direct a:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+  border-radius: 0.25em;
+}
+:where(body.page-contact) #container1 section#contact .field-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 0 1em;
+}
+:where(body.page-contact) #container1 section#contact .field {
+  margin-bottom: 1em;
+}
+:where(body.page-contact) #container1 section#contact label {
+  display: block;
+  margin-bottom: 0.4em;
+  color: #66d6d4;
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+:where(body.page-contact) #container1 section#contact label span {
+  color: #ebf3cd;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+:where(body.page-contact) #container1 section#contact input,
+:where(body.page-contact) #container1 section#contact textarea {
+  display: block;
+  width: 100%;
+  min-height: 46px;
+  padding: 0.6em 0.75em;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 0.5em;
+  background: rgba(255, 255, 255, 0.04);
+  color: #fff;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+}
+:where(body.page-contact) #container1 section#contact textarea {
+  min-height: 7.5em;
+  line-height: 1.5;
+  resize: vertical;
+}
+:where(body.page-contact) #container1 section#contact input:focus-visible,
+:where(body.page-contact) #container1 section#contact textarea:focus-visible {
+  border-color: #c4b900;
+  outline: 2px solid #c4b900;
+  outline-offset: 1px;
+}
+:where(body.page-contact) #container1 section#contact .btn {
+  margin-top: 0.25em;
+}
+:where(body.page-contact) #container1 section#contact #form-status {
+  min-height: 1.5em;
+  margin-top: 0.9em;
+  color: #ebf3cd;
+  line-height: 1.5;
+}
+:where(body.page-contact) #container1 section#contact #form-status[data-state] {
+  padding-left: 0.75em;
+  border-left: 3px solid #66d6d4;
+}
+:where(body.page-contact) #container1 section#contact #form-status[data-state="error"] {
+  border-left-color: #ffb0a6;
+  color: #ffb0a6;
+}
+@media (min-width: 576px) {
+  :where(body.page-contact) #container1 section#contact {
+    max-width: 560px;
+    padding: 1.75em;
+  }
+  :where(body.page-contact) #container1 section#contact .field-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (min-width: 1024px) {
+  :where(body.page-contact) #container1 section#contact {
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+    gap: 2.25em;
+    align-items: start;
+    width: 92%;
+    max-width: 860px;
+    margin-top: 2.5em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .btn,
+  .skip-link {
+    transition: none;
+  }
+}
+nav #brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+}
+nav div#desktop-nav ul#nav-links-desktop li a {
+  display: inline-block;
+  padding: 12px 0;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li a {
+  padding: 14px 0;
+}
+:where(body.page-about) #container2 section#about-left-panel,
+:where(body.page-about) #container2 section#about-right-panel {
+  position: relative;
+  z-index: 1;
+}
+:where(body.page-about) #container2 section#about-right-panel img {
+  align-self: flex-start;
+}
+:where(body.page-about) #container2 section#background-panel {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+}
+:where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  top: auto;
+  bottom: 1.5em;
+}
+:where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  top: auto;
+  bottom: 1.5em;
+}
+@media (min-width: 1024px) {
+  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+    top: 50px;
+    bottom: auto;
+  }
+  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+    display: none;
+  }
 }

@@ -79,14 +79,19 @@ Depth comes from the darker surface colour on the lighter ground.
 
 ## Components
 
-- **Button (primary)**: one style for every button on the site ("View Project", "Submit",
-  viewer controls). Outline in torqoise, torqoise text, control radius; on hover the fill turns
-  torqoise and the text `$darkBlue`. Minimum 44px tall. _Shape awaiting sign-off: see the options
-  sent with this change._
-- **Tabs (gallery)**: same control radius as buttons; the selected tab is filled torqoise.
+- **Button**: one shape for every button on the site: a rounded rectangle with the control
+  radius (0.5em), at least 44px tall, Outfit 600.
+  - Outline (`.btn`): torqoise border and text. Used for "View Project".
+  - Filled (`.btn--fill`): torqoise fill, `$darkBlue` text. Used for the main action on a page
+    ("Send message").
+  - While busy a button is disabled and its label says what is happening ("Sending…").
+- **Tabs (gallery)**: plain uppercase labels, not buttons. The selected tab is torqoise with a
+  3px gold underline; the others are lime. No border, fill or radius.
 - **Links**: torqoise, no underline in navigation, underline on hover in body copy.
-- **Inputs**: visible label above the field, 16px text, at least 44px tall, white bottom border,
-  gold focus ring.
+- **Inputs**: visible label above the field, 16px text, at least 44px tall, 1px border with the
+  control radius, gold focus ring. Optional fields say "(optional)" in the label.
+- **Form feedback**: shown on the page next to the button, never in a pop-up: a confirmation on
+  success, a plain-language error with another way to get in touch on failure.
 - **Focus**: 2px solid `$gold`, 2px offset, on every interactive element.
 - **Cards**: `$darkBlue` fill, 1px white border, card radius.
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
