@@ -4,18 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description"
-        content="I am a multidisciplinary designer focused on web design, UI/UX, front end development and full stack development. Graduated from the full stack coding bootcamp at the University of Minnesota.">
+    <meta name="description" content="Tunji Akanbi is a front-end focused full-stack developer and UI/UX specialist. See selected web projects built with React, JavaScript, HTML and CSS.">
     <meta name="keywords"
         content="web design, front end development, full stack developer, HTML5, CSS3, JavaScript, React.js">
     <meta property="og:title" content="Tunji Akanbi">
+    <meta property="og:description" content="Tunji Akanbi is a front-end focused full-stack developer and UI/UX specialist. See selected web projects built with React, JavaScript, HTML and CSS.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://www.tunjiakanbi.com">
     <meta property="og:image" content="https://www.tunjiakanbi.com/images/website_image.png">
     <title>Tunji Akanbi</title>
     <noscript><style>body{visibility:visible !important}</style></noscript>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" href="images/favicon.jpg" type="image/jpeg">
+    <link rel="icon" href="images/favicon-48.png" type="image/png" sizes="48x48">
     <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png">
     <link rel="manifest" href="/manifest.json">
     <!-- Google tag (gtag.js) -->
@@ -33,8 +33,9 @@
 </head>
 
 <body class="page-home">
+    <a class="skip-link" href="#main">Skip to content</a>
     <nav>
-        <h3 id="brand">Tunji Akanbi</h3>
+        <a id="brand" href="index.html">Tunji Akanbi</a>
         <div id="hamburger">
             <section class="bars"></section>
             <section class="bars"></section>
@@ -57,11 +58,13 @@
             </ul>
         </div>
     </nav>
+    <main id="main">
+    <h1 class="sr-only">Tunji Akanbi: UI/UX Designer, Front End Developer and Full Stack Developer</h1>
     <div id="container1">
         <section id="job-role">
-            <h1 class="job-roles">UI/UX Designer</h1>
-            <h1 class="job-roles">Front End Developer</h1>
-            <h1 class="job-roles">Full Stack Developer</h1>
+            <p class="job-roles">UI/UX Designer</p>
+            <p class="job-roles">Front End Developer</p>
+            <p class="job-roles">Full Stack Developer</p>
         </section>
         <section id="block-grid">
             <div id="block-1"></div>
@@ -146,25 +149,25 @@
         <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch2">
         <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch3">
         <img class="pos-abs-1080h" src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles3">
-    </div>
-    <div id="container2" class="projects">
         <section id="scroll-indicator">
-            <div id="scroll-indicator-div">
-            <h3 id="scrollHeading">Scroll Down</h3>
-            <svg id="down-chevron" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 40 40">
+            <a id="scroll-indicator-div" href="#container2">
+            <span id="scrollHeading">Scroll Down</span>
+            <svg id="down-chevron" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 5 41 20">
                 <polygon class="st0" points="2.5 7.5 20.62 15 38.75 7.5 38.75 15 20.62 22.5 2.5 15 2.5 7.5" />
             </svg>
-        </div>
+        </a>
         </section>
+    </div>
+    <div id="container2" class="projects">
         <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots4">
         <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch3">
         <section id="cont1" class="proj-wrap">
             <picture>
-                <source media="(min-width: 576px)" srcset="images/gpt3-desktop.jpg" />
-                <img class="proj-img" src="images/gpt3-mobile.jpg" alt="GPT-3 website project image">
+                <source media="(min-width: 576px)" srcset="images/gpt3-desktop.jpg" width="1586" height="867" />
+                <img class="proj-img" src="images/gpt3-mobile.jpg" width="319" height="625" alt="GPT-3 website project image">
             </picture>
             <section class="proj-details">
-                <h1>GPT-3</h1>
+                <h2>GPT-3</h2>
                 <h3>HTML5, CSS3, JavaScript, ReactJS</h3>
                 <section class="project-content">
                     <p>This project is a fully functional and responsive website built with ReactJS. It's the end result
@@ -175,19 +178,7 @@
                         properties
                         such as flex and grid, animations, complex gradients, media queries and the use of CSS BEM
                         model. </p>
-                    <a href="./gpt-3-build/index.html" target="_blank" rel="noopener" aria-label="View GPT-3 project (opens in a new tab)">
-                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
-                            viewBox="0 0 289 82">
-                            <g class="Rectangle_33" data-name="Rectangle 33">
-                                <rect width="289" height="82" rx="23" stroke="none" />
-                                <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
-                            </g>
-                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
-                                font-size="22" font-family="Outfit, sans-serif">
-                                <tspan x="0" y="0">View Project</tspan>
-                            </text>
-                        </svg>
-                    </a>
+                    <a href="./gpt-3-build/index.html" target="_blank" rel="noopener" aria-label="View GPT-3 project (opens in a new tab)" class="btn">View Project</a>
                 </section>
             </section>
         </section>
@@ -198,11 +189,11 @@
         <img src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots3">
         <section class="proj-wrap">
             <picture>
-                <source media="(min-width: 576px)" srcset="images/everyday-things-desktop.jpg" />
-                <img class="proj-img" src="images/everyday-things-mobile.jpg" alt="Everyday things website project image">
+                <source media="(min-width: 576px)" srcset="images/everyday-things-desktop.jpg" width="1615" height="822" />
+                <img class="proj-img" src="images/everyday-things-mobile.jpg" width="320" height="631" alt="Everyday things website project image">
             </picture>
             <section class="proj-details">
-                <h1>EVERYDAY THINGS</h1>
+                <h2>EVERYDAY THINGS</h2>
                 <h3>HTML5, CSS3</h3>
                 <section class="project-content">
                     <p>This project was based of a responsive web design course: Creating a Responsive Web Design by
@@ -216,19 +207,7 @@
                         menus with full touch support, and how to use CSS pseudo-elements and adapt layouts for print to
                         save ink
                         and paper.</p>
-                    <a href="./everyday-things/index.html" target="_blank" rel="noopener" aria-label="View Everyday Things project (opens in a new tab)">
-                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
-                            viewBox="0 0 289 82">
-                            <g class="Rectangle_33" data-name="Rectangle 33">
-                                <rect width="289" height="82" rx="23" stroke="none" />
-                                <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
-                            </g>
-                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
-                                font-size="22" font-family="Outfit, sans-serif">
-                                <tspan x="0" y="0">View Project</tspan>
-                            </text>
-                        </svg>
-                    </a>
+                    <a href="./everyday-things/index.html" target="_blank" rel="noopener" aria-label="View Everyday Things project (opens in a new tab)" class="btn">View Project</a>
                 </section>
             </section>
         </section>
@@ -238,11 +217,11 @@
         <img src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch4">
         <section class="proj-wrap">
             <picture>
-                <source media="(min-width: 576px)" srcset="images/jottly-desktop.jpg" />
-                <img class="proj-img" src="images/jottly-mobile.jpg" alt="Jottly website project image">
+                <source media="(min-width: 576px)" srcset="images/jottly-desktop.jpg" width="1616" height="820" />
+                <img class="proj-img" src="images/jottly-mobile.jpg" width="319" height="625" alt="Jottly website project image">
             </picture>
             <section class="proj-details">
-                <h1>JOTTLY</h1>
+                <h2>JOTTLY</h2>
                 <h3>HTML5, CSS3</h3>
                 <section class="project-content">
                     <p>This project was based of an advanced CSS course Build Your First Website: Crash Course in HTML
@@ -250,23 +229,12 @@
                         Joey Kirk. The exercise was focused on utilizing normalize.css, animate.css and skeleton.css. It
                         exposed me
                         to new CSS3 properties while implementing some custom css animations.</p>
-                    <a href="./jottly/html/index.html" target="_blank" rel="noopener" aria-label="View Jottly project (opens in a new tab)">
-                        <svg class="proj-button" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" width="289" height="82"
-                            viewBox="0 0 289 82">
-                            <g class="Rectangle_33" data-name="Rectangle 33">
-                                <rect width="289" height="82" rx="23" stroke="none" />
-                                <rect x="2" y="2" width="285" height="78" rx="21" fill="none" />
-                            </g>
-                            <text data-name="View Project" transform="translate(84 49)" fill="#ebf3cd"
-                                font-size="22" font-family="Outfit, sans-serif">
-                                <tspan x="0" y="0">View Project</tspan>
-                            </text>
-                        </svg>
-                    </a>
+                    <a href="./jottly/html/index.html" target="_blank" rel="noopener" aria-label="View Jottly project (opens in a new tab)" class="btn">View Project</a>
                 </section>
             </section>
         </section>
     </div>
+    </main>
     <footer>
         <section id="social">
             <a href="https://github.com/tunjiakanbi" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile (opens in a new tab)">
@@ -286,7 +254,7 @@
                 </svg></a>
 
         </section>
-        <section id="copyright">&copy; Tunji Akanbi 2025</section>
+        <section id="copyright">&copy; Tunji Akanbi 2026</section>
     </footer>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.6.0/ScrollTrigger.min.js"></script> -->
