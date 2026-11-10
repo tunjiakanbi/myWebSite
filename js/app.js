@@ -12,9 +12,9 @@ const links = document.querySelectorAll("#landing ul#nav-links li");
 const bar1 = document.querySelector("section.bars:nth-child(1)");
 const bar2 = document.querySelector("section.bars:nth-child(2)");
 const bar3 = document.querySelector("section.bars:nth-child(3)");
-const uiUx = document.querySelector("h1.job-roles:nth-child(1");
-const fEd = document.querySelector("h1.job-roles:nth-child(2");
-const fSd = document.querySelector("h1.job-roles:nth-child(3");
+const uiUx = document.querySelector(".job-roles:nth-child(1)");
+const fEd = document.querySelector(".job-roles:nth-child(2)");
+const fSd = document.querySelector(".job-roles:nth-child(3)");
 const block2 = document.querySelector("#block-2");
 const block5 = document.querySelector("#block-5");
 const block6 = document.querySelector("#block-6");
@@ -84,19 +84,16 @@ hamburger.addEventListener("click", () => {
 // GSAP 3.15.1 + plugins are self-hosted in /js (see the <script> tags at the end of each page).
 gsap.registerPlugin(SplitText, ScrollTrigger, DrawSVGPlugin);
 let elemLoaded = false;
-const isHomePage = body.classList.contains("page-home");
 
 function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
-  if (isHomePage) {
-    homeIntro();
-  } else {
-    pageIntro();
-  }
+  heroIntro();
 }
 
-// ----------------------------------------------------------------- home page intro (~4 seconds)
+// ----------------------------------------------------------------- page intro (~4 seconds, every page)
 // One timeline, four labelled beats:   roles -> grid -> decor -> settle
+// Every page uses it; each beat simply skips what a page does not have (only the home page has
+// role titles and a scroll cue, the About page has no hero at all).
 // To retime the intro, change the label positions (seconds) below - nothing else needs editing.
 const INTRO = {
   roles: 0.15,  // job titles start
@@ -104,7 +101,7 @@ const INTRO = {
   decor: 1.5,   // dots, hatches, lines and circles start
 };
 
-function homeIntro() {
+function heroIntro() {
   const roles = [uiUx, fEd, fSd].filter(Boolean);
   const blocks = [block2, block5, block6, block7, block8, block9, block10, block11].filter(Boolean);
   // where each decoration slides in from (px). Short hops, so the whole intro stays brief.
@@ -125,6 +122,8 @@ function homeIntro() {
     { el: goldDots2, x: 120, ease: "back.out(1.6)" },
   ].filter((d) => d.el);
   const circles = [largeCircles, largeCircles2].filter(Boolean);
+  const hero = document.querySelector("#container1");
+  const scrollCue = document.querySelector("#scroll-indicator-div");
   const isShown = (el) => getComputedStyle(el).display !== "none";
 
   // gsap.matchMedia() picks the right version for the visitor and cleans up if the setting changes
@@ -144,9 +143,9 @@ function homeIntro() {
 
       // ---- visitors who asked their device for less motion: one quick fade, nothing moves or loops
       if (context.conditions.reduce) {
-        gsap.set("#scrollHeading", { animation: "none" });
+        if (scrollHeading) gsap.set(scrollHeading, { animation: "none" });
         gsap.fromTo(
-          [...blocks, ...shownDecor.map((d) => d.el), ...shownCircles, "#scroll-indicator-div"],
+          [...blocks, ...shownDecor.map((d) => d.el), ...shownCircles, scrollCue].filter(Boolean),
           { autoAlpha: 0 },
           { autoAlpha: 1, duration: 0.4, ease: "none" }
         );
@@ -158,7 +157,7 @@ function homeIntro() {
       tl.addLabel("roles", INTRO.roles).addLabel("grid", INTRO.grid).addLabel("decor", INTRO.decor);
 
       // background settles in from the nav colour
-      tl.from("#container1", { backgroundColor: "#170046", duration: 1.2, ease: "power2.inOut" }, 0);
+      if (hero) tl.from(hero, { backgroundColor: "#170046", duration: 1.2, ease: "power2.inOut" }, 0);
 
       // 1. roles: each title is revealed once, letter by letter, then stays readable
       roles.forEach((heading, i) => {
@@ -167,7 +166,7 @@ function homeIntro() {
       });
 
       // 2. grid: the colour blocks pop in from the middle outwards
-      tl.fromTo(
+      if (blocks.length) tl.fromTo(
         blocks,
         { autoAlpha: 0, scale: 0 },
         { autoAlpha: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)", stagger: { each: 0.06, from: "center" }, clearProps: "transform" },
@@ -194,20 +193,25 @@ function homeIntro() {
 
       // 4. settle: the scroll cue arrives last, once there is something to scroll past
       tl.addLabel("settle", "-=0.3");
-      tl.fromTo("#scroll-indicator-div", { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, "settle");
+      if (scrollCue) tl.fromTo(scrollCue, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, "settle");
 
       // ---- ambient motion (keeps going after the intro, but only while the hero is on screen)
-      const ambient = [
-        gsap.to("#big-c", { rotation: 360, transformOrigin: "center", repeat: -1, duration: 10, ease: "none" }),
-        gsap.to("#small-c", { rotation: -360, transformOrigin: "center", repeat: -1, duration: 6, ease: "none" }),
-        gsap.to(scrollDownChevron, { y: -8, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 }),
-      ];
-      ScrollTrigger.create({
-        trigger: "#container1",
-        start: "top bottom",
-        end: "bottom top",
-        onToggle: (self) => ambient.forEach((tween) => tween.paused(!self.isActive)),
-      });
+      const ambient = [];
+      if (document.querySelector("#big-c")) {
+        ambient.push(gsap.to("#big-c", { rotation: 360, transformOrigin: "center", repeat: -1, duration: 10, ease: "none" }));
+        ambient.push(gsap.to("#small-c", { rotation: -360, transformOrigin: "center", repeat: -1, duration: 6, ease: "none" }));
+      }
+      if (scrollDownChevron) {
+        ambient.push(gsap.to(scrollDownChevron, { y: -8, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 }));
+      }
+      if (hero && ambient.length) {
+        ScrollTrigger.create({
+          trigger: hero,
+          start: "top bottom",
+          end: "bottom top",
+          onToggle: (self) => ambient.forEach((tween) => tween.paused(!self.isActive)),
+        });
+      }
     }
   );
 
@@ -217,6 +221,7 @@ function homeIntro() {
 
   // scroll cue hides once you start scrolling and returns near the top
   // (a plain fade, without the 20px slide, for visitors who prefer reduced motion)
+  if (!scrollIndicator) return;
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const indicatorTween = gsap.to(scrollIndicator, {
     autoAlpha: 0,
@@ -239,46 +244,6 @@ function homeIntro() {
   });
 }
 
-// ----------------------------------------------------------------- about / contact / gallery intro
-// The original sequence, unchanged in timing. Helpers skip elements a page does not have.
-function pageIntro() {
-  // Block1X or Y(elem, x or yPos, dur, delay, ease, autoAlpha)
-  bGFadeIn("#container1");
-
-  splitText2("#about-description", 0.5, 1.5, 0.2);
-  Block1Y(block2, -100, 0.5, 4, "power4.out", 0);
-  Block1X(block5, -100, 0.5, 4.5, "power4.out", 0);
-  Block1X(block6, 100, 0.5, 4.75, "power4.out", 0);
-  Block1X(block7, -100, 0.5, 5, "power4.out", 0);
-  Block1Y(block8, 100, 0.5, 5.25, "power4.out", 0);
-  Block1X(block9, 100, 0.5, 5.5, "power4.out", 0);
-  Block1X(block10, 100, 0.5, 6, "power4.out", 0);
-  Block1Y(block11, 100, 0.5, 6.25, "power4.out", 0);
-  Block1X(torqoise, -100, 0.5, 6.5, "power4.out", 0);
-  Block1X(whiteDots, 800, 0.5, 7, "power4.out", 0);
-  Block1Y(goldHatch, 800, 0.75, 7.5, "power4.out", 0);
-  Block1Y(smallCircles, 800, 1, 8, "power4.out", 0);
-  Block1X(goldDots, 800, 1, 8.25, "elastic.inOut", 0);
-  Block1X(whiteLine, -800, 1, 8.75, "elastic.inOut", 0);
-  Block1X(largeCircles, 800, 1, 9.25, "power4.out", 0);
-  Block1Y(smallCircles2, 800, 1, 9.5, "power4.out", 0);
-  Block1X(whiteLine2, -800, 1, 9, "elastic.inOut", 0);
-  Block1X(whiteDots2, 800, 0.5, 10, "power4.out", 0);
-  Block1X(largeCircles2, -800, 1, 10.25, "power4.out", 0);
-  Block1Y(smallCircles3, 400, 1, 10.75, "power4.out", 0);
-  Block1X(goldHatch3, 400, 1, 10.75, "power4.out", 0);
-  Block1X(whiteDots3, 800, 0.5, 11, "power4.out", 0);
-  Block1X(torqoise2, -100, 0.5, 11.25, "power4.out", 0);
-  Block1X(goldDots2, 800, 1, 11.5, "elastic.inOut", 0);
-  rotateCircles();
-  elemLoaded = true;
-  changeScale(torqoise);
-  changeScale(whiteDots);
-  changeScale(goldHatch);
-  changeScale(goldDots);
-  changeScale(smallCircles);
-}
-
 // ----------------------------------------------------------------- animation helpers
 function changeScale(elem) {
   if (!elem) return;
@@ -290,62 +255,6 @@ function changeScale(elem) {
       gsap.to(elem, { scale: 1, duration: 0.25, ease: "power4.inOut" });
     });
   }
-}
-
-function bGFadeIn(a) {
-  gsap.from(a, {
-    backgroundColor: "#170046",
-    duration: 5,
-    ease: "power4.inOut",
-    delay: 1,
-  });
-}
-function splitText2(a, b, c, d) {
-  if (!document.querySelector(a)) return;
-  let split = new SplitText(a, { type: "words" });
-  gsap.from(split.words, {
-    duration: c,//0.175
-    opacity: 0,
-    stagger: d,
-    ease: "back",
-    delay: b,
-    repeat: -1,
-  });
-}
-function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
-  if (!elem) return;
-  gsap.from(elem, {
-    y: yPos,
-    autoAlpha: autoAlpha,
-    duration: dur, //0.55
-    delay: delay,
-    ease: ease, //"elastic.inOut"
-  });
-}
-function Block1X(elem, xPos, dur, delay, ease, autoAlpha) {
-  if (!elem) return;
-  gsap.from(elem, {
-    x: xPos,
-    autoAlpha: autoAlpha,
-    duration: dur, //0.55
-    delay: delay,
-    ease: ease, //"elastic.inOut"
-  });
-}
-
-function rotateCircles() {
-  gsap.to("#big-c", {
-    rotation: 360,
-    transformOrigin: "center",
-    repeat: -1,
-    duration: 10, // Adjust duration as needed
-  });
-  gsap.to("#small-c", {
-    rotation: -360,
-    transformOrigin: "center",
-    repeat: -1,
-    duration: 6, // Adjust duration as needed
-  });
 }
 
 // ----------------------------------------------------------------- start
@@ -459,3 +368,103 @@ document.addEventListener("DOMContentLoaded", init);
 // --- (start) note to self
 // //note to self, re-order sequence of animations, and introduce timelines and ,aster timelines
 //     (done for the home page: see homeIntro)
+
+// --- (page intros) the original sequence that About, Contact and Gallery used until every page
+//     moved to heroIntro(): about 12.5 seconds, a hand-set delay on every step, and no
+//     reduced-motion handling. Kept with the helpers only it used.
+// // ----------------------------------------------------------------- about / contact / gallery intro
+// // The original sequence, unchanged in timing. Helpers skip elements a page does not have.
+// function pageIntro() {
+//   // Block1X or Y(elem, x or yPos, dur, delay, ease, autoAlpha)
+//   bGFadeIn("#container1");
+//
+//   splitText2("#about-description", 0.5, 1.5, 0.2);
+//   Block1Y(block2, -100, 0.5, 4, "power4.out", 0);
+//   Block1X(block5, -100, 0.5, 4.5, "power4.out", 0);
+//   Block1X(block6, 100, 0.5, 4.75, "power4.out", 0);
+//   Block1X(block7, -100, 0.5, 5, "power4.out", 0);
+//   Block1Y(block8, 100, 0.5, 5.25, "power4.out", 0);
+//   Block1X(block9, 100, 0.5, 5.5, "power4.out", 0);
+//   Block1X(block10, 100, 0.5, 6, "power4.out", 0);
+//   Block1Y(block11, 100, 0.5, 6.25, "power4.out", 0);
+//   Block1X(torqoise, -100, 0.5, 6.5, "power4.out", 0);
+//   Block1X(whiteDots, 800, 0.5, 7, "power4.out", 0);
+//   Block1Y(goldHatch, 800, 0.75, 7.5, "power4.out", 0);
+//   Block1Y(smallCircles, 800, 1, 8, "power4.out", 0);
+//   Block1X(goldDots, 800, 1, 8.25, "elastic.inOut", 0);
+//   Block1X(whiteLine, -800, 1, 8.75, "elastic.inOut", 0);
+//   Block1X(largeCircles, 800, 1, 9.25, "power4.out", 0);
+//   Block1Y(smallCircles2, 800, 1, 9.5, "power4.out", 0);
+//   Block1X(whiteLine2, -800, 1, 9, "elastic.inOut", 0);
+//   Block1X(whiteDots2, 800, 0.5, 10, "power4.out", 0);
+//   Block1X(largeCircles2, -800, 1, 10.25, "power4.out", 0);
+//   Block1Y(smallCircles3, 400, 1, 10.75, "power4.out", 0);
+//   Block1X(goldHatch3, 400, 1, 10.75, "power4.out", 0);
+//   Block1X(whiteDots3, 800, 0.5, 11, "power4.out", 0);
+//   Block1X(torqoise2, -100, 0.5, 11.25, "power4.out", 0);
+//   Block1X(goldDots2, 800, 1, 11.5, "elastic.inOut", 0);
+//   rotateCircles();
+//   elemLoaded = true;
+//   changeScale(torqoise);
+//   changeScale(whiteDots);
+//   changeScale(goldHatch);
+//   changeScale(goldDots);
+//   changeScale(smallCircles);
+// }
+//
+// function bGFadeIn(a) {
+//   if (!document.querySelector(a)) return;
+//   gsap.from(a, {
+//     backgroundColor: "#170046",
+//     duration: 5,
+//     ease: "power4.inOut",
+//     delay: 1,
+//   });
+// }
+// function splitText2(a, b, c, d) {
+//   if (!document.querySelector(a)) return;
+//   let split = new SplitText(a, { type: "words" });
+//   gsap.from(split.words, {
+//     duration: c,//0.175
+//     opacity: 0,
+//     stagger: d,
+//     ease: "back",
+//     delay: b,
+//     repeat: -1,
+//   });
+// }
+// function Block1Y(elem, yPos, dur, delay, ease, autoAlpha) {
+//   if (!elem) return;
+//   gsap.from(elem, {
+//     y: yPos,
+//     autoAlpha: autoAlpha,
+//     duration: dur, //0.55
+//     delay: delay,
+//     ease: ease, //"elastic.inOut"
+//   });
+// }
+// function Block1X(elem, xPos, dur, delay, ease, autoAlpha) {
+//   if (!elem) return;
+//   gsap.from(elem, {
+//     x: xPos,
+//     autoAlpha: autoAlpha,
+//     duration: dur, //0.55
+//     delay: delay,
+//     ease: ease, //"elastic.inOut"
+//   });
+// }
+//
+// function rotateCircles() {
+//   gsap.to("#big-c", {
+//     rotation: 360,
+//     transformOrigin: "center",
+//     repeat: -1,
+//     duration: 10, // Adjust duration as needed
+//   });
+//   gsap.to("#small-c", {
+//     rotation: -360,
+//     transformOrigin: "center",
+//     repeat: -1,
+//     duration: 6, // Adjust duration as needed
+//   });
+// }
