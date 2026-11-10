@@ -3,22 +3,20 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   visibility: hidden;
 }
-
 @font-face {
   font-family: pirulen;
-  src: url("../fonts/pirulen rg.ttf");
+  src: url("../fonts/pirulen\ rg.ttf");
 }
 @font-face {
   font-family: gill-sans-bold;
-  src: url("../fonts/Gill Sans Bold.otf");
+  src: url("../fonts/Gill\ Sans\ Bold.otf");
 }
 @font-face {
   font-family: gill-sans-regular;
-  src: url("../fonts/Gill Sans.otf");
+  src: url("../fonts/Gill\ Sans.otf");
 }
 @font-face {
   font-family: Muller;
@@ -33,7 +31,6 @@ body {
   height: 100%;
   min-height: 680px;
 }
-
 nav {
   height: 70px;
   background: #170046;
@@ -86,12 +83,21 @@ nav div#landing {
   height: calc(100vh - 70px);
   width: 100%;
   background: #170046;
-  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
   clip-path: circle(100px at 100% -19%);
   transition: all 1s ease-out;
+}
+:where(body.page-home) nav div#landing,
+:where(body.page-about) nav div#landing {
+  z-index: 2;
+}
+:where(body.page-contact) nav div#landing {
+  z-index: 3;
+}
+:where(body.page-gallery) nav div#landing {
+  z-index: 4;
 }
 nav div#landing ul#nav-links {
   height: 25%;
@@ -139,37 +145,390 @@ nav div#landing.open {
 nav div#desktop-nav {
   display: none;
 }
-
 #container1 {
   position: relative;
   width: 100%;
   max-width: 100%;
-  height: calc(100vh - 70px);
   display: flex;
   flex-direction: column;
   align-items: center;
   background: #280078;
   overflow: hidden;
 }
-#container1 section#job-role {
+:where(body.page-home) #container1,
+:where(body.page-about) #container1 {
+  height: calc(100vh - 70px);
+}
+:where(body.page-contact) #container1,
+:where(body.page-gallery) #container1 {
+  height: calc(100vh - 170px);
+}
+:where(body.page-gallery) #container1 {
+  height: calc(100dvh - 170px);
+}
+:where(body.page-home) #container1 section#job-role {
   position: relative;
   margin-top: 2em;
 }
-#container1 section#job-role h1.job-roles {
+:where(body.page-home) #container1 section#job-role h1.job-roles {
   color: white;
   font-family: pirulen;
   text-align: left;
   font-size: 16px;
   padding: 0.35em 0;
 }
-#container1 section#job-role h1:nth-child(1) {
+:where(body.page-home) #container1 section#job-role h1:nth-child(1) {
   color: #c4b900;
 }
-#container1 section#job-role h1:nth-child(2) {
+:where(body.page-home) #container1 section#job-role h1:nth-child(2) {
   color: #64a7e9;
 }
-#container1 section#job-role h1:nth-child(3) {
+:where(body.page-home) #container1 section#job-role h1:nth-child(3) {
   color: #fff;
+}
+:where(body.page-about) #container1 section#about-description {
+  position: relative;
+  margin-top: 1em;
+  color: #ebf3cd;
+  font-family: pirulen;
+  font-size: 20px;
+  padding: 0.35em 2em;
+  line-height: 2em;
+  width: 100%;
+}
+:where(body.page-about) #container1 section#about-description .gold {
+  color: #c4b900;
+}
+:where(body.page-about) #container1 section#about-description .m-blue {
+  color: #64a7e9;
+}
+:where(body.page-contact) #container1 section#contact {
+  position: relative;
+  z-index: 2;
+  margin-top: 2.5em;
+  padding: 1em;
+  background: #170046;
+  width: 85%;
+  border: 1px solid #fff;
+  border-radius: 1em;
+}
+:where(body.page-contact) #container1 section#contact h1 {
+  font-family: pirulen;
+  color: #fff;
+  font-size: 1.15em;
+  margin-bottom: 2em;
+}
+:where(body.page-contact) #container1 section#contact form#myForm {
+  margin-top: 2em;
+}
+:where(body.page-contact) #container1 section#contact form#myForm input,
+:where(body.page-contact) #container1 section#contact form#myForm textarea {
+  width: 100%;
+  padding: 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #fff;
+  border-radius: 0;
+  color: #fff;
+  margin-bottom: 1.5em;
+  font-family: Helvetica;
+  padding: 0.5em;
+  transition: all 200ms linear;
+}
+:where(body.page-contact) #container1 section#contact form#myForm input::placeholder,
+:where(body.page-contact) #container1 section#contact form#myForm textarea::placeholder {
+  opacity: 1;
+  color: #66d6d4;
+  font-family: gill-sans-bold;
+  margin-left: 1em;
+}
+:where(body.page-contact) #container1 section#contact form#myForm input:focus,
+:where(body.page-contact) #container1 section#contact form#myForm textarea:focus {
+  background: #280078;
+  outline: none;
+}
+:where(body.page-contact) #container1 section#contact form#myForm button {
+  width: 180px;
+  height: 60px;
+  margin: 1.5em auto;
+  display: block;
+  text-transform: uppercase;
+  border: 3px solid #66d6d4;
+  border-radius: 1em;
+  color: #fff;
+  background-color: #280078;
+  cursor: pointer;
+  transition: all 200ms linear;
+}
+:where(body.page-contact) #container1 section#contact form#myForm button:hover {
+  background-color: #64a7e9;
+  border: 3px solid #fff;
+  color: #170046;
+}
+:where(body.page-gallery) #container1 section#gallery-display {
+  display: none;
+  position: absolute;
+  top: 1em;
+  bottom: 1em;
+  z-index: 3;
+  width: min(92vw, 1100px);
+  flex-direction: column;
+  overflow: hidden;
+  background-color: #170046;
+  border: 1px solid #fff;
+  border-radius: 1em;
+}
+:where(body.page-gallery) #container1 section#gallery-display.is-open {
+  display: flex;
+  animation: gallery-in 200ms ease-out;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav {
+  flex: 0 0 auto;
+  height: auto;
+  padding: 0.6em 0.6em 0.6em 0.75em;
+  gap: 0.5em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs {
+  flex: 1 1 auto;
+  min-width: 0;
+  display: flex;
+  gap: 0.5em;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs::-webkit-scrollbar {
+  display: none;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab {
+  flex: 0 0 auto;
+  min-height: 40px;
+  padding: 0 1em;
+  border: 1px solid #66d6d4;
+  border-radius: 999px;
+  background: transparent;
+  color: #66d6d4;
+  font-family: gill-sans-bold;
+  font-size: 14px;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab:hover {
+  color: #fff;
+  border-color: #fff;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab[aria-selected="true"] {
+  background: #66d6d4;
+  border-color: #66d6d4;
+  color: #170046;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs .gallery-tab:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn {
+  flex: 0 0 auto;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  cursor: pointer;
+  transition: transform 250ms ease-out;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bars {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background: #ebf3cd;
+  transition: all 250ms ease-out;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar1 {
+  transform: translateY(11.75px) rotate(45deg);
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar2 {
+  opacity: 0;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar3 {
+  transform: translateY(-11.75px) rotate(-45deg);
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:hover {
+  transform: rotate(90deg);
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:hover .bars {
+  background: #66d6d4;
+}
+:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+  border-radius: 0.5em;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 0.75em;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.5) transparent;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .box::-webkit-scrollbar {
+  width: 6px;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .box::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-grid {
+  list-style: none;
+  display: grid;
+  gap: 0.6em;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 0.6em;
+  overflow: hidden;
+  background: #280078;
+  cursor: zoom-in;
+  transition: border-color 200ms ease;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 300ms ease;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible {
+  border-color: #66d6d4;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
+  transform: scale(1.06);
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid--contain .thumb {
+  background: rgba(255, 255, 255, 0.06);
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid--contain .thumb img {
+  object-fit: contain;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card {
+  margin: 0;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
+  background: #000;
+  border-radius: 0.6em;
+}
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card figcaption {
+  margin-top: 0.4em;
+  color: #ebf3cd;
+  font-family: gill-sans-regular;
+  font-size: 0.8em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+:where(body.page-gallery) #container1 section#gallery {
+  transition: all 200ms ease;
+  position: relative;
+  z-index: 2;
+  top: 2.5em;
+  padding: 1.5em;
+  background: #170046;
+  width: 85%;
+  border: 1px solid #fff;
+  border-radius: 1em;
+}
+:where(body.page-gallery) #container1 section#gallery h1 {
+  font-family: pirulen;
+  color: #fff;
+  font-size: 1.15em;
+  margin-bottom: 1em;
+}
+:where(body.page-gallery) #container1 section#gallery section p {
+  color: #fff;
+  font-family: Helvetica;
+  line-height: 26px;
+}
+:where(body.page-gallery) #container1 section#gallery section ul {
+  margin-top: 1em;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li {
+  display: inline-block;
+  border-bottom: 1px solid #fff;
+  font-size: 0.8em;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li a {
+  display: block;
+  padding: 0.75em 0;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li a:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li:first-child {
+  border-top: 1px solid #fff;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li span:nth-child(1) {
+  color: #66d6d4;
+  font-family: gill-sans-bold;
+  text-transform: uppercase;
+  transition: all 200ms linear;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li span:nth-child(2) {
+  margin-left: 0.5em;
+  color: #c4b900;
+  font-family: pirulen;
+  transition: all 300ms linear;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li:hover span:nth-child(1) {
+  color: #c4b900;
+  color: #fff;
+  font-size: 1.1em;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li:hover span:nth-child(2) {
+  color: #66d6d4;
+  color: #64a7e9;
 }
 #container1 section#block-grid > div {
   width: 100px;
@@ -179,7 +538,6 @@ nav div#desktop-nav {
 #container1 section#block-grid {
   position: relative;
   z-index: 1;
-  top: -4px;
   width: 300px;
   height: 400px;
   display: grid;
@@ -187,6 +545,15 @@ nav div#desktop-nav {
   grid-template-rows: 4fr;
   grid-template-areas: "one two three" "four five six" "seven eight nine" "ten eleven twelve";
   transform: scale(0.85);
+}
+:where(body.page-home) #container1 section#block-grid {
+  top: -4px;
+}
+:where(body.page-about) #container1 section#block-grid,
+:where(body.page-contact) #container1 section#block-grid,
+:where(body.page-gallery) #container1 section#block-grid {
+  top: 50px;
+  display: none;
 }
 #container1 section#block-grid #block-2 {
   background-color: #c4b900;
@@ -229,10 +596,15 @@ nav div#desktop-nav {
   display: block;
   z-index: 1;
 }
+:where(body.page-about) #container1 img#torqoise-hatch {
+  display: none;
+}
 #container1 img#torqoise-hatch:hover {
   transform: scale(1.2);
 }
-#container1 img#white-dots {
+:where(body.page-home) #container1 img#white-dots,
+:where(body.page-contact) #container1 img#white-dots,
+:where(body.page-gallery) #container1 img#white-dots {
   position: absolute;
   top: 510px;
   right: 5px;
@@ -242,7 +614,9 @@ nav div#desktop-nav {
   position: absolute;
   display: none;
 }
-#container1 img#gold-hatch {
+:where(body.page-home) #container1 img#gold-hatch,
+:where(body.page-contact) #container1 img#gold-hatch,
+:where(body.page-gallery) #container1 img#gold-hatch {
   position: absolute;
   top: 530px;
   right: -200px;
@@ -316,14 +690,13 @@ nav div#desktop-nav {
   position: absolute;
   display: none;
 }
-
-.projects {
+:where(body.page-home) .projects {
   width: 100%;
   height: 100%;
   background: #280078;
   overflow: hidden;
 }
-.projects section#scroll-indicator {
+:where(body.page-home) .projects section#scroll-indicator {
   position: relative;
   top: -100px;
   z-index: 2;
@@ -332,13 +705,13 @@ nav div#desktop-nav {
   justify-content: center;
   align-items: center;
 }
-.projects section#scroll-indicator #scroll-indicator-div {
+:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
-.projects section#scroll-indicator #scroll-indicator-div h3 {
+:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div h3 {
   font-family: gill-sans-regular;
   color: #fff;
   text-transform: uppercase;
@@ -346,97 +719,161 @@ nav div#desktop-nav {
   animation: scrollAnim 2s infinite;
   font-size: 0.5em;
 }
-.projects section#scroll-indicator #scroll-indicator-div svg#down-chevron {
+:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div svg#down-chevron {
   width: 60px;
 }
-.projects section#scroll-indicator #scroll-indicator-div svg#down-chevron .st0 {
+:where(body.page-home) .projects section#scroll-indicator #scroll-indicator-div svg#down-chevron .st0 {
   fill: #ebf3cd;
   stroke-miterlimit: 10;
 }
-.projects section.proj-wrap {
+:where(body.page-home) .projects section.proj-wrap {
   z-index: 1;
 }
-.projects section.proj-wrap picture img.proj-img {
+:where(body.page-home) .projects section.proj-wrap picture img.proj-img {
   width: 100%;
   height: auto;
 }
-.projects section.proj-details {
+:where(body.page-home) .projects section.proj-details {
   padding: 2em;
 }
-.projects section.proj-details h1 {
+:where(body.page-home) .projects section.proj-details h1 {
   font-family: Muller;
   font-size: 2.5em;
   color: #66d6d4;
   margin-bottom: 0.5em;
 }
-.projects section.proj-details h3 {
+:where(body.page-home) .projects section.proj-details h3 {
   font-family: gill-sans-regular;
   font-size: 1.5em;
   color: #c4b900;
   margin-bottom: 0.25em;
 }
-.projects section.proj-details section.project-content {
+:where(body.page-home) .projects section.proj-details section.project-content {
   display: flex;
   flex-direction: column;
 }
-.projects section.proj-details section.project-content p {
+:where(body.page-home) .projects section.proj-details section.project-content p {
   color: #fff;
   font-family: Helvetica;
   line-height: 33px;
   letter-spacing: 2px;
 }
-.projects section.proj-details section.project-content a {
+:where(body.page-home) .projects section.proj-details section.project-content a {
   text-align: center;
 }
-.projects section.proj-details section.project-content a svg.proj-button {
+:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button {
   margin: 1.5em auto;
 }
-.projects section.proj-details section.project-content a svg.proj-button g.Rectangle_33 {
+:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button g.Rectangle_33 {
   fill: #280078;
   stroke: #83d3d3;
   stroke-width: 4px;
   transition: all 200ms linear;
   cursor: pointer;
 }
-.projects section.proj-details section.project-content a svg.proj-button:hover g.Rectangle_33 {
+:where(body.page-home) .projects section.proj-details section.project-content a svg.proj-button:hover g.Rectangle_33 {
   stroke: #fff;
   fill: #080909;
 }
-
-#container2 img#white-dots4 {
+:where(body.page-about) #container2 {
+  overflow: hidden;
+  position: relative;
+  top: 0px;
+  background: #280078;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5em;
+}
+:where(body.page-home) #container2 img#white-dots4 {
   position: relative;
   display: none;
 }
-#container2 img#torqoise-hatch3 {
+:where(body.page-home) #container2 img#torqoise-hatch3 {
   position: relative;
   display: none;
 }
-#container2 svg#large-circles3 {
+:where(body.page-home) #container2 svg#large-circles3 {
   position: relative;
   display: none;
 }
-#container2 section.proj-wrap {
+:where(body.page-home) #container2 section.proj-wrap {
   position: relative;
 }
-
-#container3 img#gold-dots3 {
+:where(body.page-about) #container2 section#about-left-panel {
+  width: 100%;
+}
+:where(body.page-about) #container2 section#about-left-panel h1 {
+  font-family: gill-sans-bold;
+  font-size: 1.25em;
+  color: #c4b900;
+  text-transform: uppercase;
+  padding-bottom: 0.25em;
+  margin-bottom: 0.5em;
+  border-bottom: 1px solid #66d6d4;
+}
+:where(body.page-about) #container2 section#about-left-panel h1 span {
+  color: #ebf3cd;
+}
+:where(body.page-about) #container2 section#about-left-panel p {
+  font-family: Helvetica;
+  color: #fff;
+  line-height: 26px;
+  margin-bottom: 2em;
+}
+:where(body.page-about) #container2 section#about-left-panel p span {
+  color: #64a7e9;
+}
+:where(body.page-about) #container2 section#about-right-panel {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+:where(body.page-about) #container2 section#about-right-panel img {
+  width: 80%;
+  height: auto;
+  display: block;
+  border: 1px solid #fff;
+  border-radius: 1em;
+  margin-bottom: 3em;
+  position: relative;
+  z-index: 1;
+}
+:where(body.page-about) #container2 section#background-panel {
+  position: absolute;
+  width: 100%;
+}
+:where(body.page-about) #container2 section#background-panel svg#large-circles3 {
+  display: none;
+}
+:where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  position: absolute;
+  right: 0px;
+  top: 90vh;
+  z-index: 0;
+}
+:where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  position: absolute;
+  left: -18px;
+  top: 90vh;
+  z-index: 0;
+}
+:where(body.page-home) #container3 img#gold-dots3 {
   position: relative;
   display: none;
 }
-#container3 img#torqoise-hatch4 {
+:where(body.page-home) #container3 img#torqoise-hatch4 {
   position: relative;
   display: none;
 }
-
-#container4 img#white-dots5 {
+:where(body.page-home) #container4 img#white-dots5 {
   position: relative;
   display: none;
 }
-#container4 img#gold-hatch4 {
+:where(body.page-home) #container4 img#gold-hatch4 {
   position: relative;
   display: none;
 }
-
 footer {
   height: 100px;
   background: #170046;
@@ -482,30 +919,187 @@ footer #copyright {
   color: #ebf3cd;
   text-transform: uppercase;
 }
-
 @media (min-width: 576px) and (max-width: 1365px) {
-  body {
+  body:where(.page-home) {
     max-width: 1365px;
     min-width: 576px;
   }
-  #container1 img#torqoise-hatch {
+  :where(body.page-home) #container1 img#torqoise-hatch {
     top: 233px;
     left: 29px;
   }
-  #container1 #gold-dots {
+  :where(body.page-home) #container1 #gold-dots {
     display: block;
   }
-  #container1 img#small-circles {
+  :where(body.page-home) #container1 img#small-circles {
     top: 204px;
     left: -200px;
   }
-  #container1 img#white-line {
+  :where(body.page-home) #container1 img#white-line {
     top: 384px;
     left: -474px;
     display: block;
   }
-  #container1 #large-circles {
+  :where(body.page-home) #container1 #large-circles {
     display: block;
+  }
+}
+@media (min-width: 576px) and (max-width: 1023px) {
+  body:where(.page-about),
+  body:where(.page-contact),
+  body:where(.page-gallery) {
+    max-width: 1023px;
+    min-width: 576px;
+  }
+  :where(body.page-about) #container1 section#about-description {
+    width: 600px;
+  }
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
+    display: block;
+    top: 321px;
+    left: 0px;
+    z-index: 1;
+  }
+  :where(body.page-about) #container1 section#block-grid,
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
+    display: grid;
+    top: -28px;
+    z-index: 1;
+  }
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
+    display: none;
+  }
+  :where(body.page-about) #container2 {
+    padding-top: 3em;
+  }
+  :where(body.page-about) #container2 section#about-left-panel p {
+    line-height: 2em;
+    letter-spacing: 2px;
+    margin-top: 0.5em;
+    padding: 1em;
+  }
+  :where(body.page-about) #container2 section#background-panel {
+    position: absolute;
+    width: 100%;
+  }
+  :where(body.page-about) #container2 section#background-panel svg#large-circles3 {
+    display: none;
+  }
+  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+    position: absolute;
+    right: 0px;
+    top: 122vh;
+    z-index: 0;
+  }
+  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+    position: absolute;
+    left: -18px;
+    top: 133vh;
+    z-index: 0;
+  }
+}
+@media (min-width: 1024px) and (max-width: 1365px) {
+  body:where(.page-about),
+  body:where(.page-contact),
+  body:where(.page-gallery) {
+    max-width: 1365px;
+    min-width: 1024px;
+  }
+  :where(body.page-about) #container1 section#about-description {
+    width: 600px;
+  }
+  :where(body.page-contact) #container1 section#contact {
+    width: 600px;
+  }
+  :where(body.page-gallery) #container1 section#gallery {
+    width: 600px;
+  }
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
+    display: block;
+    top: 233px;
+    left: 29px;
+  }
+  :where(body.page-about) #container1 #gold-dots,
+  :where(body.page-contact) #container1 #gold-dots,
+  :where(body.page-gallery) #container1 #gold-dots {
+    display: block;
+  }
+  :where(body.page-about) #container1 img#small-circles,
+  :where(body.page-contact) #container1 img#small-circles,
+  :where(body.page-gallery) #container1 img#small-circles {
+    top: 204px;
+    left: -200px;
+  }
+  :where(body.page-about) #container1 img#white-line,
+  :where(body.page-contact) #container1 img#white-line,
+  :where(body.page-gallery) #container1 img#white-line {
+    top: 384px;
+    left: -474px;
+    display: block;
+  }
+  :where(body.page-about) #container1 #large-circles,
+  :where(body.page-contact) #container1 #large-circles,
+  :where(body.page-gallery) #container1 #large-circles {
+    display: block;
+  }
+  :where(body.page-about) #container1 section#block-grid {
+    display: grid;
+    top: -28px;
+  }
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
+    position: absolute;
+    display: grid;
+    display: none;
+    top: -28px;
+  }
+  :where(body.page-about) #container2 {
+    flex-direction: row;
+    padding: 2.5em;
+  }
+  :where(body.page-about) #container2 section {
+    width: 50%;
+  }
+  :where(body.page-about) #container2 section#about-left-panel p {
+    line-height: 1.75em;
+    letter-spacing: 1.75px;
+    margin-top: 0.5em;
+    padding: 1em;
+  }
+  :where(body.page-about) #container2 section#about-right-panel img {
+    width: 70%;
+    height: auto;
+  }
+  :where(body.page-about) #container2 section#background-panel {
+    position: absolute;
+    width: 100%;
+  }
+  :where(body.page-about) #container2 section#background-panel svg#large-circles3 {
+    display: block;
+    width: 350px;
+    position: absolute;
+    right: 0px;
+    top: 40vh;
+  }
+  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    z-index: 0;
+  }
+  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+    position: absolute;
+    left: 150px;
+    top: 55vh;
+    top: 400px;
+    z-index: 0;
+    width: 300px;
   }
 }
 @media (min-width: 1366px) {
@@ -553,17 +1147,42 @@ footer #copyright {
   nav div#desktop-nav ul#nav-links-desktop li:hover:before {
     width: 100%;
   }
+  :where(body.page-about) #container1 section#about-description {
+    width: 600px;
+    padding: 0;
+    left: -116px;
+  }
+  :where(body.page-contact) #container1 section#contact {
+    width: 600px;
+    left: -185px;
+  }
+  :where(body.page-gallery) #container1 section#gallery {
+    width: 600px;
+    left: -185px;
+  }
   #container1 img#torqoise-hatch {
     top: 269px;
     left: 121px;
   }
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
+    display: block;
+  }
   #container1 img#gold-dots {
     display: block;
     left: 263px;
-    top: 229px;
     width: 280px;
     height: auto;
     z-index: 1;
+  }
+  :where(body.page-home) #container1 img#gold-dots {
+    top: 229px;
+  }
+  :where(body.page-about) #container1 img#gold-dots,
+  :where(body.page-contact) #container1 img#gold-dots,
+  :where(body.page-gallery) #container1 img#gold-dots {
+    top: 272px;
   }
   #container1 img#small-circles {
     top: 204px;
@@ -587,11 +1206,18 @@ footer #copyright {
   #container1 svg#large-circles2 {
     position: absolute;
     left: -300px;
-    top: 170px;
     z-index: 0;
     display: block;
     width: 800px;
     height: 800px;
+  }
+  :where(body.page-home) #container1 svg#large-circles2 {
+    top: 170px;
+  }
+  :where(body.page-about) #container1 svg#large-circles2,
+  :where(body.page-contact) #container1 svg#large-circles2,
+  :where(body.page-gallery) #container1 svg#large-circles2 {
+    top: 260px;
   }
   #container1 img#white-line2 {
     top: 600px;
@@ -611,14 +1237,75 @@ footer #copyright {
     left: 15px;
     display: block;
   }
-  #container1 section#job-role {
+  :where(body.page-home) #container1 section#job-role,
+  :where(body.page-about) #container1 section#job-role {
     left: -326px;
     transform: scale(1.25);
   }
   #container1 section#block-grid {
-    transform: scale(1.25);
-    left: 225px;
     cursor: cell;
+  }
+  :where(body.page-home) #container1 section#block-grid {
+    transform: scale(1.25);
+  }
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
+    position: absolute;
+    right: 260px;
+    top: 150px;
+  }
+  :where(body.page-about) #container1 section#block-grid,
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
+    display: grid;
+  }
+  :where(body.page-about) #container1 section#block-grid {
+    top: -15px;
+  }
+  :where(body.page-home) #container1 section#block-grid,
+  :where(body.page-about) #container1 section#block-grid {
+    left: 225px;
+  }
+  :where(body.page-about) #container2 {
+    flex-direction: row;
+    padding: 2.5em 5em;
+  }
+  :where(body.page-about) #container2 section {
+    width: 50%;
+  }
+  :where(body.page-about) #container2 section#about-left-panel p {
+    line-height: 1.75em;
+    letter-spacing: 1.75px;
+    margin-top: 0.5em;
+    padding: 1em;
+  }
+  :where(body.page-about) #container2 section#about-right-panel img {
+    width: 50%;
+    height: auto;
+  }
+  :where(body.page-about) #container2 section#background-panel {
+    position: absolute;
+    width: 100%;
+  }
+  :where(body.page-about) #container2 section#background-panel svg#large-circles3 {
+    display: block;
+    width: 450px;
+    position: absolute;
+    right: 125px;
+    top: 40vh;
+  }
+  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+    position: absolute;
+    right: 250px;
+    top: 50px;
+    z-index: 0;
+  }
+  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+    position: absolute;
+    left: 415px;
+    top: 325px;
+    z-index: 0;
+    width: 350px;
   }
 }
 @media (min-height: 1080px) and (min-width: 576px) {
@@ -660,44 +1347,44 @@ footer #copyright {
   }
 }
 @media (min-width: 1024px) {
-  .projects section.proj-wrap picture img.proj-img {
+  :where(body.page-home) .projects section.proj-wrap picture img.proj-img {
     margin: 0 auto;
     padding: 2em 8em;
   }
-  .projects section.proj-wrap section.proj-details {
+  :where(body.page-home) .projects section.proj-wrap section.proj-details {
     padding: 2em 8em;
   }
-  .projects section.proj-wrap section.proj-details section.project-content {
+  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content {
     flex-direction: row;
     border-bottom: 1px solid #fff;
     padding-bottom: 1em;
   }
-  .projects section.proj-wrap section.proj-details section.project-content p {
+  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content p {
     width: 60%;
   }
-  .projects section.proj-wrap section.proj-details section.project-content a {
+  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content a {
     display: flex;
     margin-left: 100px;
     margin-top: 100px;
     width: 40%;
   }
-  #container2 img#white-dots4 {
+  :where(body.page-home) #container2 img#white-dots4 {
     position: absolute;
     top: calc(100vh + 40px);
     width: 300px;
     display: block;
   }
-  #container2 img#torqoise-hatch3 {
+  :where(body.page-home) #container2 img#torqoise-hatch3 {
     position: absolute;
     top: calc(100vh + 40px);
     display: block;
     left: calc(100% - 8em);
   }
-  #container3 {
+  :where(body.page-home) #container3 {
     position: relative;
     z-index: 1;
   }
-  #container3 img#gold-dots3 {
+  :where(body.page-home) #container3 img#gold-dots3 {
     position: absolute;
     display: block;
     z-index: 0;
@@ -705,32 +1392,217 @@ footer #copyright {
     top: 31px;
     left: calc(100% - 6.75em);
   }
-  #container3 img#torqoise-hatch4 {
+  :where(body.page-home) #container3 img#torqoise-hatch4 {
     position: absolute;
     top: 33px;
     display: block;
   }
-  #container3 .proj-wrap {
+  :where(body.page-home) #container3 .proj-wrap {
     position: relative;
   }
-  #container4 {
+  :where(body.page-home) #container4 {
     position: relative;
     z-index: 1;
   }
-  #container4 img#white-dots5 {
+  :where(body.page-home) #container4 img#white-dots5 {
     position: absolute;
     top: 40px;
     width: 300px;
     display: block;
   }
-  #container4 img#gold-hatch4 {
+  :where(body.page-home) #container4 img#gold-hatch4 {
     position: absolute;
     top: 97px;
     display: block;
     left: calc(100% - 13em);
     transform: rotate(-90deg);
   }
-  #container4 .proj-wrap {
+  :where(body.page-home) #container4 .proj-wrap {
     position: relative;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+@media (min-height: 667px) and (max-height: 799px) {
+  :where(body.page-contact) #container1 section#contact {
+    margin-top: 1em;
+  }
+  :where(body.page-contact) #container1 section#contact h1 {
+    margin-bottom: 1em;
+  }
+  :where(body.page-contact) #container1 section#contact form#myForm {
+    margin-top: 1em;
+  }
+  :where(body.page-contact) #container1 section#contact form#myForm textarea {
+    margin-bottom: 0.5em;
+  }
+  :where(body.page-contact) #container1 section#contact form#myForm button {
+    margin: 0.75em auto;
+  }
+}
+@media (max-width: 575px) {
+  :where(body.page-about) #container1 img#white-dots {
+    z-index: 1;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
+  :where(body.page-about) #container1 img#gold-hatch {
+    left: -61px;
+    z-index: 1;
+    position: absolute;
+    bottom: -8px;
+    left: 1em;
+  }
+  :where(body.page-about) #container1 img#small-circles {
+    display: none;
+  }
+  :where(body.page-about) #container1 section#about-description {
+    line-height: 1.75em;
+  }
+}
+@keyframes gallery-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+html.lb-open {
+  overflow: hidden;
+}
+:where(body.page-gallery) #lightbox {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 1rem 3rem;
+  background: rgba(8, 9, 9, 0.94);
+}
+:where(body.page-gallery) #lightbox[hidden] {
+  display: none;
+}
+:where(body.page-gallery) #lightbox .lb-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 100%;
+  min-height: 0;
+}
+:where(body.page-gallery) #lightbox .lb-img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(100vh - 9rem);
+  max-height: calc(100dvh - 9rem);
+  object-fit: contain;
+  border-radius: 0.4em;
+  transition: opacity 150ms ease;
+}
+:where(body.page-gallery) #lightbox .lb-img:not([src]) {
+  visibility: hidden;
+}
+:where(body.page-gallery) #lightbox .lb-img.is-loading {
+  opacity: 0.6;
+}
+:where(body.page-gallery) #lightbox figcaption {
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+  color: #ebf3cd;
+  font-family: gill-sans-regular;
+  letter-spacing: 0.04em;
+}
+:where(body.page-gallery) #lightbox .lb-count {
+  color: #66d6d4;
+  font-size: 0.85em;
+}
+:where(body.page-gallery) #lightbox .lb-btn {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(23, 0, 70, 0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 200ms ease;
+}
+:where(body.page-gallery) #lightbox .lb-btn:hover {
+  color: #66d6d4;
+  border-color: #66d6d4;
+}
+:where(body.page-gallery) #lightbox .lb-btn:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+:where(body.page-gallery) #lightbox .lb-close {
+  top: 0.75rem;
+  right: 0.75rem;
+}
+:where(body.page-gallery) #lightbox .lb-prev {
+  top: 50%;
+  left: 0.5rem;
+  margin-top: -24px;
+}
+:where(body.page-gallery) #lightbox .lb-next {
+  top: 50%;
+  right: 0.5rem;
+  margin-top: -24px;
+}
+@media (min-width: 576px) {
+  :where(body.page-about) #container1 img#white-dots {
+    position: absolute;
+    top: 510px;
+    right: 5px;
+    z-index: 1;
+  }
+  :where(body.page-about) #container1 img#gold-hatch {
+    position: absolute;
+    top: 530px;
+    right: -200px;
+    z-index: 1;
+  }
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  :where(body.page-gallery) #lightbox .lb-prev {
+    left: 1.5rem;
+  }
+  :where(body.page-gallery) #lightbox .lb-next {
+    right: 1.5rem;
+  }
+}
+@media (max-height: 667px) {
+  :where(body.page-about) #container1 section#about-description {
+    line-height: 1.4em;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :where(body.page-gallery) #container1 section#gallery-display.is-open {
+    animation: none;
+  }
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb img,
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img,
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
+    transform: none;
+    transition: none;
+  }
+  :where(body.page-gallery) #lightbox .lb-img {
+    transition: none;
+  }
+}
