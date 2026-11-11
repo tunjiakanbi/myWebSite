@@ -94,6 +94,11 @@ Depth comes from the darker surface colour on the lighter ground.
   success, a plain-language error with another way to get in touch on failure.
 - **Focus**: 2px solid `$gold`, 2px offset, on every interactive element.
 - **Cards**: `$darkBlue` fill, 1px white border, card radius.
+- **About card (1024px and wider)**: the bio sits on one card, at most 1100px wide and centred,
+  the same width as the gallery viewer. Two equal columns: the narrative on the left; the portrait
+  with Core Capabilities and Education under it on the right. The decoration field sits behind
+  the card and stays still while the card scrolls over it. Below 1024px there is no field and no
+  card: text, then photo, on the page ground.
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
 - **Footer**: `$darkBlue`, social icons, copyright.
 
@@ -112,5 +117,11 @@ Depth comes from the darker surface colour on the lighter ground.
 - Scroll colour (about): the page opens on `$myBlack` and warms to its violet over the first 60%
   of a screen of scrolling. Its text is visible from the start, so only a dark starting colour
   keeps the gold, lime and white text readable.
+  The colour is on `<main>`, so on desktop it is the ground behind the decoration field and card.
+- Gallery viewer: rises in over 0.35s when opened (24px, 97% scale, fade) and fades out in 0.15s
+  when closed. Thumbnails and video cards stagger in, top-left first, on open and on every tab
+  change: 0.4s each, 0.05s apart, the whole stagger capped at 0.4s however many there are.
+  Keyboard focus moves at once and is never delayed by motion. With reduced motion, or if GSAP
+  is unavailable, everything simply appears. Timings are in `MOTION` in `js/gallery.js`.
 - Project screenshots are inset on every screen size (1em on phones, more on wider screens), so
   the section colour frames them.

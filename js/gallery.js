@@ -6,8 +6,11 @@
  * - Thumbnails     -> open a lightbox (prev/next, keyboard, swipe, caption)
  * - Videos         -> only one plays at a time; all pause when the category changes or the viewer closes
  *
- * Kept separate from app.js on purpose: app.js depends on GSAP loaded from a CDN, and
- * if that fails the gallery should still work.
+ * - Motion        -> the viewer rises in when it opens and fades out when it closes; thumbnails
+ *                    and video cards stagger in on open and on every tab change (see "motion")
+ *
+ * Kept separate from app.js on purpose: the gallery must keep working if GSAP fails to load.
+ * GSAP is only used for the motion; without it (or with reduced motion) everything simply appears.
  */
 (function () {
   "use strict";
@@ -48,6 +51,82 @@
       pauseVideos(v);
     });
   });
+
+  /* ---------- motion (optional: needs GSAP, and is skipped for reduced motion) ---------- */
+
+  var MOTION = {
+    open: 0.35,        // viewer rises in (seconds)
+    close: 0.15,       // viewer fades out
+    item: 0.4,         // one thumbnail
+    staggerEach: 0.05, // delay between thumbnails...
+    staggerMax: 0.4    // ...but never more than this in total, however many there are
+  };
+  var reduceMotion = window.matchMedia ? window.matchMedia("(prefers-reduced-motion: reduce)") : null;
+  var closing = false;
+
+  function motionOK() {
+    return !!window.gsap && !(reduceMotion && reduceMotion.matches);
+  }
+
+  function panelItems(cat) {
+    var panel = panels.filter(function (p) {
+      return p.getAttribute("data-category") === cat;
+    })[0];
+    return panel ? Array.prototype.slice.call(panel.querySelectorAll(".thumb-grid > li, .video-grid > li")) : [];
+  }
+
+  // Thumbnails (and video cards) arrive one after another, top-left first.
+  function staggerItems(cat, delay) {
+    if (!motionOK()) return;
+    var items = panelItems(cat);
+    if (!items.length) return;
+    window.gsap.fromTo(
+      items,
+      { opacity: 0, y: 18, scale: 0.96 },
+      {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        duration: MOTION.item,
+        ease: "power3.out",
+        delay: delay || 0,
+        stagger: { amount: Math.min(MOTION.staggerMax, items.length * MOTION.staggerEach), grid: "auto", from: "start" },
+        overwrite: true,
+        clearProps: "opacity,transform"
+      }
+    );
+  }
+
+  function animateOpen(cat) {
+    if (!motionOK()) return;
+    display.style.animation = "none"; // GSAP replaces the stylesheet's simple fade
+    window.gsap.fromTo(
+      display,
+      { opacity: 0, y: 24, scale: 0.97 },
+      { opacity: 1, y: 0, scale: 1, duration: MOTION.open, ease: "power3.out", overwrite: true, clearProps: "opacity,transform" }
+    );
+    staggerItems(cat, 0.12);
+  }
+
+  // Fades the viewer out, then runs done(). Without motion, done() runs straight away.
+  function animateClose(done) {
+    if (!motionOK()) return done();
+    if (closing) return;
+    closing = true;
+    window.gsap.to(display, {
+      opacity: 0,
+      y: 12,
+      duration: MOTION.close,
+      ease: "power1.in",
+      overwrite: true,
+      onComplete: function () {
+        closing = false;
+        done();
+        window.gsap.set(display, { clearProps: "opacity,transform" });
+        window.gsap.fromTo(menu, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power1.out", clearProps: "opacity" });
+      }
+    });
+  }
 
   /* ---------- viewer panel ---------- */
 
@@ -101,16 +180,23 @@
     window.history.pushState({ gallery: true }, "", "#" + cat);
     render();
     var tab = activeTab();
-    if (tab) tab.focus({ preventScroll: true });
+    if (tab) tab.focus({ preventScroll: true }); // focus moves at once; the motion never delays it
+    animateOpen(cat);
   }
 
   function switchCategory(cat) {
     // replaceState: switching tabs shouldn't fill the history with entries
+    var changed = cat !== categoryFromHash();
     window.history.replaceState(window.history.state, "", "#" + cat);
     render();
+    if (changed) staggerItems(cat);
   }
 
   function closeGallery() {
+    animateClose(closeNow);
+  }
+
+  function closeNow() {
     if (window.history.state && window.history.state.gallery) {
       window.history.back(); // popstate -> render()
     } else {
@@ -294,5 +380,6 @@
 
   /* ---------- go ---------- */
 
-  render(); // honour a deep link such as gallery.html#ui-ux
+  var initial = render(); // honour a deep link such as gallery.html#ui-ux
+  if (initial) animateOpen(initial);
 })();

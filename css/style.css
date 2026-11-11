@@ -3,14 +3,12 @@
   margin: 0;
   box-sizing: border-box;
 }
-
 body {
   visibility: hidden;
 }
-
 @font-face {
   font-family: pirulen;
-  src: url("../fonts/pirulen rg.ttf");
+  src: url("../fonts/pirulen\ rg.ttf");
   font-display: swap;
 }
 @font-face {
@@ -26,7 +24,6 @@ body {
   height: 100%;
   min-height: 680px;
 }
-
 nav {
   height: 70px;
   background: #170046;
@@ -88,7 +85,8 @@ nav div#landing {
   clip-path: circle(100px at 100% -19%);
   transition: all 1s ease-out;
 }
-:where(body.page-home) nav div#landing, :where(body.page-about) nav div#landing {
+:where(body.page-home) nav div#landing,
+:where(body.page-about) nav div#landing {
   z-index: 2;
 }
 :where(body.page-contact) nav div#landing {
@@ -144,7 +142,6 @@ nav div#landing.open {
 nav div#desktop-nav {
   display: none;
 }
-
 #container1 {
   position: relative;
   width: 100%;
@@ -155,10 +152,12 @@ nav div#desktop-nav {
   background: #280078;
   overflow: hidden;
 }
-:where(body.page-home) #container1, :where(body.page-about) #container1 {
+:where(body.page-home) #container1,
+:where(body.page-about) #container1 {
   height: calc(100vh - 70px);
 }
-:where(body.page-contact) #container1, :where(body.page-gallery) #container1 {
+:where(body.page-contact) #container1,
+:where(body.page-gallery) #container1 {
   height: calc(100vh - 170px);
 }
 :where(body.page-gallery) #container1 {
@@ -330,7 +329,8 @@ nav div#desktop-nav {
   border-radius: 4px;
   background-color: rgba(255, 255, 255, 0.5);
 }
-:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid, :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-grid {
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-grid {
   list-style: none;
   display: grid;
   gap: 0.6em;
@@ -344,7 +344,7 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb {
   display: block;
   width: 100%;
-  aspect-ratio: 1/1;
+  aspect-ratio: 1 / 1;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.25);
   border-radius: 0.6em;
@@ -357,14 +357,15 @@ nav div#desktop-nav {
   display: block;
   width: 100%;
   height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   transition: transform 300ms ease;
 }
-:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover, :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible {
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible {
   border-color: #66d6d4;
 }
-:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img, :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img,
+:where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
   transform: scale(1.06);
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible {
@@ -375,8 +376,7 @@ nav div#desktop-nav {
   background: rgba(255, 255, 255, 0.06);
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb-grid--contain .thumb img {
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card {
   margin: 0;
@@ -384,9 +384,8 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card video {
   display: block;
   width: 100%;
-  aspect-ratio: 16/9;
-  -o-object-fit: contain;
-     object-fit: contain;
+  aspect-ratio: 16 / 9;
+  object-fit: contain;
   background: #000;
   border-radius: 0.6em;
 }
@@ -488,7 +487,9 @@ nav div#desktop-nav {
 :where(body.page-home) #container1 section#block-grid {
   top: -4px;
 }
-:where(body.page-about) #container1 section#block-grid, :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+:where(body.page-about) #container1 section#block-grid,
+:where(body.page-contact) #container1 section#block-grid,
+:where(body.page-gallery) #container1 section#block-grid {
   top: 50px;
   display: none;
 }
@@ -542,7 +543,9 @@ nav div#desktop-nav {
 #container1 img#torqoise-hatch:hover {
   transform: scale(1.2);
 }
-:where(body.page-home) #container1 img#white-dots, :where(body.page-contact) #container1 img#white-dots, :where(body.page-gallery) #container1 img#white-dots {
+:where(body.page-home) #container1 img#white-dots,
+:where(body.page-contact) #container1 img#white-dots,
+:where(body.page-gallery) #container1 img#white-dots {
   position: absolute;
   top: 510px;
   right: 5px;
@@ -552,7 +555,9 @@ nav div#desktop-nav {
   position: absolute;
   display: none;
 }
-:where(body.page-home) #container1 img#gold-hatch, :where(body.page-contact) #container1 img#gold-hatch, :where(body.page-gallery) #container1 img#gold-hatch {
+:where(body.page-home) #container1 img#gold-hatch,
+:where(body.page-contact) #container1 img#gold-hatch,
+:where(body.page-gallery) #container1 img#gold-hatch {
   position: absolute;
   top: 530px;
   right: -200px;
@@ -576,7 +581,8 @@ nav div#desktop-nav {
   left: -25px;
   display: none;
 }
-#container1 img#white-line, #container1 img#white-line2 {
+#container1 img#white-line,
+#container1 img#white-line2 {
   position: absolute;
   z-index: 0;
   display: none;
@@ -601,7 +607,23 @@ nav div#desktop-nav {
   height: 600px;
   transform: scale(1.2);
 }
-#container1 img#torqoise-hatch, #container1 img#white-dots, #container1 img#white-dots2, #container1 img#gold-hatch, #container1 img#small-circles, #container1 img#small-circles2, #container1 img#gold-dots, #container1 img#white-line, #container1 #img#white-line2, #container1 svg#large-cirlces, #container1 svg#large-cirlces2, #container1 #desktop-nav, #container1 img#gold-dots2, #container1 img#white-dots3, #container1 img#torqoise-hatch2, #container1 img#gold-hatch3, #container1 #small-circles3 {
+#container1 img#torqoise-hatch,
+#container1 img#white-dots,
+#container1 img#white-dots2,
+#container1 img#gold-hatch,
+#container1 img#small-circles,
+#container1 img#small-circles2,
+#container1 img#gold-dots,
+#container1 img#white-line,
+#container1 #img#white-line2,
+#container1 svg#large-cirlces,
+#container1 svg#large-cirlces2,
+#container1 #desktop-nav,
+#container1 img#gold-dots2,
+#container1 img#white-dots3,
+#container1 img#torqoise-hatch2,
+#container1 img#gold-hatch3,
+#container1 #small-circles3 {
   visibility: hidden;
   cursor: cell;
 }
@@ -609,7 +631,6 @@ nav div#desktop-nav {
   position: absolute;
   display: none;
 }
-
 :where(body.page-home) .projects {
   width: 100%;
   height: 100%;
@@ -656,7 +677,6 @@ nav div#desktop-nav {
   align-self: flex-start;
   margin: 1.5em 0 0.5em;
 }
-
 :where(body.page-about) #container2 {
   overflow: hidden;
   position: relative;
@@ -743,7 +763,6 @@ nav div#desktop-nav {
   top: 90vh;
   z-index: 0;
 }
-
 :where(body.page-home) #container3 img#gold-dots3 {
   position: relative;
   display: none;
@@ -760,7 +779,6 @@ nav div#desktop-nav {
   position: relative;
   display: none;
 }
-
 footer {
   height: 100px;
   background: #170046;
@@ -814,7 +832,6 @@ footer #copyright {
   color: #ebf3cd;
   text-transform: uppercase;
 }
-
 @media (min-width: 576px) and (max-width: 1365px) {
   body:where(.page-home) {
     max-width: 1365px;
@@ -841,25 +858,32 @@ footer #copyright {
   }
 }
 @media (min-width: 576px) and (max-width: 1023px) {
-  body:where(.page-about), body:where(.page-contact), body:where(.page-gallery) {
+  body:where(.page-about),
+  body:where(.page-contact),
+  body:where(.page-gallery) {
     max-width: 1023px;
     min-width: 576px;
   }
   :where(body.page-about) #container1 section#about-description {
     width: 600px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
     display: block;
     top: 321px;
     left: 0px;
     z-index: 1;
   }
-  :where(body.page-about) #container1 section#block-grid, :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+  :where(body.page-about) #container1 section#block-grid,
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
     display: grid;
     top: -28px;
     z-index: 1;
   }
-  :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
     display: none;
   }
   :where(body.page-about) #container2 {
@@ -886,7 +910,9 @@ footer #copyright {
   }
 }
 @media (min-width: 1024px) and (max-width: 1365px) {
-  body:where(.page-about), body:where(.page-contact), body:where(.page-gallery) {
+  body:where(.page-about),
+  body:where(.page-contact),
+  body:where(.page-gallery) {
     max-width: 1365px;
     min-width: 1024px;
   }
@@ -896,31 +922,42 @@ footer #copyright {
   :where(body.page-gallery) #container1 section#gallery {
     width: 600px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
     display: block;
     top: 233px;
     left: 29px;
   }
-  :where(body.page-about) #container1 #gold-dots, :where(body.page-contact) #container1 #gold-dots, :where(body.page-gallery) #container1 #gold-dots {
+  :where(body.page-about) #container1 #gold-dots,
+  :where(body.page-contact) #container1 #gold-dots,
+  :where(body.page-gallery) #container1 #gold-dots {
     display: block;
   }
-  :where(body.page-about) #container1 img#small-circles, :where(body.page-contact) #container1 img#small-circles, :where(body.page-gallery) #container1 img#small-circles {
+  :where(body.page-about) #container1 img#small-circles,
+  :where(body.page-contact) #container1 img#small-circles,
+  :where(body.page-gallery) #container1 img#small-circles {
     top: 204px;
     left: -200px;
   }
-  :where(body.page-about) #container1 img#white-line, :where(body.page-contact) #container1 img#white-line, :where(body.page-gallery) #container1 img#white-line {
+  :where(body.page-about) #container1 img#white-line,
+  :where(body.page-contact) #container1 img#white-line,
+  :where(body.page-gallery) #container1 img#white-line {
     top: 384px;
     left: -474px;
     display: block;
   }
-  :where(body.page-about) #container1 #large-circles, :where(body.page-contact) #container1 #large-circles, :where(body.page-gallery) #container1 #large-circles {
+  :where(body.page-about) #container1 #large-circles,
+  :where(body.page-contact) #container1 #large-circles,
+  :where(body.page-gallery) #container1 #large-circles {
     display: block;
   }
   :where(body.page-about) #container1 section#block-grid {
     display: grid;
     top: -28px;
   }
-  :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
     position: absolute;
     display: grid;
     display: none;
@@ -1022,7 +1059,9 @@ footer #copyright {
     top: 269px;
     left: 121px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 img#torqoise-hatch,
+  :where(body.page-contact) #container1 img#torqoise-hatch,
+  :where(body.page-gallery) #container1 img#torqoise-hatch {
     display: block;
   }
   #container1 img#gold-dots {
@@ -1035,7 +1074,9 @@ footer #copyright {
   :where(body.page-home) #container1 img#gold-dots {
     top: 229px;
   }
-  :where(body.page-about) #container1 img#gold-dots, :where(body.page-contact) #container1 img#gold-dots, :where(body.page-gallery) #container1 img#gold-dots {
+  :where(body.page-about) #container1 img#gold-dots,
+  :where(body.page-contact) #container1 img#gold-dots,
+  :where(body.page-gallery) #container1 img#gold-dots {
     top: 272px;
   }
   #container1 img#small-circles {
@@ -1068,7 +1109,9 @@ footer #copyright {
   :where(body.page-home) #container1 svg#large-circles2 {
     top: 170px;
   }
-  :where(body.page-about) #container1 svg#large-circles2, :where(body.page-contact) #container1 svg#large-circles2, :where(body.page-gallery) #container1 svg#large-circles2 {
+  :where(body.page-about) #container1 svg#large-circles2,
+  :where(body.page-contact) #container1 svg#large-circles2,
+  :where(body.page-gallery) #container1 svg#large-circles2 {
     top: 260px;
   }
   #container1 img#white-line2 {
@@ -1089,7 +1132,8 @@ footer #copyright {
     left: 15px;
     display: block;
   }
-  :where(body.page-home) #container1 section#job-role, :where(body.page-about) #container1 section#job-role {
+  :where(body.page-home) #container1 section#job-role,
+  :where(body.page-about) #container1 section#job-role {
     left: -326px;
     transform: scale(1.25);
   }
@@ -1099,18 +1143,22 @@ footer #copyright {
   :where(body.page-home) #container1 section#block-grid {
     transform: scale(1.25);
   }
-  :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
     position: absolute;
     right: 260px;
     top: 150px;
   }
-  :where(body.page-about) #container1 section#block-grid, :where(body.page-contact) #container1 section#block-grid, :where(body.page-gallery) #container1 section#block-grid {
+  :where(body.page-about) #container1 section#block-grid,
+  :where(body.page-contact) #container1 section#block-grid,
+  :where(body.page-gallery) #container1 section#block-grid {
     display: grid;
   }
   :where(body.page-about) #container1 section#block-grid {
     top: -15px;
   }
-  :where(body.page-home) #container1 section#block-grid, :where(body.page-about) #container1 section#block-grid {
+  :where(body.page-home) #container1 section#block-grid,
+  :where(body.page-about) #container1 section#block-grid {
     left: 225px;
   }
   :where(body.page-about) #container2 {
@@ -1295,7 +1343,6 @@ footer #copyright {
 html.lb-open {
   overflow: hidden;
 }
-
 :where(body.page-gallery) #lightbox {
   position: fixed;
   top: 0;
@@ -1326,8 +1373,7 @@ html.lb-open {
   max-width: 100%;
   max-height: calc(100vh - 9rem);
   max-height: calc(100dvh - 9rem);
-  -o-object-fit: contain;
-     object-fit: contain;
+  object-fit: contain;
   border-radius: 0.4em;
   transition: opacity 150ms ease;
 }
@@ -1387,7 +1433,6 @@ html.lb-open {
   right: 0.5rem;
   margin-top: -24px;
 }
-
 @media (min-width: 576px) {
   :where(body.page-about) #container1 img#white-dots {
     position: absolute;
@@ -1423,7 +1468,9 @@ html.lb-open {
   :where(body.page-gallery) #container1 section#gallery-display.is-open {
     animation: none;
   }
-  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb img, :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img, :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb img,
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:hover img,
+  :where(body.page-gallery) #container1 section#gallery-display #gallery-content .thumb:focus-visible img {
     transform: none;
     transition: none;
   }
@@ -1797,5 +1844,82 @@ nav div#desktop-nav ul#nav-links-desktop li a {
   }
   :where(body.page-about) #container2 section#background-panel img#white-dots5 {
     display: none;
+  }
+}
+:where(body.page-about) main {
+  background: #280078;
+}
+:where(body.page-about) #container2 {
+  background: transparent;
+}
+:where(body.page-about) #container1 {
+  display: none;
+}
+:where(body.page-about) .about-card {
+  display: contents;
+}
+@media (min-width: 1024px) {
+  :where(body.page-about) main {
+    overflow: clip;
+  }
+  :where(body.page-about) #container1 {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    margin-bottom: -100vh;
+    overflow: hidden;
+    background: transparent;
+    pointer-events: none;
+  }
+  :where(body.page-about) #container2 {
+    z-index: 1;
+    display: block;
+    overflow: visible;
+    padding: 2.5em;
+  }
+  :where(body.page-about) #container2 section#background-panel {
+    display: none;
+  }
+  :where(body.page-about) #container2 .about-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto 1fr;
+    column-gap: 3em;
+    row-gap: 0.5em;
+    width: min(100%, 1100px);
+    margin: 0 auto;
+    padding: 2.5em;
+    background: #170046;
+    border: 1px solid #fff;
+    border-radius: 1em;
+  }
+  :where(body.page-about) #container2 section#about-left-panel {
+    display: contents;
+  }
+  :where(body.page-about) #container2 .bio-main {
+    grid-column: 1;
+    grid-row: 1 / span 2;
+  }
+  :where(body.page-about) #container2 section#about-right-panel {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+    justify-content: flex-start;
+  }
+  :where(body.page-about) #container2 section#about-right-panel img {
+    width: 100%;
+    max-width: 340px;
+    height: auto;
+    margin-bottom: 0;
+  }
+  :where(body.page-about) #container2 .bio-aside {
+    grid-column: 2;
+    grid-row: 2;
+  }
+  :where(body.page-about) #container2 .bio-aside h2:first-child {
+    margin-top: 1.5em;
   }
 }

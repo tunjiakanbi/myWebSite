@@ -95,7 +95,7 @@ function init() {
 // ----------------------------------------------------------------- page intro (~4 seconds, every page)
 // One timeline, four labelled beats:   roles -> grid -> decor -> settle
 // Every page uses it; each beat simply skips what a page does not have (only the home page has
-// role titles and a scroll cue, the About page has no hero at all).
+// role titles and a scroll cue, the About page shows its decoration only on desktop).
 // To retime the intro, change the label positions (seconds) below - nothing else needs editing.
 const INTRO = {
   roles: 0.15,  // job titles start
@@ -126,7 +126,8 @@ function heroIntro() {
   const circles = [largeCircles, largeCircles2].filter(Boolean);
   const hero = document.querySelector("#container1");
   const scrollCue = document.querySelector("#scroll-indicator-div");
-  const isShown = (el) => getComputedStyle(el).display !== "none";
+  // "shown" = takes up space on the page (false for display:none on the element or any parent)
+  const isShown = (el) => el.getClientRects().length > 0;
 
   // gsap.matchMedia() picks the right version for the visitor and cleans up if the setting changes
   const mm = gsap.matchMedia();
@@ -158,8 +159,11 @@ function heroIntro() {
       const tl = gsap.timeline({ defaults: { duration: 0.6, ease: "power3.out" } });
       tl.addLabel("roles", INTRO.roles).addLabel("grid", INTRO.grid).addLabel("decor", INTRO.decor);
 
-      // background settles in from the nav colour
-      if (hero) tl.from(hero, { backgroundColor: "#170046", duration: 1.2, ease: "power2.inOut" }, 0);
+      // background settles in from the nav colour (skipped where the hero has no colour of its own,
+      // as on the About page, whose decoration field is see-through)
+      const heroStyle = hero ? getComputedStyle(hero) : null;
+      const heroHasColor = heroStyle && !/^rgba\(0, 0, 0, 0\)$|^transparent$/.test(heroStyle.backgroundColor);
+      if (heroHasColor) tl.from(hero, { backgroundColor: "#170046", duration: 1.2, ease: "power2.inOut" }, 0);
 
       // 1. roles: each title is revealed once, letter by letter, then stays readable
       roles.forEach((heading, i) => {
@@ -206,7 +210,8 @@ function heroIntro() {
       if (scrollDownChevron) {
         ambient.push(gsap.to(scrollDownChevron, { y: -8, duration: 0.6, ease: "sine.inOut", yoyo: true, repeat: -1 }));
       }
-      if (hero && ambient.length) {
+      // (a hero that stays on screen - position: sticky on the About page - never needs pausing)
+      if (hero && ambient.length && heroStyle.position !== "sticky") {
         ScrollTrigger.create({
           trigger: hero,
           start: "top bottom",
@@ -307,7 +312,7 @@ const ABOUT_COLOR_FROM = "#080909";   // $myBlack
 const ABOUT_COLOR_DISTANCE = 0.6;     // finished after scrolling 60% of the screen height
 
 function aboutColor() {
-  const el = document.querySelector("body.page-about #container2");
+  const el = document.querySelector("body.page-about main");
   if (!el) return;
   const mm = gsap.matchMedia();
   mm.add("(prefers-reduced-motion: no-preference)", () => {

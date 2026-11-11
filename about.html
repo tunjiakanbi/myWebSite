@@ -59,8 +59,101 @@
         </div>
     </nav>
     <main id="main">
+    <!-- Decorative background field. Shown from 1024px wide; it stays in place while the card scrolls. -->
+    <div id="container1" aria-hidden="true">
+        
+        <section id="block-grid">
+            <div id="block-1"></div>
+            <div id="block-2"></div>
+            <div id="block-3"></div>
+            <div id="block-4"></div>
+            <div id="block-5"></div>
+            <div id="block-6"></div>
+            <div id="block-7"></div>
+            <div id="block-8"></div>
+            <div id="block-9"></div>
+            <div id="block-10"></div>
+            <div id="block-11"></div>
+            <div id="block-12"></div>
+        </section>
+
+        <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots">
+        <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots2">
+        <img src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles">
+        <img src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles2">
+        <img src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line">
+        <img src="images/white-line.svg" alt="" aria-hidden="true" id="white-line2">
+        <svg id="large-circles" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 501">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill: none;
+                    }
+
+                    .cls-1,
+                    .cls-2 {
+                        stroke: #fff;
+                        stroke-miterlimit: 10;
+                    }
+
+                    .cls-2 {
+                        fill: #66a293;
+                    }
+                </style>
+            </defs>
+            <g id="big-c">
+                <circle class="cls-1" cx="253" cy="248.69" r="207.62" />
+                <circle class="cls-2" cx="253" cy="41.08" r="10" />
+            </g>
+            <g id="small-c">
+                <circle class="cls-1" cx="253" cy="247.07" r="163.25" />
+                <circle class="cls-2" cx="253" cy="83.82" r="10" />
+            </g>
+        </svg>
+        <svg id="large-circles2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 501 501">
+            <defs>
+                <style>
+                    .cls-1 {
+                        fill: none;
+                    }
+
+                    .cls-1,
+                    .cls-2 {
+                        stroke: #fff;
+                        stroke-miterlimit: 10;
+                    }
+
+                    .cls-2 {
+                        fill: #66a293;
+                    }
+                </style>
+            </defs>
+            <g id="big-c">
+                <circle class="cls-1" cx="253" cy="248.69" r="207.62" />
+                <circle class="cls-2" cx="253" cy="41.08" r="10" />
+            </g>
+            <g id="small-c">
+                <circle class="cls-1" cx="253" cy="247.07" r="163.25" />
+                <circle class="cls-2" cx="253" cy="83.82" r="10" />
+            </g>
+        </svg>
+
+        <!-- for media query beyond 1080px height -->
+
+        <img class="pos-abs-1080h" src="images/gold-dots.svg" alt="" aria-hidden="true" id="gold-dots2">
+        <img class="pos-abs-1080h" src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots3">
+        <img class="pos-abs-1080h" src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch2">
+        <img class="pos-abs-1080h" src="images/gold-hatch.svg" alt="" aria-hidden="true" id="gold-hatch3">
+        <img class="pos-abs-1080h" src="images/small-circles.svg" alt="" aria-hidden="true" id="small-circles3">
+    
+    </div>
     <div id="container2">
+      <div class="about-card">
         <section id="about-left-panel">
+          <div class="bio-main">
             <h1>About <span>Me</span></h1>
             <p class="bio-lead">Front-End Focused Full-Stack Developer &amp; UI/UX Specialist</p>
             <p>I am a Front-End Focused Full-Stack Developer and Technology Educator dedicated to designing, building,
@@ -82,7 +175,8 @@
                 breaking down complex technical concepts into accessible, practical solutions. This background has
                 sharpened my ability to communicate cross-functionally, collaborate effectively across teams, maintain
                 rigorous project documentation, and continuously advocate for the end user.</p>
-
+          </div>
+          <div class="bio-aside">
             <h2>Core Capabilities</h2>
             <ul class="bio-list">
                 <li><strong>Front-End &amp; UI/UX:</strong> React.js, JavaScript (ES6+), HTML5, CSS3, Bootstrap,
@@ -103,10 +197,12 @@
                 <li>Certificate in Building Mobile-Friendly Web Experiences — Capella Learning Solutions /
                     CareerBuilder</li>
             </ul>
+          </div>
         </section>
         <section id="about-right-panel">
             <img src="images/TunjiAkanbiPortfolioPortraitPhoto.jpg" width="500" height="750" alt="Portrait of Tunji Akanbi">
         </section>
+      </div>
         <section id="background-panel">
             <img src="images/torqoise-hatch.svg" alt="" aria-hidden="true" id="torqoise-hatch4">
             <img src="images/white-dots.svg" alt="" aria-hidden="true" id="white-dots5">
