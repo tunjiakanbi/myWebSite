@@ -90,7 +90,7 @@ nav {
   }
   // Menu button. Closed: three bars. Open (aria-expanded="true", set by app.js): the bars thin
   // down and cross into the same close button used by the gallery viewer and lightbox (.close-x:
-  // a thin X in a circle outline), a little larger here at 52px. Hovering the X rotates it.
+  // an X in a circle outline), a little larger here at 52px. Hovering the X rotates it.
   div#hamburger {
     position: relative;
     flex: 0 0 auto;
@@ -126,7 +126,7 @@ nav {
       right: 0;
       bottom: 0;
       left: 0;
-      border: 1px solid rgba(255, 255, 255, 0.35);
+      border: 3px solid rgba(255, 255, 255, 0.35);
       border-radius: 50%;
       opacity: 0;
       transform: scale(0.6);
@@ -138,9 +138,8 @@ nav {
   }
   div#hamburger[aria-expanded="true"] {
     section.bars {
-      width: 22px;
-      height: 2px;
-      margin: -1px 0 0 -11px;
+      width: 22px; // the bars keep their 3px thickness: every close button is drawn at that weight
+      margin: -1.5px 0 0 -11px;
       background: $white;
     }
     section.bars:nth-child(1) {
@@ -1657,7 +1656,7 @@ html.lb-open {
     width: 48px;
     height: 48px;
     padding: 0;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    border: 3px solid rgba(255, 255, 255, 0.35);
     border-radius: 50%;
     background: rgba(23, 0, 70, 0.85);
     color: $white;
@@ -2332,13 +2331,13 @@ svg.decor-inline {
 // =============================================================================
 // Close button (see DESIGN.md): one design for the gallery viewer, the lightbox and the open menu
 // =============================================================================
-// A thin X in a circle outline. On hover the X turns a quarter turn and the button goes torqoise.
+// An X in a circle outline. On hover the X turns a quarter turn and the button goes torqoise.
 // (The menu button morphs its bars into this same shape: see div#hamburger.)
 .close-x {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
   background: rgba(23, 0, 70, 0.85);
   color: $white;
@@ -2407,4 +2406,12 @@ html.nav-hidden nav {
   nav {
     transition: none;
   }
+}
+
+// Line weight (see DESIGN.md): the circle outlines and the X / arrow lines of the close buttons
+// and the lightbox arrows are all 3px, the thickness of one bar of the menu button.
+.close-x svg path,
+.lb-btn svg path {
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke; // 3px on screen whatever size the icon is drawn at
 }

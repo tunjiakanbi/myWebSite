@@ -101,7 +101,8 @@ Depth comes from the darker surface colour on the lighter ground.
 - **Form feedback**: shown on the page next to the button, never in a pop-up: a confirmation on
   success, a plain-language error with another way to get in touch on failure.
 - **Close button** (`.close-x`): one design for the gallery viewer, the lightbox and the open
-  menu: a thin white X (2px line) in a circle outline (1px, white at 35%), 48px. On hover the X
+  menu: a white X in a circle outline (white at 35%), 48px. The X and the outline are both 3px, the
+  thickness of one bar of the menu button; the lightbox arrows use the same weight. On hover the X
   turns a quarter turn (0.3s) and the X and outline go torqoise. The menu button's three bars
   morph into the same shape, at 52px, while the menu is open.
 - **Focus**: 2px solid `$gold`, 2px offset, on every interactive element.

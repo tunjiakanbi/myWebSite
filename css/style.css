@@ -81,7 +81,7 @@ nav div#hamburger::before {
   right: 0;
   bottom: 0;
   left: 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
   opacity: 0;
   transform: scale(0.6);
@@ -92,8 +92,7 @@ nav div#hamburger:hover section.bars {
 }
 nav div#hamburger[aria-expanded=true] section.bars {
   width: 22px;
-  height: 2px;
-  margin: -1px 0 0 -11px;
+  margin: -1.5px 0 0 -11px;
   background: #fff;
 }
 nav div#hamburger[aria-expanded=true] section.bars:nth-child(1) {
@@ -1372,7 +1371,7 @@ html.lb-open {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
   background: rgba(23, 0, 70, 0.85);
   color: #fff;
@@ -1980,7 +1979,7 @@ svg.decor-inline {
   width: 48px;
   height: 48px;
   padding: 0;
-  border: 1px solid rgba(255, 255, 255, 0.35);
+  border: 3px solid rgba(255, 255, 255, 0.35);
   border-radius: 50%;
   background: rgba(23, 0, 70, 0.85);
   color: #fff;
@@ -2045,4 +2044,10 @@ html.nav-hidden nav {
   nav {
     transition: none;
   }
+}
+
+.close-x svg path,
+.lb-btn svg path {
+  stroke-width: 3;
+  vector-effect: non-scaling-stroke;
 }
