@@ -125,6 +125,9 @@ Depth comes from the darker surface colour on the lighter ground.
   of a screen of scrolling. Its text is visible from the start, so only a dark starting colour
   keeps the gold, lime and white text readable.
   The colour is on `<main>`, so on desktop it is the ground behind the decoration field and card.
+- Gallery on short screens: the page area grows to fit the category card, so the whole list can
+  always be scrolled to. Under 700px tall (phones in landscape) the open viewer takes the whole
+  area below the nav and the footer moves below it.
 - Gallery viewer: rises in over 0.35s when opened (24px, 97% scale, fade) and fades out in 0.15s
   when closed. Thumbnails and video cards stagger in, top-left first, on open and on every tab
   change: 0.4s each, 0.05s apart, the whole stagger capped at 0.4s however many there are.

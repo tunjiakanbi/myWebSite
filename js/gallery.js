@@ -145,6 +145,9 @@
     pauseVideos();
     closeLightbox();
 
+    // lets the stylesheet give the viewer more room on short screens
+    document.body.classList.toggle("gallery-viewer-open", !!cat);
+
     if (!cat) {
       display.classList.remove("is-open");
       menu.hidden = false;
@@ -179,6 +182,8 @@
     // pushState so the browser Back button returns to the category list
     window.history.pushState({ gallery: true }, "", "#" + cat);
     render();
+    // opened from further down the list (short screens): bring the whole viewer into view
+    if (display.getBoundingClientRect().top < 0) window.scrollTo({ top: 0, behavior: "instant" });
     var tab = activeTab();
     if (tab) tab.focus({ preventScroll: true }); // focus moves at once; the motion never delays it
     animateOpen(cat);

@@ -1693,6 +1693,9 @@ $error: #ffb0a6;
 
 html {
   scroll-behavior: smooth;
+  // Pages are at least 680px tall (body min-height). On a window shorter than the content, the
+  // space below the footer used to show white; this paints it the footer colour instead.
+  background-color: $darkBlue;
 }
 
 // visible to screen readers only
@@ -2222,5 +2225,28 @@ html.menu-open {
   nav div#desktop-nav ul#nav-links-desktop li a::after,
   :where(body.page-contact) #container1 section#contact .contact-direct a::after {
     transition: none;
+  }
+}
+
+// =============================================================================
+// Gallery: on short screens the main area grows to fit the category card
+// =============================================================================
+// It used to be locked to the window height (minus nav and footer) with overflow hidden, so on a
+// short window the bottom of the card was cut off and could not be scrolled to. It now fills at
+// least the window and grows when the card needs more room. The viewer, when open, still fills
+// the screen-sized area (the card is hidden then, so the area is back to the window height).
+:where(body.page-gallery) #container1 {
+  height: auto;
+  min-height: calc(100vh - 170px);
+  min-height: calc(100dvh - 170px);
+  padding-bottom: 5em; // the card is shifted down 2.5em (top: 2.5em), plus 2.5em of space below it
+}
+// On short screens (under 700px tall, e.g. phones in landscape) the open viewer takes the whole
+// area below the nav; the footer moves below it. (gallery.js sets .gallery-viewer-open on <body>.)
+@media (max-height: 700px) {
+  :where(body.page-gallery.gallery-viewer-open) #container1 {
+    min-height: calc(100vh - 70px);
+    min-height: calc(100dvh - 70px);
+    padding-bottom: 0;
   }
 }
