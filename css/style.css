@@ -626,9 +626,10 @@ nav div#desktop-nav {
   padding: 2em;
 }
 :where(body.page-home) .projects section.proj-details h2 {
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 800;
-  font-size: 2.5em;
+  font-family: pirulen;
+  font-weight: 400;
+  font-size: clamp(1.4em, 6vw, 2.25em);
+  line-height: 1.25;
   color: #66d6d4;
   margin-bottom: 0.5em;
 }
@@ -683,13 +684,13 @@ nav div#desktop-nav {
   width: 100%;
 }
 :where(body.page-about) #container2 section#about-left-panel h1 {
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  font-size: 1.25em;
+  font-family: pirulen;
+  font-weight: 400;
+  font-size: 1.15em;
   color: #c4b900;
   text-transform: uppercase;
-  padding-bottom: 0.25em;
-  margin-bottom: 0.5em;
+  padding-bottom: 0.75em;
+  margin-bottom: 0.75em;
   border-bottom: 1px solid #66d6d4;
 }
 :where(body.page-about) #container2 section#about-left-panel h1 span {
@@ -1548,11 +1549,11 @@ nav div#hamburger::after {
   outline-offset: 2px;
 }
 :where(body.page-home) #container1 section#scroll-indicator #scrollHeading {
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 600;
+  font-family: pirulen;
+  font-weight: 400;
   color: #fff;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.05em;
   font-size: 0.75em;
 }
 :where(body.page-home) #container1 section#scroll-indicator svg#down-chevron {
@@ -1806,7 +1807,7 @@ nav #brand {
   background: #280078;
 }
 :where(body.page-about) #container2 {
-  background: transparent;
+  background: #280078;
 }
 :where(body.page-about) #container1 {
   display: none;
@@ -1832,6 +1833,7 @@ nav #brand {
   }
   :where(body.page-about) #container2 {
     z-index: 1;
+    background: transparent;
     display: block;
     overflow: visible;
     padding: 2.5em;
@@ -1867,7 +1869,6 @@ nav #brand {
   }
   :where(body.page-about) #container2 section#about-right-panel img {
     width: 100%;
-    max-width: 340px;
     height: auto;
     margin-bottom: 0;
   }
