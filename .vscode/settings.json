@@ -1,0 +1,10 @@
+{
+  // Keep in step with scripts/build-css.mjs so the editor and `npm run build:css`
+  // write exactly the same css/style.css.
+  "liveSassCompile.settings.includeItems": ["/css/style.scss"],
+  "liveSassCompile.settings.formats": [
+    { "format": "expanded", "extensionName": ".css", "savePath": null }
+  ],
+  "liveSassCompile.settings.generateMap": false,
+  "liveSassCompile.settings.autoprefix": "defaults"
+}

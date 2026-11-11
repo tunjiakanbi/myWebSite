@@ -1,0 +1,14 @@
+{
+  "name": "mywebsite",
+  "private": true,
+  "description": "Build tooling for css/style.css. The site itself is static HTML.",
+  "scripts": {
+    "build:css": "node scripts/build-css.mjs",
+    "check:css": "node scripts/build-css.mjs --check"
+  },
+  "devDependencies": {
+    "autoprefixer": "10.4.24",
+    "postcss": "8.5.6",
+    "sass": "1.97.3"
+  }
+}

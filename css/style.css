@@ -1913,10 +1913,11 @@ html.menu-open {
   min-height: calc(100dvh - 170px);
   padding-bottom: 5em;
 }
+
 @media (max-height: 700px) {
   :where(body.page-gallery.gallery-viewer-open) #container1 {
     min-height: calc(100vh - 70px);
     min-height: calc(100dvh - 70px);
     padding-bottom: 0;
   }
-}/*# sourceMappingURL=style.css.map */
+}

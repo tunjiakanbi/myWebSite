@@ -1,2 +1,4 @@
 .DS_Store
 images/gallery/multi-media/designkraft_world.avi
+node_modules/
+css/style.css.map
