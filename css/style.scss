@@ -65,6 +65,10 @@ body {
 // nav#main-nav {
 
 nav {
+  // Sits above all page content (only the lightbox and skip link are higher), so the open menu
+  // covers everything, the home page's scroll cue included.
+  position: relative;
+  z-index: 999;
   height: 70px;
   background: $darkBlue;
   display: flex;
@@ -112,66 +116,42 @@ nav {
     outline-offset: 4px;
     border-radius: 4px;
   }
+  // Mobile/tablet menu overlay. Fixed to the window, so it always fills it, including while the
+  // window is being resized. z-index -1 puts it under the nav's brand and menu button (the nav
+  // is its stacking context) but over the whole page. Only the circular reveal animates.
   div#landing {
-    position: absolute;
-    top: 70px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
     left: 0;
-    height: calc(100vh - 70px);
-    width: 100%;
+    z-index: -1;
+    padding-top: 70px;
     background: $darkBlue;
     display: flex;
     justify-content: center;
     align-items: center;
-    //clip-path: circle(100px);//generic synthax
-    clip-path: circle(100px at 100% -19%);
-    //adds sixe, right and top position
-    transition: all 1s ease-out;
-    // display: none;
-    :where(body.page-home) &, :where(body.page-about) & {
-      z-index: 2;
-    }
-    :where(body.page-contact) & {
-      z-index: 3;
-    }
-    :where(body.page-gallery) & {
-      z-index: 4;
-    }
+    clip-path: circle(0px at 100% 0%);
+    transition: clip-path 1s ease-out;
     ul#nav-links {
-      height: 25%;
       position: relative;
-      top: -10%;
+      top: -5%;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      align-items: center;
+      gap: 0.75em;
       li {
         list-style: none;
         text-align: center;
-        font-family: $font-sans;
-        font-weight: 400;
         opacity: 0;
-        cursor: pointer;
         a {
           color: $torqoise;
-          text-decoration: none;
           text-transform: uppercase;
-          transition: all 250ms ease;
+          transition: color 250ms ease;
         }
         a:hover {
           color: $white;
         }
-      }
-      li:before {
-        content: "";
-        position: relative;
-        top: 30px;
-        height: 1px;
-        width: 0;
-        background: $white;
-        display: block;
-        transition: width 500ms ease;
-      }
-      li:hover:before {
-        width: 100%;
       }
       li.fade {
         opacity: 1;
@@ -180,7 +160,6 @@ nav {
   }
   div#landing.open {
     clip-path: circle(150% at 100% 0%);
-    //adds sixe, right and top position
   }
   div#desktop-nav {
     display: none;
@@ -481,7 +460,7 @@ nav {
           li {
             display: inline-block;
             border-bottom: 1px solid $white;
-            font-size: 0.8em;
+            font-size: 1em;
             a {
               display: block;
               padding: 1.05em 0;
@@ -498,25 +477,26 @@ nav {
             border-top: 1px solid $white;
           }
           li {
+            // both words use the text-link style (see "Text links"); only the colours differ
+            span {
+              font-family: $font-sans;
+              font-size: 1rem;
+              font-weight: 500;
+              line-height: 1.25;
+              text-transform: uppercase;
+              transition: color 250ms ease;
+            }
             span:nth-child(1) {
               color: $torqoise;
-              font-family: $font-sans;
-              font-weight: 700;
-              text-transform: uppercase;
-              transition: all 200ms linear;
             }
             span:nth-child(2) {
               margin-left: 0.5em;
               color: $gold;
-              font-family: $pirulen;
-              transition: all 300ms linear;
             }
           }
           li:hover {
             span:nth-child(1) {
-              color: $gold;
               color: $white;
-              font-size: 1.1em;
             }
             span:nth-child(2) {
               color: $torqoise;
@@ -1160,26 +1140,12 @@ footer {
           cursor: pointer;
           a {
             color: $torqoise;
-            text-decoration: none;
             text-transform: uppercase;
-            transition: all 250ms ease;
+            transition: color 250ms ease;
           }
           a:hover {
             color: $white;
           }
-        }
-        li:before {
-          content: "";
-          position: relative;
-          top: 30px;
-          height: 1px;
-          width: 0;
-          background: $white;
-          display: block;
-          transition: width 500ms ease;
-        }
-        li:hover:before {
-          width: 100%;
         }
       }
     }
@@ -1959,15 +1925,11 @@ nav div#hamburger::after {
       text-transform: uppercase;
     }
     a {
-      display: inline-flex;
-      align-items: center;
-      min-height: 44px;
       color: $torqoise;
-      font-weight: 500;
-      text-decoration: none;
+      transition: color 250ms ease;
     }
     a:hover {
-      text-decoration: underline;
+      color: $white;
     }
     a:focus-visible {
       outline: 2px solid $gold;
@@ -2070,15 +2032,11 @@ nav div#hamburger::after {
   }
 }
 
-// Touch targets: at least 44px tall (brand link, desktop nav links, gallery category rows)
+// Touch targets: at least 44px tall (brand link, gallery category rows; text links: see "Text links")
 nav #brand {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-}
-nav div#desktop-nav ul#nav-links-desktop li a {
-  display: inline-block;
-  padding: 12px 0;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li a {
   padding: 14px 0;
@@ -2208,5 +2166,61 @@ nav div#desktop-nav ul#nav-links-desktop li a {
         margin-top: 1.5em;
       }
     }
+  }
+}
+
+// =============================================================================
+// Text links (see DESIGN.md): one type style and one hover line for every text link
+// =============================================================================
+// Menu, desktop nav and the contact page's direct links. The gallery category rows use the same
+// type style (set on their spans) but keep their row dividers instead of the line.
+// The line is drawn under the words themselves, the same distance below the text everywhere:
+//   12px padding (makes every link 44px tall to tap) - 6px gap - 1px line = bottom: 5px
+nav div#landing ul#nav-links li a,
+nav div#desktop-nav ul#nav-links-desktop li a,
+:where(body.page-contact) #container1 section#contact .contact-direct a {
+  position: relative;
+  display: inline-block;
+  padding: 12px 0;
+  font-family: $font-sans;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+}
+nav div#landing ul#nav-links li a::after,
+nav div#desktop-nav ul#nav-links-desktop li a::after,
+:where(body.page-contact) #container1 section#contact .contact-direct a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  height: 1px;
+  background: $white;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 500ms ease;
+  pointer-events: none;
+}
+nav div#landing ul#nav-links li a:hover::after,
+nav div#desktop-nav ul#nav-links-desktop li a:hover::after,
+:where(body.page-contact) #container1 section#contact .contact-direct a:hover::after {
+  transform: scaleX(1);
+}
+
+// while the menu is open the page behind it doesn't scroll
+html.menu-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav div#landing {
+    transition: none;
+  }
+  nav div#landing ul#nav-links li a::after,
+  nav div#desktop-nav ul#nav-links-desktop li a::after,
+  :where(body.page-contact) #container1 section#contact .contact-direct a::after {
+    transition: none;
   }
 }

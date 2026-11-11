@@ -52,7 +52,7 @@ Hierarchy comes from weight and size, not from more typefaces:
 | Brand (nav) | Outfit | 1.5em | 700 | uppercase, lime |
 | Sub-heading (tech stack) | Outfit | 1.5em | 500 | gold |
 | Body | Outfit | 16px | 400 | white, line-height 1.6, no letter-spacing, max width 34em (about 65 to 75 characters) |
-| Nav links | Outfit | 16px | 400 | uppercase, torqoise |
+| Text links (menu, nav, gallery categories, contact links) | Outfit | 16px | 500 | torqoise; uppercase in navigation and the gallery list |
 | Label / caption | Outfit | 0.75em to 0.8em | 600 | uppercase, letter-spacing 0.04em to 0.12em |
 
 Rules:
@@ -87,7 +87,14 @@ Depth comes from the darker surface colour on the lighter ground.
   - While busy a button is disabled and its label says what is happening ("Sending…").
 - **Tabs (gallery)**: plain uppercase labels, not buttons. The selected tab is torqoise with a
   3px gold underline; the others are lime. No border, fill or radius.
-- **Links**: torqoise, no underline in navigation, underline on hover in body copy.
+- **Text links**: one style everywhere: Outfit 16px, weight 500, torqoise, never underlined.
+  On hover the text turns white and a 1px white line wipes in from the left under the words
+  (0.5s), exactly as wide as the words and 6px below them on every page and screen size. Each
+  link is 44px tall to tap. Gallery category rows use the same type for both words (torqoise then
+  gold) and keep their row dividers instead of the line.
+- **Menu overlay**: fixed to the window, so it always fills it; it sits above all page content
+  (the scroll cue included) and below the brand and menu button. The page does not scroll while
+  it is open, and it closes itself if the window is widened to the desktop layout.
 - **Inputs**: visible label above the field, 16px text, at least 44px tall, 1px border with the
   control radius, gold focus ring. Optional fields say "(optional)" in the label.
 - **Form feedback**: shown on the page next to the button, never in a pop-up: a confirmation on

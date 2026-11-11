@@ -54,8 +54,15 @@ function syncMenuA11y() {
   const open = landing.classList.contains("open");
   hamburger.setAttribute("aria-expanded", open ? "true" : "false");
   landing.inert = !open;
+  // stop the page behind the open menu from scrolling
+  document.documentElement.classList.toggle("menu-open", open);
 }
 syncMenuA11y();
+// The menu button is hidden from 1366px. If the window is widened past that while the menu is
+// open, close the menu, otherwise it would be left covering the page with no way to close it.
+window.matchMedia("(min-width: 1366px)").addEventListener("change", (e) => {
+  if (e.matches && landing.classList.contains("open")) hamburger.click();
+});
 hamburger.addEventListener("keydown", (e) => {
   if (e.key === "Enter" || e.key === " ") {
     e.preventDefault();

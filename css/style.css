@@ -25,6 +25,8 @@ body {
   min-height: 680px;
 }
 nav {
+  position: relative;
+  z-index: 999;
   height: 70px;
   background: #170046;
   display: flex;
@@ -73,65 +75,40 @@ nav div#hamburger:focus-visible {
   border-radius: 4px;
 }
 nav div#landing {
-  position: absolute;
-  top: 70px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
   left: 0;
-  height: calc(100vh - 70px);
-  width: 100%;
+  z-index: -1;
+  padding-top: 70px;
   background: #170046;
   display: flex;
   justify-content: center;
   align-items: center;
-  clip-path: circle(100px at 100% -19%);
-  transition: all 1s ease-out;
-}
-:where(body.page-home) nav div#landing,
-:where(body.page-about) nav div#landing {
-  z-index: 2;
-}
-:where(body.page-contact) nav div#landing {
-  z-index: 3;
-}
-:where(body.page-gallery) nav div#landing {
-  z-index: 4;
+  clip-path: circle(0px at 100% 0%);
+  transition: clip-path 1s ease-out;
 }
 nav div#landing ul#nav-links {
-  height: 25%;
   position: relative;
-  top: -10%;
+  top: -5%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  align-items: center;
+  gap: 0.75em;
 }
 nav div#landing ul#nav-links li {
   list-style: none;
   text-align: center;
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 400;
   opacity: 0;
-  cursor: pointer;
 }
 nav div#landing ul#nav-links li a {
   color: #66d6d4;
-  text-decoration: none;
   text-transform: uppercase;
-  transition: all 250ms ease;
+  transition: color 250ms ease;
 }
 nav div#landing ul#nav-links li a:hover {
   color: #fff;
-}
-nav div#landing ul#nav-links li:before {
-  content: "";
-  position: relative;
-  top: 30px;
-  height: 1px;
-  width: 0;
-  background: #fff;
-  display: block;
-  transition: width 500ms ease;
-}
-nav div#landing ul#nav-links li:hover:before {
-  width: 100%;
 }
 nav div#landing ul#nav-links li.fade {
   opacity: 1;
@@ -430,7 +407,7 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery section ul li {
   display: inline-block;
   border-bottom: 1px solid #fff;
-  font-size: 0.8em;
+  font-size: 1em;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li a {
   display: block;
@@ -446,23 +423,23 @@ nav div#desktop-nav {
 :where(body.page-gallery) #container1 section#gallery section ul li:first-child {
   border-top: 1px solid #fff;
 }
+:where(body.page-gallery) #container1 section#gallery section ul li span {
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-transform: uppercase;
+  transition: color 250ms ease;
+}
 :where(body.page-gallery) #container1 section#gallery section ul li span:nth-child(1) {
   color: #66d6d4;
-  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: all 200ms linear;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li span:nth-child(2) {
   margin-left: 0.5em;
   color: #c4b900;
-  font-family: pirulen;
-  transition: all 300ms linear;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li:hover span:nth-child(1) {
-  color: #c4b900;
   color: #fff;
-  font-size: 1.1em;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li:hover span:nth-child(2) {
   color: #66d6d4;
@@ -1026,25 +1003,11 @@ footer #copyright {
   }
   nav div#desktop-nav ul#nav-links-desktop li a {
     color: #66d6d4;
-    text-decoration: none;
     text-transform: uppercase;
-    transition: all 250ms ease;
+    transition: color 250ms ease;
   }
   nav div#desktop-nav ul#nav-links-desktop li a:hover {
     color: #fff;
-  }
-  nav div#desktop-nav ul#nav-links-desktop li:before {
-    content: "";
-    position: relative;
-    top: 30px;
-    height: 1px;
-    width: 0;
-    background: #fff;
-    display: block;
-    transition: width 500ms ease;
-  }
-  nav div#desktop-nav ul#nav-links-desktop li:hover:before {
-    width: 100%;
   }
   :where(body.page-about) #container1 section#about-description {
     width: 600px;
@@ -1695,15 +1658,11 @@ nav div#hamburger::after {
   text-transform: uppercase;
 }
 :where(body.page-contact) #container1 section#contact .contact-direct a {
-  display: inline-flex;
-  align-items: center;
-  min-height: 44px;
   color: #66d6d4;
-  font-weight: 500;
-  text-decoration: none;
+  transition: color 250ms ease;
 }
 :where(body.page-contact) #container1 section#contact .contact-direct a:hover {
-  text-decoration: underline;
+  color: #fff;
 }
 :where(body.page-contact) #container1 section#contact .contact-direct a:focus-visible {
   outline: 2px solid #c4b900;
@@ -1806,10 +1765,6 @@ nav #brand {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
-}
-nav div#desktop-nav ul#nav-links-desktop li a {
-  display: inline-block;
-  padding: 12px 0;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li a {
   padding: 14px 0;
@@ -1921,5 +1876,50 @@ nav div#desktop-nav ul#nav-links-desktop li a {
   }
   :where(body.page-about) #container2 .bio-aside h2:first-child {
     margin-top: 1.5em;
+  }
+}
+nav div#landing ul#nav-links li a,
+nav div#desktop-nav ul#nav-links-desktop li a,
+:where(body.page-contact) #container1 section#contact .contact-direct a {
+  position: relative;
+  display: inline-block;
+  padding: 12px 0;
+  font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.25;
+  text-decoration: none;
+}
+nav div#landing ul#nav-links li a::after,
+nav div#desktop-nav ul#nav-links-desktop li a::after,
+:where(body.page-contact) #container1 section#contact .contact-direct a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 5px;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 500ms ease;
+  pointer-events: none;
+}
+nav div#landing ul#nav-links li a:hover::after,
+nav div#desktop-nav ul#nav-links-desktop li a:hover::after,
+:where(body.page-contact) #container1 section#contact .contact-direct a:hover::after {
+  transform: scaleX(1);
+}
+html.menu-open {
+  overflow: hidden;
+}
+@media (prefers-reduced-motion: reduce) {
+  nav div#landing {
+    transition: none;
+  }
+  nav div#landing ul#nav-links li a::after,
+  nav div#desktop-nav ul#nav-links-desktop li a::after,
+  :where(body.page-contact) #container1 section#contact .contact-direct a::after {
+    transition: none;
   }
 }
