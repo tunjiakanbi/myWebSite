@@ -37,7 +37,7 @@ Two families.
 
 | Family | Use | File |
 |---|---|---|
-| **Pirulen** (`$pirulen`) | Display only: role list on the home page, page titles (Gallery, Contact), short labels. Never for sentences longer than a line | `fonts/pirulen rg.ttf` |
+| **Pirulen** (`$pirulen`) | Display only: role list on the home page, page titles (About Me, Gallery, Contact), project titles, the "Scroll down" cue. Never for sentences longer than a line. Always weight 400 (it has no bold) | `fonts/pirulen rg.ttf` |
 | **Outfit** (`$font-sans`) | Everything else | `fonts/outfit-variable.woff2`, one variable file, weights 100 to 900, SIL Open Font License |
 
 Both load with `font-display: swap`, so text is visible while fonts load.
@@ -46,9 +46,9 @@ Hierarchy comes from weight and size, not from more typefaces:
 
 | Level | Font | Size | Weight | Notes |
 |---|---|---|---|---|
-| Project title | Outfit | 2.5em (40px) | 800 | torqoise |
+| Project title | Pirulen | 22px on phones to 36px (`clamp(1.4em, 6vw, 2.25em)`) | 400 | torqoise; scales so "Everyday Things" fits on phones |
 | Page title | Pirulen | 1.15em | default | lime or white |
-| Section title (About) | Outfit | 1.25em | 700 | uppercase, gold with a lime name |
+| Page title (About Me) | Pirulen | 1.15em | 400 | gold with a lime "Me", 0.75em of space above its torqoise rule |
 | Brand (nav) | Outfit | 1.5em | 700 | uppercase, lime |
 | Sub-heading (tech stack) | Outfit | 1.5em | 500 | gold |
 | Body | Outfit | 16px | 400 | white, line-height 1.6, no letter-spacing, max width 34em (about 65 to 75 characters) |
@@ -103,7 +103,7 @@ Depth comes from the darker surface colour on the lighter ground.
 - **Cards**: `$darkBlue` fill, 1px white border, card radius.
 - **About card (1024px and wider)**: the bio sits on one card, at most 1100px wide and centred,
   the same width as the gallery viewer. Two equal columns: the narrative on the left; the portrait
-  with Core Capabilities and Education under it on the right. The decoration field sits behind
+  (as wide as its column) with Core Capabilities and Education under it on the right. The decoration field sits behind
   the card and stays still while the card scrolls over it. Below 1024px there is no field and no
   card: text, then photo, on the page ground.
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
@@ -121,10 +121,11 @@ Depth comes from the darker surface colour on the lighter ground.
   colour is always the destination. Only sea blue, green, torqoise and gold may be used as
   starting colours; lime and white make the torqoise titles and gold tech lines unreadable
   mid-change. The change is 65% complete when a section's text first appears.
-- Scroll colour (about): the page opens on `$myBlack` and warms to its violet over the first 60%
-  of a screen of scrolling. Its text is visible from the start, so only a dark starting colour
-  keeps the gold, lime and white text readable.
-  The colour is on `<main>`, so on desktop it is the ground behind the decoration field and card.
+- Scroll colour (about): the About Me section itself changes colour, not the page background:
+  the card on desktop (to `$darkBlue`), the bio section on phones and tablets (to `$mediumBlue`).
+  It opens on `$myBlack` and reaches its stylesheet colour over the first 60% of a screen of
+  scrolling. Its text is visible from the start, so only a dark starting colour keeps the gold,
+  lime and white text readable.
 - Gallery on short screens: the page area grows to fit the category card, so the whole list can
   always be scrolled to. Under 700px tall (phones in landscape) the open viewer takes the whole
   area below the nav and the footer moves below it.

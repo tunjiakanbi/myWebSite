@@ -694,10 +694,12 @@ nav {
     section.proj-details {
       padding: 2em;
       h2 {
-        // margin-top: 1em;
-        font-family: $font-sans;
-        font-weight: 800;
-        font-size: 2.5em;
+        // Pirulen is a wide display face: the size scales with the screen so the longest
+        // title ("Everyday Things") fits on phones; weight stays 400 (Pirulen has no bold)
+        font-family: $pirulen;
+        font-weight: 400;
+        font-size: clamp(1.4em, 6vw, 2.25em);
+        line-height: 1.25;
         color: $torqoise;
         margin-bottom: 0.5em;
       }
@@ -761,13 +763,13 @@ nav {
     section#about-left-panel {
       width: 100%;
       h1 {
-        font-family: $font-sans;
-        font-weight: 700;
-        font-size: 1.25em;
+        font-family: $pirulen;
+        font-weight: 400;
+        font-size: 1.15em;
         color: $gold;
         text-transform: uppercase;
-        padding-bottom: 0.25em;
-        margin-bottom: 0.5em;
+        padding-bottom: 0.75em;
+        margin-bottom: 0.75em;
         border-bottom: 1px solid $torqoise;
         span {
           color: $lime;
@@ -1808,11 +1810,11 @@ nav div#hamburger::after {
     outline-offset: 2px;
   }
   #scrollHeading {
-    font-family: $font-sans;
-    font-weight: 600;
+    font-family: $pirulen;
+    font-weight: 400;
     color: $white;
     text-transform: uppercase;
-    letter-spacing: 0.12em;
+    letter-spacing: 0.05em;
     font-size: 0.75em;
   }
   svg#down-chevron {
@@ -2089,14 +2091,14 @@ nav #brand {
 // =============================================================================
 // About, desktop (1024px and wider): decoration field + bio card
 // =============================================================================
-// The page colour lives on <main> so the decoration field and the bio share one ground
-// (app.js animates it on scroll). On phones and tablets nothing else changes: the field is
+// <main> is the page ground behind the decoration field. The scroll colour (app.js) is on the bio
+// itself: the card on desktop, the bio section on phones and tablets. On phones and tablets nothing else changes: the field is
 // hidden and .about-card has no box of its own.
 :where(body.page-about) main {
   background: $mediumBlue;
 }
 :where(body.page-about) #container2 {
-  background: transparent;
+  background: $mediumBlue; // phones and tablets: the bio section (app.js animates it on scroll)
 }
 :where(body.page-about) #container1 {
   display: none;
@@ -2123,6 +2125,7 @@ nav #brand {
   }
   :where(body.page-about) #container2 {
     z-index: 1;
+    background: transparent; // desktop: the card carries the colour instead
     display: block;
     overflow: visible;
     padding: 2.5em;
@@ -2157,7 +2160,6 @@ nav #brand {
       justify-content: flex-start;
       img {
         width: 100%;
-        max-width: 340px;
         height: auto;
         margin-bottom: 0;
       }
