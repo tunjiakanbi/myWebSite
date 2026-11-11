@@ -1966,6 +1966,10 @@ html.menu-open {
     padding-bottom: 0;
   }
 }
+:root {
+  --decor-inline: 1;
+}
+
 svg.decor-inline {
   overflow: hidden;
 }

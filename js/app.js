@@ -122,6 +122,10 @@ const DECOR_WAIT = 600; // ms: never hold the intro up for longer than this
 function inlineDecor() {
   const imgs = gsap.utils.toArray("img").filter((img) => DECOR_FILES.test(img.getAttribute("src") || ""));
   if (!imgs.length || !window.fetch || !window.DOMParser) return Promise.resolve();
+  // Only when the stylesheet is the version that positions inline <svg> decorations (it says so
+  // with --decor-inline). With an older style.css - a cached copy, or one not uploaded yet - the
+  // <img> tags must stay, or the decorations would lose their positions.
+  if (getComputedStyle(document.documentElement).getPropertyValue("--decor-inline").trim() !== "1") return Promise.resolve();
   const files = [...new Set(imgs.map((img) => img.getAttribute("src")))];
   const load = Promise.all(
     files.map((src) => fetch(src).then((r) => (r.ok ? r.text() : Promise.reject(new Error(src)))).then((text) => [src, text]))

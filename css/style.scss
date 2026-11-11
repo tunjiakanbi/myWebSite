@@ -2313,6 +2313,13 @@ html.menu-open {
 
 // Decorations that app.js has swapped from <img> to inline <svg> (so their dots and stripes can
 // be animated) keep behaving like the images they replace.
+// --decor-inline tells app.js that this stylesheet positions those inline <svg> decorations
+// (every decoration selector accepts img or svg). app.js only swaps them when it sees this, so an
+// older cached style.css can never be paired with the swap. Do not remove.
+:root {
+  --decor-inline: 1;
+}
+
 svg.decor-inline {
   overflow: hidden;
 }
