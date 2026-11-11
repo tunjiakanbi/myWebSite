@@ -2113,7 +2113,8 @@ html.nav-hidden nav {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
     grid-template-rows: auto 1fr;
-    column-gap: 4em;
+    -moz-column-gap: 4em;
+         column-gap: 4em;
     padding-bottom: 2em;
   }
   :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content p.proj-overview {
