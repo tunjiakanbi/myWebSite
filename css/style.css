@@ -2045,7 +2045,6 @@ html.nav-hidden nav {
     transition: none;
   }
 }
-
 .close-x svg path,
 .lb-btn svg path {
   stroke-width: 3;
