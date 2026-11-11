@@ -462,7 +462,17 @@ function aboutColor() {
 //   button      from the right on desktop (where it sits on the right), from the bottom otherwise
 //   divider     (desktop) draws itself left to right - style.scss reads --proj-line
 //   decorations beside the project (tall desktop screens) fill in dot by dot / stripe by stripe
-const REVEAL = { distance: 40, duration: 0.6, gap: 0.1, start: "top 80%" };
+const REVEAL = {
+  distance: 40, duration: 0.6, gap: 0.1,
+  start: "top 85%",      // text block: begins when its top is 15% up the screen
+  // The screenshot begins as soon as the project's top edge appears, and is quick, so it has
+  // settled well before the project fills the screen (it used to wait until 20% up the screen and
+  // take 0.8s, which left a tall empty space on phones, where the screenshot is most of the screen).
+  shotStart: "top 96%",
+  shotDuration: 0.45,
+  shotDistance: 24,      // phones and tablets: rises this far
+  shotSide: 48,          // desktop: slides in this far from the left or right
+};
 
 function projectReveals() {
   const projects = gsap.utils.toArray(".projects");
@@ -485,13 +495,13 @@ function projectReveals() {
         const button = content.querySelector(".btn");
 
         // 1. screenshot (its wrapper is the trigger: the screenshot itself is moved)
-        const fromSide = desktop ? (i % 2 === 0 ? -1 : 1) * 60 : 0;
+        const fromSide = desktop ? (i % 2 === 0 ? -1 : 1) * REVEAL.shotSide : 0;
         gsap.fromTo(
           shot,
-          { autoAlpha: 0, x: fromSide, y: desktop ? 0 : REVEAL.distance },
+          { autoAlpha: 0, x: fromSide, y: desktop ? 0 : REVEAL.shotDistance },
           {
-            autoAlpha: 1, x: 0, y: 0, duration: 0.8, ease, clearProps: "transform",
-            scrollTrigger: { trigger: shot.closest("picture") || project, start: REVEAL.start, once: true },
+            autoAlpha: 1, x: 0, y: 0, duration: REVEAL.shotDuration, ease: "power2.out", clearProps: "transform",
+            scrollTrigger: { trigger: project, start: REVEAL.shotStart, once: true },
           }
         );
 

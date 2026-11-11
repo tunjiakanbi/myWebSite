@@ -129,6 +129,8 @@ Depth comes from the darker surface colour on the lighter ground.
   Screenshot first (from the left, right, left in turn on desktop; rising from the bottom on
   smaller screens), then title and tech line from the left, paragraph from below, button from the
   right on desktop, and the divider drawing left to right. 40px of travel, 0.6s each, 0.1s apart.
+  The screenshot starts the moment the project's top edge appears and takes 0.45s, so it has
+  settled before the project fills the screen.
   Timed, never tied to the scrollbar. Settings are in `REVEAL` in `js/app.js`.
 - Scroll drift (home): decorations move a little slower or faster than the page as it scrolls
   (30 to 110px over the hero's height), for depth. Amounts are in `DRIFT` in `js/app.js`.
