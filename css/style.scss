@@ -307,6 +307,7 @@ nav {
         border-bottom: 1px solid rgba($white, 0.2);
         div#gallery-tabs {
           flex: 1 1 auto;
+          align-self: flex-end; // tabs stay on the header's bottom line, whatever its height
           min-width: 0;
           display: flex;
           gap: 1.4em;
@@ -346,6 +347,9 @@ nav {
         }
         button#close-btn {
           flex: 0 0 auto; // looks: see .close-x
+          // room to breathe: 10px above and below the button, inside the header
+          // (the header already has 0.35em of padding on top)
+          margin: 0.275em 0 0.625em;
         }
       }
       #gallery-content {

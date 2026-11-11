@@ -248,6 +248,7 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav div#gallery-tabs {
   flex: 1 1 auto;
+  align-self: flex-end;
   min-width: 0;
   display: flex;
   gap: 1.4em;
@@ -287,6 +288,7 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn {
   flex: 0 0 auto;
+  margin: 0.275em 0 0.625em;
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content {
   position: relative;
