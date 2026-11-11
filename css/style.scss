@@ -2469,8 +2469,23 @@ html.nav-hidden nav {
         font-weight: 400;
         line-height: 1.6;
         color: $white;
+        position: relative;
         padding-left: 1em;
-        border-left: 2px solid $gold;
+        // Gold rule, exactly as tall as the text beside it: from the top of the capitals on the
+        // first line to the bottom of the last line's letters. Offsets are in em (they come from
+        // Outfit's measurements at this line-height, 1.6), so they hold at any text size.
+        // The bottom depends on the last line: if it has letters that hang below the line
+        // (g, p, y, a comma...) the rule ends with them; if not, it ends on the baseline.
+        // app.js checks which, per highlight, and sets --rule-bottom (see flushRules).
+        &::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 0.4em;
+          bottom: var(--rule-bottom, 0.24em);
+          width: 2px;
+          background: $gold;
+        }
       }
       li + li {
         margin-top: 0.9em;
@@ -2481,30 +2496,54 @@ html.nav-hidden nav {
     }
   }
 }
-// Desktop: overview and button on the left, highlights on the right
+// Desktop: two columns for the whole text block. Left: title, subtitle, technologies, focus area,
+// overview, button. Right: the highlights, starting level with the title. Only the placement
+// changes; the order in the HTML (and so for screen readers) is the same as on phones.
 @media (min-width: 1024px) {
-  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content {
+  :where(body.page-home) .projects section.proj-wrap section.proj-details {
+    position: relative;
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto 1fr;
-    column-gap: 4em;
-    padding-bottom: 2em;
-    p.proj-overview {
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    // six rows for the left column; the last row takes up any slack so the left column's items
+    // stay together when the highlights are the taller side
+    grid-template-rows: repeat(6, auto) 1fr;
+    column-gap: 3em;
+    padding-bottom: 4em;
+    > * {
       grid-column: 1;
-      grid-row: 1;
-      width: auto;
     }
-    .proj-highlights {
-      grid-column: 2;
-      grid-row: 1 / span 2;
-      margin-top: 0;
+    h2 {
+      // keeps "Everyday Things" on one line in the narrower left column (1024px to about 1240px)
+      font-size: clamp(1.75em, 2.9vw, 2.25em);
     }
-    .btn {
-      grid-column: 1;
-      grid-row: 2;
-      align-self: start;
-      justify-self: start;
-      margin: 1.5em 0 0;
+    // the wrapper has no box of its own here: its children join the grid directly
+    section.project-content {
+      display: contents;
+      padding-bottom: 0;
+      // divider under the whole project, drawn by app.js (--proj-line)
+      &::after {
+        left: 8em;
+        right: 8em;
+        bottom: 2em;
+      }
+      p.proj-overview {
+        grid-column: 1;
+        grid-row: 5;
+        width: auto;
+      }
+      .btn {
+        grid-column: 1;
+        grid-row: 6;
+        align-self: start;
+        justify-self: start;
+        margin: 1.5em 0 0;
+      }
+      .proj-highlights {
+        grid-column: 2;
+        grid-row: 1 / -1;
+        align-self: start;
+        margin-top: 0.4em; // its label lines up with the top of the title's letters
+      }
     }
   }
 }

@@ -115,8 +115,12 @@ Depth comes from the darker surface colour on the lighter ground.
 - **Project block (home)**: title (Pirulen, the short name only), subtitle (Outfit 500, white),
   technologies (gold line), "Focus Area" (small lime label, text beneath), overview paragraph,
   "Engineering & UI Highlights" (small lime label, three points with a bold lead-in and a gold
-  rule on the left), then the "View Project" button. From 1024px the overview and button sit in
-  a left column and the highlights in a right column; below that everything stacks.
+  rule on the left), then the "View Project" button. From 1024px the block is two columns:
+  everything except the highlights on the left, the highlights on the right starting level with
+  the title. Below that everything stacks.
+  Each gold rule is exactly as tall as its text: from the top of the capitals on the first line
+  to the bottom of the last line's letters (`flushRules` in `js/app.js` checks whether the last
+  line has letters that hang below the baseline).
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
   Pinned to the top of the window. It slides away while scrolling down and returns as soon as the
   visitor scrolls up (4px is enough), so the menu is always one small scroll away. Always shown

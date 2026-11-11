@@ -130,6 +130,7 @@ function init() {
     heroIntro();
     sectionColors();
     aboutColor();
+    flushRules();
     projectReveals();
     decorDrift();
     pageArrive();
@@ -484,6 +485,46 @@ function aboutColor() {
       );
     }
   );
+}
+
+// ----------------------------------------------------------------- home: gold rules flush with their text
+// Each highlight has a gold rule on its left that must be exactly as tall as its text. The top is
+// always the top of the capitals (style.scss). The bottom depends on what the last line happens
+// to contain at this screen width: letters that hang below the line (g, p, y, commas, brackets)
+// or not. This reads each highlight's last line and tells the stylesheet which it is.
+const RULE_BOTTOM = { hanging: "0.24em", baseline: "0.45em" };
+const HANGS_BELOW = /[gjpqyQ,;()]/;
+
+function flushRules() {
+  const items = gsap.utils.toArray(".proj-highlights li");
+  if (!items.length) return;
+  const range = document.createRange();
+  const measure = () => {
+    items.forEach((li) => {
+      // walk back from the end of the text, collecting the characters on the last line
+      const walker = document.createTreeWalker(li, NodeFilter.SHOW_TEXT);
+      const nodes = [];
+      while (walker.nextNode()) nodes.push(walker.currentNode);
+      let lastTop = null, line = "", done = false;
+      for (let n = nodes.length - 1; n >= 0 && !done; n--) {
+        const text = nodes[n].nodeValue;
+        for (let i = text.length - 1; i >= 0; i--) {
+          if (/\s/.test(text[i])) continue;
+          range.setStart(nodes[n], i);
+          range.setEnd(nodes[n], i + 1);
+          const top = range.getBoundingClientRect().top;
+          if (lastTop === null) lastTop = top;
+          if (Math.abs(top - lastTop) > 4) { done = true; break; } // reached the line above
+          line += text[i];
+        }
+      }
+      li.style.setProperty("--rule-bottom", HANGS_BELOW.test(line) ? RULE_BOTTOM.hanging : RULE_BOTTOM.baseline);
+    });
+  };
+  measure();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure); // text re-wraps when Outfit arrives
+  let timer;
+  window.addEventListener("resize", () => { clearTimeout(timer); timer = setTimeout(measure, 150); });
 }
 
 // ----------------------------------------------------------------- home: project reveals
