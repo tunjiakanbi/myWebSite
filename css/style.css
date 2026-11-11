@@ -46,36 +46,79 @@ nav #brand {
 }
 nav div#hamburger {
   position: relative;
-  width: 44px;
-  height: 44px;
+  flex: 0 0 auto;
+  width: 52px;
+  height: 52px;
   margin-left: auto;
+  margin-right: -4px;
+  border-radius: 50%;
   cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  transition: transform 300ms ease;
 }
 nav div#hamburger section.bars {
-  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 44px;
   height: 3px;
+  margin: -1.5px 0 0 -22px;
+  border-radius: 1.5px;
   background: #ebf3cd;
-  transition: all 250ms ease-out;
+  transition: transform 300ms ease, width 300ms ease, margin 300ms ease, height 300ms ease, opacity 200ms ease, background-color 200ms ease;
 }
-nav div#hamburger .bar1 {
-  transform: rotate(45deg) translate(9px, 5px);
+nav div#hamburger section.bars:nth-child(1) {
+  transform: translateY(-11.75px);
 }
-nav div#hamburger .bar2 {
+nav div#hamburger section.bars:nth-child(3) {
+  transform: translateY(11.75px);
+}
+nav div#hamburger::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
   opacity: 0;
-}
-nav div#hamburger .bar3 {
-  transform: rotate(-45deg) translate(8px, -5px);
+  transform: scale(0.6);
+  transition: opacity 300ms ease, transform 300ms ease, border-color 200ms ease;
 }
 nav div#hamburger:hover section.bars {
   background: #66d6d4;
 }
+nav div#hamburger[aria-expanded=true] section.bars {
+  width: 22px;
+  height: 2px;
+  margin: -1px 0 0 -11px;
+  background: #fff;
+}
+nav div#hamburger[aria-expanded=true] section.bars:nth-child(1) {
+  transform: rotate(45deg);
+}
+nav div#hamburger[aria-expanded=true] section.bars:nth-child(2) {
+  opacity: 0;
+}
+nav div#hamburger[aria-expanded=true] section.bars:nth-child(3) {
+  transform: rotate(-45deg);
+}
+nav div#hamburger[aria-expanded=true]::before {
+  opacity: 1;
+  transform: scale(1);
+}
+nav div#hamburger[aria-expanded=true]:hover {
+  transform: rotate(90deg);
+}
+nav div#hamburger[aria-expanded=true]:hover section.bars {
+  background: #66d6d4;
+}
+nav div#hamburger[aria-expanded=true]:hover::before {
+  border-color: #66d6d4;
+}
 nav div#hamburger:focus-visible {
   outline: 2px solid #c4b900;
-  outline-offset: 4px;
-  border-radius: 4px;
+  outline-offset: 2px;
 }
 nav div#landing {
   position: fixed;
@@ -190,7 +233,7 @@ nav div#desktop-nav {
   overflow: hidden;
   background-color: #170046;
   border: 1px solid #fff;
-  border-radius: 1em;
+  border-radius: 0.4em;
 }
 :where(body.page-gallery) #container1 section#gallery-display.is-open {
   display: flex;
@@ -244,44 +287,6 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn {
   flex: 0 0 auto;
-  width: 44px;
-  height: 44px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  cursor: pointer;
-  transition: transform 250ms ease-out;
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bars {
-  display: block;
-  width: 26px;
-  height: 3px;
-  background: #ebf3cd;
-  transition: all 250ms ease-out;
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar1 {
-  transform: translateY(11.75px) rotate(45deg);
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar2 {
-  opacity: 0;
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn .bar3 {
-  transform: translateY(-11.75px) rotate(-45deg);
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:hover {
-  transform: rotate(90deg);
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:hover .bars {
-  background: #66d6d4;
-}
-:where(body.page-gallery) #container1 section#gallery-display nav#gallery-nav button#close-btn:focus-visible {
-  outline: 2px solid #c4b900;
-  outline-offset: 2px;
-  border-radius: 0.5em;
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content {
   position: relative;
@@ -325,7 +330,7 @@ nav div#desktop-nav {
   aspect-ratio: 1/1;
   padding: 0;
   border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 0.6em;
+  border-radius: 0.4rem;
   overflow: hidden;
   background: #280078;
   cursor: zoom-in;
@@ -366,7 +371,7 @@ nav div#desktop-nav {
   -o-object-fit: contain;
      object-fit: contain;
   background: #000;
-  border-radius: 0.6em;
+  border-radius: 0.4em;
 }
 :where(body.page-gallery) #container1 section#gallery-display #gallery-content .video-card figcaption {
   margin-top: 0.4em;
@@ -408,8 +413,20 @@ nav div#desktop-nav {
 }
 :where(body.page-gallery) #container1 section#gallery section ul li {
   display: inline-block;
-  border-bottom: 1px solid #fff;
+  position: relative;
   font-size: 1em;
+}
+:where(body.page-gallery) #container1 section#gallery section ul li::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(var(--row-line, 1));
+  transform-origin: left center;
+  pointer-events: none;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li a {
   display: block;
@@ -422,8 +439,17 @@ nav div#desktop-nav {
   outline: 2px solid #c4b900;
   outline-offset: 2px;
 }
-:where(body.page-gallery) #container1 section#gallery section ul li:first-child {
-  border-top: 1px solid #fff;
+:where(body.page-gallery) #container1 section#gallery section ul li:first-child::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: #fff;
+  transform: scaleX(var(--row-line, 1));
+  transform-origin: left center;
+  pointer-events: none;
 }
 :where(body.page-gallery) #container1 section#gallery section ul li span {
   font-family: "Outfit", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
@@ -672,7 +698,18 @@ nav div#desktop-nav {
   text-transform: uppercase;
   padding-bottom: 0.75em;
   margin-bottom: 0.75em;
-  border-bottom: 1px solid #66d6d4;
+  position: relative;
+}
+:where(body.page-about) #container2 section#about-left-panel h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: #66d6d4;
+  transform: scaleX(var(--h1-line, 1));
+  transform-origin: left center;
 }
 :where(body.page-about) #container2 section#about-left-panel h1 span {
   color: #ebf3cd;
@@ -1353,6 +1390,9 @@ html.lb-open {
   top: 0.75rem;
   right: 0.75rem;
 }
+:where(body.page-gallery) #lightbox .lb-close:hover svg {
+  transform: rotate(90deg);
+}
 :where(body.page-gallery) #lightbox .lb-prev {
   top: 50%;
   left: 0.5rem;
@@ -1490,15 +1530,6 @@ html {
 .btn[disabled] {
   opacity: 0.6;
   cursor: progress;
-}
-
-nav div#hamburger::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  bottom: -4px;
-  left: -4px;
 }
 
 :where(body.page-home) #container1 section#scroll-indicator {
@@ -1935,4 +1966,67 @@ html.menu-open {
 }
 svg.decor-inline {
   overflow: hidden;
+}
+
+.close-x {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(23, 0, 70, 0.85);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease;
+}
+.close-x svg {
+  display: block;
+  transition: transform 300ms ease;
+}
+
+.close-x:hover {
+  color: #66d6d4;
+  border-color: #66d6d4;
+}
+.close-x:hover svg {
+  transform: rotate(90deg);
+}
+
+.close-x:focus-visible {
+  outline: 2px solid #c4b900;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close-x svg,
+  nav div#hamburger,
+  nav div#hamburger section.bars,
+  nav div#hamburger::before {
+    transition: none;
+  }
+  .close-x:hover svg,
+  #lightbox .lb-close:hover svg,
+  nav div#hamburger[aria-expanded=true]:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  :where(body.page-about) #container1 {
+    pointer-events: auto;
+  }
+  :where(body.page-about) #container2 {
+    pointer-events: none;
+  }
+  :where(body.page-about) #container2 .about-card {
+    pointer-events: auto;
+  }
+}
+
+:where(body.page-gallery) #container1,
+:where(body.page-contact) #container1 {
+  overflow: clip;
 }

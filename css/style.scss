@@ -83,38 +83,87 @@ nav {
     text-transform: uppercase;
     font-size: 1.5em;
   }
+  // Menu button. Closed: three bars. Open (aria-expanded="true", set by app.js): the bars thin
+  // down and cross into the same close button used by the gallery viewer and lightbox (.close-x:
+  // a thin X in a circle outline), a little larger here at 52px. Hovering the X rotates it.
   div#hamburger {
     position: relative;
-    width: 44px;
-    height: 44px;
+    flex: 0 0 auto;
+    width: 52px;
+    height: 52px;
     margin-left: auto;
+    margin-right: -4px; // the bars are 44px wide, centred: keeps them where they have always been
+    border-radius: 50%;
     cursor: pointer;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
+    transition: transform 300ms ease;
     section.bars {
-      width: 100%;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 44px;
       height: 3px;
+      margin: -1.5px 0 0 -22px;
+      border-radius: 1.5px;
       background: $lime;
-      transition: all 250ms ease-out;
+      transition: transform 300ms ease, width 300ms ease, margin 300ms ease, height 300ms ease, opacity 200ms ease, background-color 200ms ease;
     }
-    .bar1 {
-      transform: rotate(45deg) translate(9px, 5px);
+    section.bars:nth-child(1) {
+      transform: translateY(-11.75px);
     }
-    .bar2 {
+    section.bars:nth-child(3) {
+      transform: translateY(11.75px);
+    }
+    // the circle outline, drawn only while the menu is open
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: 50%;
       opacity: 0;
-    }
-    .bar3 {
-      transform: rotate(-45deg) translate(8px, -5px);
+      transform: scale(0.6);
+      transition: opacity 300ms ease, transform 300ms ease, border-color 200ms ease;
     }
   }
   div#hamburger:hover section.bars {
     background: $torqoise;
   }
+  div#hamburger[aria-expanded="true"] {
+    section.bars {
+      width: 22px;
+      height: 2px;
+      margin: -1px 0 0 -11px;
+      background: $white;
+    }
+    section.bars:nth-child(1) {
+      transform: rotate(45deg);
+    }
+    section.bars:nth-child(2) {
+      opacity: 0;
+    }
+    section.bars:nth-child(3) {
+      transform: rotate(-45deg);
+    }
+    &::before {
+      opacity: 1;
+      transform: scale(1);
+    }
+    &:hover {
+      transform: rotate(90deg);
+      section.bars {
+        background: $torqoise;
+      }
+      &::before {
+        border-color: $torqoise;
+      }
+    }
+  }
   div#hamburger:focus-visible {
     outline: 2px solid #c4b900;
-    outline-offset: 4px;
-    border-radius: 4px;
+    outline-offset: 2px;
   }
   // Mobile/tablet menu overlay. Fixed to the window, so it always fills it, including while the
   // window is being resized. z-index -1 puts it under the nav's brand and menu button (the nav
@@ -245,7 +294,7 @@ nav {
       overflow: hidden;
       background-color: $darkBlue;
       border: 1px solid $white;
-      border-radius: 1em;
+      border-radius: 0.4em; // the lightbox image's small corners, used for the viewer too
       &.is-open {
         display: flex;
         animation: gallery-in 200ms ease-out;
@@ -296,45 +345,7 @@ nav {
           }
         }
         button#close-btn {
-          flex: 0 0 auto;
-          width: 44px;
-          height: 44px;
-          padding: 0;
-          border: 0;
-          background: transparent;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: space-evenly;
-          cursor: pointer;
-          transition: transform 250ms ease-out;
-          .bars {
-            display: block;
-            width: 26px;
-            height: 3px;
-            background: $lime;
-            transition: all 250ms ease-out;
-          }
-          .bar1 {
-            transform: translateY(11.75px) rotate(45deg);
-          }
-          .bar2 {
-            opacity: 0;
-          }
-          .bar3 {
-            transform: translateY(-11.75px) rotate(-45deg);
-          }
-          &:hover {
-            transform: rotate(90deg);
-          }
-          &:hover .bars {
-            background: $torqoise;
-          }
-          &:focus-visible {
-            outline: 2px solid $gold;
-            outline-offset: 2px;
-            border-radius: 0.5em;
-          }
+          flex: 0 0 auto; // looks: see .close-x
         }
       }
       #gallery-content {
@@ -378,7 +389,7 @@ nav {
           aspect-ratio: 1 / 1;
           padding: 0;
           border: 1px solid rgba($white, 0.25);
-          border-radius: 0.6em;
+          border-radius: 0.4rem; // same 6.4px corners as the viewer and lightbox image
           overflow: hidden;
           background: $mediumBlue;
           cursor: zoom-in;
@@ -415,7 +426,7 @@ nav {
             aspect-ratio: 16 / 9;
             object-fit: contain;
             background: #000;
-            border-radius: 0.6em;
+            border-radius: 0.4em;
           }
           figcaption {
             margin-top: 0.4em;
@@ -459,8 +470,22 @@ nav {
           flex-direction: column;
           li {
             display: inline-block;
-            border-bottom: 1px solid $white;
+            position: relative;
             font-size: 1em;
+            // dividers are lines that app.js can draw left to right (--row-line 0 -> 1) as the
+            // page arrives. Without the animation they are simply full lines.
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              height: 1px;
+              background: $white;
+              transform: scaleX(var(--row-line, 1));
+              transform-origin: left center;
+              pointer-events: none;
+            }
             a {
               display: block;
               padding: 1.05em 0;
@@ -473,8 +498,17 @@ nav {
               outline-offset: 2px;
             }
           }
-          li:first-child {
-            border-top: 1px solid $white;
+          li:first-child::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            height: 1px;
+            background: $white;
+            transform: scaleX(var(--row-line, 1));
+            transform-origin: left center;
+            pointer-events: none;
           }
           li {
             // both words use the text-link style (see "Text links"); only the colours differ
@@ -770,7 +804,19 @@ nav {
         text-transform: uppercase;
         padding-bottom: 0.75em;
         margin-bottom: 0.75em;
-        border-bottom: 1px solid $torqoise;
+        position: relative;
+        // the rule under the heading; app.js draws it left to right (--h1-line 0 -> 1)
+        &::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          height: 1px;
+          background: $torqoise;
+          transform: scaleX(var(--h1-line, 1));
+          transform-origin: left center;
+        }
         span {
           color: $lime;
         }
@@ -1624,6 +1670,10 @@ html.lb-open {
     top: 0.75rem;
     right: 0.75rem;
   }
+  // the X turns with the hover (see .close-x); the arrows do not
+  #lightbox .lb-close:hover svg {
+    transform: rotate(90deg);
+  }
   #lightbox .lb-prev {
     top: 50%;
     left: 0.5rem;
@@ -1785,15 +1835,6 @@ html {
   cursor: progress;
 }
 
-// larger tap area for the menu button without changing how it looks
-nav div#hamburger::after {
-  content: "";
-  position: absolute;
-  top: -4px;
-  right: -4px;
-  bottom: -4px;
-  left: -4px;
-}
 
 // =============================================================================
 // Home: "Scroll down" cue, pinned to the bottom of the hero (the first screen).
@@ -2270,4 +2311,74 @@ html.menu-open {
 // be animated) keep behaving like the images they replace.
 svg.decor-inline {
   overflow: hidden;
+}
+
+// =============================================================================
+// Close button (see DESIGN.md): one design for the gallery viewer, the lightbox and the open menu
+// =============================================================================
+// A thin X in a circle outline. On hover the X turns a quarter turn and the button goes torqoise.
+// (The menu button morphs its bars into this same shape: see div#hamburger.)
+.close-x {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: rgba(23, 0, 70, 0.85);
+  color: $white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: color 200ms ease, border-color 200ms ease;
+  svg {
+    display: block;
+    transition: transform 300ms ease;
+  }
+}
+.close-x:hover {
+  color: $torqoise;
+  border-color: $torqoise;
+  svg {
+    transform: rotate(90deg);
+  }
+}
+.close-x:focus-visible {
+  outline: 2px solid $gold;
+  outline-offset: 2px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .close-x svg,
+  nav div#hamburger,
+  nav div#hamburger section.bars,
+  nav div#hamburger::before {
+    transition: none;
+  }
+  .close-x:hover svg,
+  #lightbox .lb-close:hover svg,
+  nav div#hamburger[aria-expanded="true"]:hover {
+    transform: none;
+  }
+}
+
+// About, desktop: the bio's wrapper spans the page; let the pointer through it so decorations
+// beside the card can still react to hover. The card itself behaves normally.
+@media (min-width: 1024px) {
+  :where(body.page-about) #container1 {
+    pointer-events: auto;
+  }
+  :where(body.page-about) #container2 {
+    pointer-events: none;
+    .about-card {
+      pointer-events: auto;
+    }
+  }
+}
+
+// Gallery and contact: the main area hides decorations that run past its edges. "clip" does that
+// without making the area scrollable, so focusing or clicking something inside it can never
+// shift its contents. (Browsers without "clip" keep the "overflow: hidden" set earlier.)
+:where(body.page-gallery) #container1,
+:where(body.page-contact) #container1 {
+  overflow: clip;
 }

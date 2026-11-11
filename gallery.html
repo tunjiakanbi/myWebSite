@@ -69,10 +69,8 @@
                     <button type="button" role="tab" class="gallery-tab" id="tab-ui-ux" data-category="ui-ux" aria-controls="box3" aria-selected="false" tabindex="-1">UI/UX</button>
                     <button type="button" role="tab" class="gallery-tab" id="tab-multi-media" data-category="multi-media" aria-controls="box4" aria-selected="false" tabindex="-1">Multi-media</button>
                 </div>
-                <button type="button" id="close-btn" aria-label="Close gallery and return to the category list">
-                    <span class="bars bar1"></span>
-                    <span class="bars bar2"></span>
-                    <span class="bars bar3"></span>
+                <button type="button" id="close-btn" class="close-x" aria-label="Close gallery and return to the category list">
+                    <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
                 </button>
             </nav>
             <div id="gallery-content">
@@ -264,7 +262,7 @@
     </footer>
 
     <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer" hidden>
-        <button type="button" class="lb-btn lb-close" aria-label="Close image viewer">
+        <button type="button" class="lb-btn lb-close close-x" aria-label="Close image viewer">
             <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5L5 19" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
         </button>
         <button type="button" class="lb-btn lb-prev" aria-label="Previous image">

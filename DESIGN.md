@@ -70,8 +70,9 @@ Breakpoints: 576px, 1024px, 1366px. Tall-screen rules at 1080px height.
 
 | Token | Value | Use |
 |---|---|---|
-| Card radius | 1em | Cards, panels, the photo frame, the gallery viewer |
-| Control radius | 0.5em | Buttons, tabs, inputs, thumbnails |
+| Card radius | 1em | Cards, panels, the photo frame |
+| Viewer radius | 0.4em (6.4px) | The gallery viewer, its thumbnails and video cards, the lightbox image |
+| Control radius | 0.5em | Buttons, tabs, inputs |
 | Round | 50% | Circular decoration and icon buttons only |
 
 Borders are 1px white (or white at 20 to 35% for dividers). **No shadows, no gradients, no blur.**
@@ -99,6 +100,10 @@ Depth comes from the darker surface colour on the lighter ground.
   control radius, gold focus ring. Optional fields say "(optional)" in the label.
 - **Form feedback**: shown on the page next to the button, never in a pop-up: a confirmation on
   success, a plain-language error with another way to get in touch on failure.
+- **Close button** (`.close-x`): one design for the gallery viewer, the lightbox and the open
+  menu: a thin white X (2px line) in a circle outline (1px, white at 35%), 48px. On hover the X
+  turns a quarter turn (0.3s) and the X and outline go torqoise. The menu button's three bars
+  morph into the same shape, at 52px, while the menu is open.
 - **Focus**: 2px solid `$gold`, 2px offset, on every interactive element.
 - **Cards**: `$darkBlue` fill, 1px white border, card radius.
 - **About card (1024px and wider)**: the bio sits on one card, at most 1100px wide and centred,
@@ -127,6 +132,14 @@ Depth comes from the darker surface colour on the lighter ground.
   Timed, never tied to the scrollbar. Settings are in `REVEAL` in `js/app.js`.
 - Scroll drift (home): decorations move a little slower or faster than the page as it scrolls
   (30 to 110px over the hero's height), for depth. Amounts are in `DRIFT` in `js/app.js`.
+- Page arrival (gallery, contact): the card rises and fades in, then its contents follow 0.08s
+  apart; the gallery's row dividers draw left to right. Opacity only, never `visibility: hidden`,
+  so links and fields take focus from the first moment. Settings are in `ARRIVE` in `js/app.js`.
+- About reveals: each block of the bio is revealed once as it scrolls into view. Headings slide in
+  from the left, text and list items rise, the photo fades up to size, and the rule under
+  "About Me" draws left to right.
+- Decoration hover (all pages): dot grids ripple outwards from the pointer, hatch stripes shift
+  one after another, small circles and lines grow slightly. Starts after the intro.
 - All of the above are off for reduced motion, and content is never left hidden if GSAP is missing.
 - Scroll colour (home): each project section arrives in a contrasting palette colour and resolves
   to its own background as you scroll to it: sea blue, then torqoise, then green. The stylesheet

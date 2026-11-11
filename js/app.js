@@ -81,16 +81,13 @@ hamburger.addEventListener("click", () => {
   links.forEach((link) => {
     link.classList.toggle("fade");
   });
-  bar1.classList.toggle("bar1");
-  bar2.classList.toggle("bar2");
-  bar3.classList.toggle("bar3");
+  // (the bars turn into the close button in the stylesheet, from aria-expanded)
   syncMenuA11y();
 });
 
 // ----------------------------------------------------------------- animations: setup
 // GSAP 3.15.1 + plugins are self-hosted in /js (see the <script> tags at the end of each page).
 gsap.registerPlugin(SplitText, ScrollTrigger, DrawSVGPlugin);
-let elemLoaded = false;
 
 function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
@@ -102,6 +99,9 @@ function init() {
     aboutColor();
     projectReveals();
     decorDrift();
+    pageArrive();
+    aboutReveals();
+    decorHover();
     // These start a moment after the page begins loading (see inlineDecor), so measure the page
     // again once everything, images included, has loaded.
     if (document.readyState === "complete") ScrollTrigger.refresh();
@@ -326,9 +326,7 @@ function heroIntro() {
     }
   );
 
-  // hover: decorations grow slightly
-  elemLoaded = true;
-  [torqoise, whiteDots, goldHatch, goldDots, smallCircles].forEach(changeScale);
+  // (hover on the decorations: see decorHover)
 
   // scroll cue hides once you start scrolling and returns near the top
   // (a plain fade, without the 20px slide, for visitors who prefer reduced motion)
@@ -558,19 +556,122 @@ function decorDrift() {
 }
 let heroIntroLength = 0; // seconds; set by heroIntro()
 
-// ----------------------------------------------------------------- animation helpers
-function changeScale(elem) {
-  if (!elem) return;
-  if (elemLoaded === true) {
-    elem.addEventListener("mouseenter", (e) => {
-      gsap.to(elem, { transformOrigin: "bottom center", scale: 1.2, duration: 0.25, ease: "power4.inOut" });
-    });
-    elem.addEventListener("mouseleave", (e) => {
-      gsap.to(elem, { scale: 1, duration: 0.25, ease: "power4.inOut" });
-    });
-  }
+// ----------------------------------------------------------------- gallery + contact: the card arrives
+// The card rises in, then its contents follow one after another (0.08s apart): heading, text,
+// then each category row (gallery) or each link, field and the button (contact). The gallery's
+// row dividers draw left to right - style.scss reads --row-line. Plays once, on load. Nothing
+// is disabled while it plays: keyboard focus and typing work from the first moment.
+const ARRIVE = { delay: 0.25, rise: 24, duration: 0.5, gap: 0.08 };
+
+function pageArrive() {
+  const page = document.body.classList;
+  const card = page.contains("page-gallery") ? document.querySelector("#gallery")
+    : page.contains("page-contact") ? document.querySelector("section#contact") : null;
+  if (!card || !card.getClientRects().length) return; // e.g. gallery opened straight into a category
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const items = page.contains("page-gallery")
+      ? gsap.utils.toArray("#gallery-section > h1, #gallery-section > p, #gallery-section li.gallery-links", card)
+      : gsap.utils.toArray("#contact-intro > h1, #contact-intro > .contact-lead, .contact-direct li, #myForm .field, #myForm .btn", card);
+    const rows = gsap.utils.toArray("li.gallery-links", card);
+    const tl = gsap.timeline({ delay: ARRIVE.delay, defaults: { duration: ARRIVE.duration, ease: "power3.out" } });
+    // opacity only (never visibility: hidden), so links and fields can take focus straight away
+    tl.fromTo(card, { opacity: 0, y: ARRIVE.rise }, { opacity: 1, y: 0, clearProps: "transform,opacity" }, 0)
+      .fromTo(items, { opacity: 0, y: 18 }, { opacity: 1, y: 0, stagger: ARRIVE.gap, clearProps: "transform,opacity" }, 0.15);
+    if (rows.length) {
+      tl.fromTo(rows, { "--row-line": 0 }, { "--row-line": 1, duration: 0.6, ease: "power2.inOut", stagger: ARRIVE.gap, clearProps: "--row-line" }, 0.3);
+    }
+  });
 }
 
+// ----------------------------------------------------------------- about: sections reveal on scroll
+// Each block of the bio is revealed once, the first time it scrolls into view (blocks already on
+// screen when the page opens arrive one after another). Headings slide in from the left, text and
+// list items rise, the photo fades up to size (from the right on desktop), and the rule under
+// "About Me" draws left to right - style.scss reads --h1-line. The card's colour change on scroll
+// (aboutColor) is separate and unchanged.
+function aboutReveals() {
+  if (!document.body.classList.contains("page-about")) return;
+  const bio = document.querySelector("#about-left-panel");
+  const photo = document.querySelector("#about-right-panel img");
+  if (!bio) return;
+  const mm = gsap.matchMedia();
+  mm.add(
+    { desktop: "(min-width: 1024px)", motion: "(prefers-reduced-motion: no-preference)" },
+    (context) => {
+      if (!context.conditions.motion) return;
+      const headings = gsap.utils.toArray("h1, h2", bio);
+      const texts = gsap.utils.toArray("p, li", bio);
+      const h1 = bio.querySelector("h1");
+      gsap.set(headings, { autoAlpha: 0, x: -REVEAL.distance });
+      gsap.set(texts, { autoAlpha: 0, y: 24 });
+      if (h1) gsap.set(h1, { "--h1-line": 0 });
+      if (photo) gsap.set(photo, { autoAlpha: 0, scale: 0.96, x: context.conditions.desktop ? REVEAL.distance : 0, y: context.conditions.desktop ? 0 : 24 });
+      // in page order, so blocks that arrive together are staggered top to bottom
+      const all = gsap.utils.toArray("h1, h2, p, li", bio).concat(photo ? [photo] : []);
+      ScrollTrigger.batch(all, {
+        start: "top 88%",
+        once: true,
+        onEnter: (batch) => {
+          gsap.to(batch, {
+            autoAlpha: 1, x: 0, y: 0, scale: 1,
+            duration: REVEAL.duration, ease: "power3.out", stagger: 0.07, overwrite: true,
+            clearProps: "transform",
+          });
+          if (h1 && batch.includes(h1)) gsap.to(h1, { "--h1-line": 1, duration: 0.8, ease: "power2.inOut", delay: 0.15, clearProps: "--h1-line" });
+        },
+      });
+    }
+  );
+}
+
+// ----------------------------------------------------------------- decorations: hover
+// The same piece-by-piece motion as the intro, on every page:
+//   dot grids   a ripple spreads out from where the pointer enters; each dot swells and settles
+//   hatches     the stripes shift along their slant one after another, then return
+//   small circles and lines (plain images) grow slightly while hovered, as they always have
+// Starts once the intro has finished, and is off for reduced motion.
+function decorHover() {
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    let ready = false;
+    const wait = gsap.delayedCall(heroIntroLength + 0.1, () => { ready = true; });
+    const off = [];
+    const on = (el, type, fn) => { el.addEventListener(type, fn); off.push(() => el.removeEventListener(type, fn)); };
+
+    gsap.utils.toArray("svg.decor-inline").forEach((svg) => {
+      const pieces = decorPieces(svg);
+      if (!pieces.length) return;
+      const dots = svg.getAttribute("data-decor") === "dots";
+      on(svg, "pointerenter", (e) => {
+        if (!ready || gsap.isTweening(pieces)) return;
+        if (dots) {
+          // the further a dot is from the pointer, the later it swells
+          const far = pieces.map((dot) => {
+            const r = dot.getBoundingClientRect();
+            return Math.hypot(r.left + r.width / 2 - e.clientX, r.top + r.height / 2 - e.clientY);
+          });
+          const max = Math.max.apply(null, far) || 1;
+          gsap.to(pieces, {
+            scale: 1.7, transformOrigin: "50% 50%", duration: 0.22, ease: "power2.out",
+            yoyo: true, repeat: 1, delay: (i) => (far[i] / max) * 0.45,
+          });
+        } else {
+          gsap.to(pieces, { y: -14, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1, stagger: 0.07 });
+        }
+      });
+    });
+
+    gsap.utils.toArray("img[id^='small-circles'], img[id^='white-line']").forEach((img) => {
+      on(img, "pointerenter", () => { if (ready) gsap.to(img, { scale: 1.2, transformOrigin: "50% 50%", duration: 0.25, ease: "power2.out", overwrite: "auto" }); });
+      on(img, "pointerleave", () => gsap.to(img, { scale: 1, duration: 0.25, ease: "power2.out", overwrite: "auto" }));
+    });
+
+    return () => { wait.kill(); off.forEach((fn) => fn()); };
+  });
+}
+
+// ----------------------------------------------------------------- animation helpers
 // ----------------------------------------------------------------- start
 document.addEventListener("DOMContentLoaded", init);
 
@@ -781,4 +882,17 @@ document.addEventListener("DOMContentLoaded", init);
 //     repeat: -1,
 //     duration: 6, // Adjust duration as needed
 //   });
+// }
+//
+// --- replaced by decorHover() (dots ripple, hatch stripes shift; plain images still grow) ---
+// function changeScale(elem) {
+//   if (!elem) return;
+//   if (elemLoaded === true) {
+//     elem.addEventListener("mouseenter", (e) => {
+//       gsap.to(elem, { transformOrigin: "bottom center", scale: 1.2, duration: 0.25, ease: "power4.inOut" });
+//     });
+//     elem.addEventListener("mouseleave", (e) => {
+//       gsap.to(elem, { scale: 1, duration: 0.25, ease: "power4.inOut" });
+//     });
+//   }
 // }
