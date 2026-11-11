@@ -490,9 +490,10 @@ function aboutColor() {
 // Each project is revealed once, the first time it scrolls into view (it does not replay).
 // These are timed, not tied to the scrollbar, so they never fight the scroll-linked colours.
 //   screenshot  rises from the bottom; on desktop it comes from the left, right, left in turn
-//   title, tech slide in from the left
-//   paragraph   rises from the bottom
-//   button      from the right on desktop (where it sits on the right), from the bottom otherwise
+//   title, subtitle, technologies, focus area   slide in from the left, one after another
+//   overview    rises from the bottom
+//   highlights  the label, then each point, rise one after another
+//   button      rises from the bottom
 //   divider     (desktop) draws itself left to right - style.scss reads --proj-line
 //   decorations beside the project (tall desktop screens) fill in dot by dot / stripe by stripe
 const REVEAL = {
@@ -543,16 +544,21 @@ function projectReveals() {
           defaults: { duration: REVEAL.duration, ease },
           scrollTrigger: { trigger: details, start: REVEAL.start, once: true },
         });
-        tl.fromTo([title, tech], { autoAlpha: 0, x: -REVEAL.distance }, { autoAlpha: 1, x: 0, stagger: REVEAL.gap, clearProps: "transform" }, 0)
-          .fromTo(text, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, clearProps: "transform" }, REVEAL.gap * 2)
-          .fromTo(
+        // title, subtitle, technologies, focus area: from the left, one after another
+        const heads = [title, details.querySelector(".proj-subtitle"), tech, details.querySelector(".proj-focus")].filter(Boolean);
+        // highlights: the label, then each point
+        const points = gsap.utils.toArray(".proj-highlights h4, .proj-highlights li", content);
+        tl.fromTo(heads, { autoAlpha: 0, x: -REVEAL.distance }, { autoAlpha: 1, x: 0, stagger: REVEAL.gap, clearProps: "transform" }, 0)
+          .fromTo(text, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, clearProps: "transform" }, REVEAL.gap * 3);
+        if (points.length) tl.fromTo(points, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, stagger: REVEAL.gap, clearProps: "transform" }, REVEAL.gap * 4);
+        tl.fromTo(
             button,
-            { autoAlpha: 0, x: desktop ? REVEAL.distance : 0, y: desktop ? 0 : 24 },
+            { autoAlpha: 0, x: 0, y: 24 },
             // only x/y are cleared, so the button's own hover styles are untouched
             { autoAlpha: 1, x: 0, y: 0, clearProps: "transform" },
-            REVEAL.gap * 3
+            REVEAL.gap * 5
           )
-          .fromTo(content, { "--proj-line": 0 }, { "--proj-line": 1, duration: 0.8, ease: "power2.inOut", clearProps: "--proj-line" }, REVEAL.gap * 4);
+          .fromTo(content, { "--proj-line": 0 }, { "--proj-line": 1, duration: 0.8, ease: "power2.inOut", clearProps: "--proj-line" }, REVEAL.gap * 5);
 
         // decorations beside this project (only laid out on tall desktop screens)
         const decor = gsap.utils.toArray(":scope > img, :scope > svg", project).filter((el) => el.getClientRects().length > 0);

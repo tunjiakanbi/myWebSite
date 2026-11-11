@@ -112,6 +112,11 @@ Depth comes from the darker surface colour on the lighter ground.
   (as wide as its column) with Core Capabilities and Education under it on the right. The decoration field sits behind
   the card and stays still while the card scrolls over it. Below 1024px there is no field and no
   card: text, then photo, on the page ground.
+- **Project block (home)**: title (Pirulen, the short name only), subtitle (Outfit 500, white),
+  technologies (gold line), "Focus Area" (small lime label, text beneath), overview paragraph,
+  "Engineering & UI Highlights" (small lime label, three points with a bold lead-in and a gold
+  rule on the left), then the "View Project" button. From 1024px the overview and button sit in
+  a left column and the highlights in a right column; below that everything stacks.
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
   Pinned to the top of the window. It slides away while scrolling down and returns as soon as the
   visitor scrolls up (4px is enough), so the menu is always one small scroll away. Always shown
@@ -132,8 +137,8 @@ Depth comes from the darker surface colour on the lighter ground.
   fetched, the images stay and slide in whole.
 - Project reveals (home): each project is revealed once, the first time it scrolls into view.
   Screenshot first (from the left, right, left in turn on desktop; rising from the bottom on
-  smaller screens), then title and tech line from the left, paragraph from below, button from the
-  right on desktop, and the divider drawing left to right. 40px of travel, 0.6s each, 0.1s apart.
+  smaller screens), then title, subtitle, technologies and focus area from the left, the overview,
+  each highlight and the button rising from below, and the divider drawing left to right. 40px of travel, 0.6s each, 0.1s apart.
   The screenshot starts the moment the project's top edge appears and takes 0.45s, so it has
   settled before the project fills the screen.
   Timed, never tied to the scrollbar. Settings are in `REVEAL` in `js/app.js`.
