@@ -67,7 +67,12 @@ body {
 nav {
   // Sits above all page content (only the lightbox and skip link are higher), so the open menu
   // covers everything, the home page's scroll cue included.
-  position: relative;
+  // Pinned to the top of the window. app.js adds html.nav-hidden while the visitor scrolls down
+  // and removes it as soon as they scroll up; the bar slides by changing "top" (not transform,
+  // which would stop the menu overlay inside it from filling the window).
+  position: sticky;
+  top: 0;
+  transition: top 250ms ease;
   z-index: 999;
   height: 70px;
   background: $darkBlue;
@@ -2392,4 +2397,14 @@ svg.decor-inline {
 :where(body.page-gallery) #container1,
 :where(body.page-contact) #container1 {
   overflow: clip;
+}
+
+// nav slid out of the way while scrolling down (see app.js, navOnScroll)
+html.nav-hidden nav {
+  top: -70px;
+}
+@media (prefers-reduced-motion: reduce) {
+  nav {
+    transition: none;
+  }
 }

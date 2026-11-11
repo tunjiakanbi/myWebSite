@@ -43,6 +43,39 @@ const scrollIndicator = document.getElementById("scroll-indicator");
 const scrollHeading = document.querySelector("#scrollHeading");
 const scrollDownChevron = document.getElementById("down-chevron");
 
+// ----------------------------------------------------------------- nav: hides going down, returns going up
+// The nav bar is pinned to the top of the window (position: sticky in style.scss). Scrolling down
+// slides it out of the way; scrolling up, even a little, brings it straight back, so the menu is
+// always one small scroll away. It always shows near the top of the page, while the menu is open
+// and when a keyboard user tabs into it. style.scss does the sliding from html.nav-hidden.
+const NAV_SCROLL = {
+  showAbove: 80, // px from the top of the page: always shown
+  down: 8,       // px scrolled down before it hides
+  up: 4,         // px scrolled up before it returns
+};
+(function navOnScroll() {
+  const root = document.documentElement;
+  const nav = document.querySelector("nav");
+  if (!nav) return;
+  let last = Math.max(0, window.scrollY);
+  let queued = false;
+  const show = () => root.classList.remove("nav-hidden");
+  const update = () => {
+    queued = false;
+    const y = Math.max(0, window.scrollY); // (ignores the bounce past the top on phones)
+    const moved = y - last;
+    if (y <= NAV_SCROLL.showAbove || root.classList.contains("menu-open")) show();
+    else if (moved > NAV_SCROLL.down) root.classList.add("nav-hidden");
+    else if (moved < -NAV_SCROLL.up) show();
+    else return; // too small to count yet: keep measuring from the same place
+    last = y;
+  };
+  window.addEventListener("scroll", () => {
+    if (!queued) { queued = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  nav.addEventListener("focusin", show);
+})();
+
 // ----------------------------------------------------------------- mobile menu
 // Accessibility: the hamburger is a <div>, so give it button semantics and keyboard support,
 // and keep the closed overlay's links out of the tab order.

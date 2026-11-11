@@ -112,6 +112,10 @@ Depth comes from the darker surface colour on the lighter ground.
   the card and stays still while the card scrolls over it. Below 1024px there is no field and no
   card: text, then photo, on the page ground.
 - **Navigation**: `$darkBlue` bar, brand left, links right from 1366px, menu button below that.
+  Pinned to the top of the window. It slides away while scrolling down and returns as soon as the
+  visitor scrolls up (4px is enough), so the menu is always one small scroll away. Always shown
+  within 80px of the top, while the menu is open, and when keyboard focus enters it. Settings are
+  in `NAV_SCROLL` in `js/app.js`.
 - **Footer**: `$darkBlue`, social icons, copyright.
 
 ## Imagery and motion

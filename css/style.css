@@ -28,7 +28,9 @@ body {
 }
 
 nav {
-  position: relative;
+  position: sticky;
+  top: 0;
+  transition: top 250ms ease;
   z-index: 999;
   height: 70px;
   background: #170046;
@@ -2033,4 +2035,14 @@ svg.decor-inline {
 :where(body.page-gallery) #container1,
 :where(body.page-contact) #container1 {
   overflow: clip;
+}
+
+html.nav-hidden nav {
+  top: -70px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  nav {
+    transition: none;
+  }
 }
