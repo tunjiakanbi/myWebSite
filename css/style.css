@@ -1447,6 +1447,7 @@ html.lb-open {
 }
 html {
   scroll-behavior: smooth;
+  background-color: #170046;
 }
 .sr-only {
   position: absolute;
@@ -1921,5 +1922,18 @@ html.menu-open {
   nav div#desktop-nav ul#nav-links-desktop li a::after,
   :where(body.page-contact) #container1 section#contact .contact-direct a::after {
     transition: none;
+  }
+}
+:where(body.page-gallery) #container1 {
+  height: auto;
+  min-height: calc(100vh - 170px);
+  min-height: calc(100dvh - 170px);
+  padding-bottom: 5em;
+}
+@media (max-height: 700px) {
+  :where(body.page-gallery.gallery-viewer-open) #container1 {
+    min-height: calc(100vh - 70px);
+    min-height: calc(100dvh - 70px);
+    padding-bottom: 0;
   }
 }
