@@ -502,7 +502,7 @@ nav div#desktop-nav {
   background-color: #ebf3cd;
   border-radius: 50%;
 }
-#container1 img#torqoise-hatch {
+#container1 :is(img, svg)#torqoise-hatch {
   position: absolute;
   top: 150px;
   left: -25px;
@@ -511,26 +511,26 @@ nav div#desktop-nav {
   display: block;
   z-index: 1;
 }
-:where(body.page-about) #container1 img#torqoise-hatch {
+:where(body.page-about) #container1 :is(img, svg)#torqoise-hatch {
   display: none;
 }
-:where(body.page-home) #container1 img#torqoise-hatch {
+:where(body.page-home) #container1 :is(img, svg)#torqoise-hatch {
   top: 505px;
 }
-#container1 img#torqoise-hatch:hover {
+#container1 :is(img, svg)#torqoise-hatch:hover {
   transform: scale(1.2);
 }
-:where(body.page-home) #container1 img#white-dots, :where(body.page-contact) #container1 img#white-dots, :where(body.page-gallery) #container1 img#white-dots {
+:where(body.page-home) #container1 :is(img, svg)#white-dots, :where(body.page-contact) #container1 :is(img, svg)#white-dots, :where(body.page-gallery) #container1 :is(img, svg)#white-dots {
   position: absolute;
   top: 510px;
   right: 5px;
   z-index: 1;
 }
-#container1 img#white-dots2 {
+#container1 :is(img, svg)#white-dots2 {
   position: absolute;
   display: none;
 }
-:where(body.page-home) #container1 img#gold-hatch, :where(body.page-contact) #container1 img#gold-hatch, :where(body.page-gallery) #container1 img#gold-hatch {
+:where(body.page-home) #container1 :is(img, svg)#gold-hatch, :where(body.page-contact) #container1 :is(img, svg)#gold-hatch, :where(body.page-gallery) #container1 :is(img, svg)#gold-hatch {
   position: absolute;
   top: 530px;
   right: -200px;
@@ -579,7 +579,7 @@ nav div#desktop-nav {
   height: 600px;
   transform: scale(1.2);
 }
-#container1 img#torqoise-hatch, #container1 img#white-dots, #container1 img#white-dots2, #container1 img#gold-hatch, #container1 img#small-circles, #container1 img#small-circles2, #container1 img#gold-dots, #container1 img#white-line, #container1 #img#white-line2, #container1 svg#large-cirlces, #container1 svg#large-cirlces2, #container1 #desktop-nav, #container1 img#gold-dots2, #container1 img#white-dots3, #container1 img#torqoise-hatch2, #container1 img#gold-hatch3, #container1 #small-circles3 {
+#container1 :is(img, svg)#torqoise-hatch, #container1 :is(img, svg)#white-dots, #container1 :is(img, svg)#white-dots2, #container1 :is(img, svg)#gold-hatch, #container1 img#small-circles, #container1 img#small-circles2, #container1 :is(img, svg)#gold-dots, #container1 img#white-line, #container1 #img#white-line2, #container1 svg#large-cirlces, #container1 svg#large-cirlces2, #container1 #desktop-nav, #container1 :is(img, svg)#gold-dots2, #container1 :is(img, svg)#white-dots3, #container1 :is(img, svg)#torqoise-hatch2, #container1 :is(img, svg)#gold-hatch3, #container1 #small-circles3 {
   visibility: hidden;
   cursor: cell;
 }
@@ -646,11 +646,11 @@ nav div#desktop-nav {
   flex-direction: column;
   padding: 1.5em;
 }
-:where(body.page-home) #container2 img#white-dots4 {
+:where(body.page-home) #container2 :is(img, svg)#white-dots4 {
   position: relative;
   display: none;
 }
-:where(body.page-home) #container2 img#torqoise-hatch3 {
+:where(body.page-home) #container2 :is(img, svg)#torqoise-hatch3 {
   position: relative;
   display: none;
 }
@@ -710,32 +710,32 @@ nav div#desktop-nav {
 :where(body.page-about) #container2 section#background-panel svg#large-circles3 {
   display: none;
 }
-:where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+:where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
   position: absolute;
   right: 0px;
   top: 90vh;
   z-index: 0;
 }
-:where(body.page-about) #container2 section#background-panel img#white-dots5 {
+:where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
   position: absolute;
   left: -18px;
   top: 90vh;
   z-index: 0;
 }
 
-:where(body.page-home) #container3 img#gold-dots3 {
+:where(body.page-home) #container3 :is(img, svg)#gold-dots3 {
   position: relative;
   display: none;
 }
-:where(body.page-home) #container3 img#torqoise-hatch4 {
+:where(body.page-home) #container3 :is(img, svg)#torqoise-hatch4 {
   position: relative;
   display: none;
 }
-:where(body.page-home) #container4 img#white-dots5 {
+:where(body.page-home) #container4 :is(img, svg)#white-dots5 {
   position: relative;
   display: none;
 }
-:where(body.page-home) #container4 img#gold-hatch4 {
+:where(body.page-home) #container4 :is(img, svg)#gold-hatch4 {
   position: relative;
   display: none;
 }
@@ -799,7 +799,7 @@ footer #copyright {
     max-width: 1365px;
     min-width: 576px;
   }
-  :where(body.page-home) #container1 img#torqoise-hatch {
+  :where(body.page-home) #container1 :is(img, svg)#torqoise-hatch {
     top: 233px;
     left: 29px;
   }
@@ -827,7 +827,7 @@ footer #copyright {
   :where(body.page-about) #container1 section#about-description {
     width: 600px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-contact) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-gallery) #container1 :is(img, svg)#torqoise-hatch {
     display: block;
     top: 321px;
     left: 0px;
@@ -851,13 +851,13 @@ footer #copyright {
   :where(body.page-about) #container2 section#background-panel svg#large-circles3 {
     display: none;
   }
-  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
     position: absolute;
     right: 0px;
     top: 122vh;
     z-index: 0;
   }
-  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
     position: absolute;
     left: -18px;
     top: 133vh;
@@ -875,7 +875,7 @@ footer #copyright {
   :where(body.page-gallery) #container1 section#gallery {
     width: 600px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-contact) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-gallery) #container1 :is(img, svg)#torqoise-hatch {
     display: block;
     top: 233px;
     left: 29px;
@@ -927,13 +927,13 @@ footer #copyright {
     right: 0px;
     top: 40vh;
   }
-  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
     position: absolute;
     right: 50px;
     top: 50px;
     z-index: 0;
   }
-  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
     position: absolute;
     left: 150px;
     top: 55vh;
@@ -983,24 +983,24 @@ footer #copyright {
     width: 600px;
     left: -185px;
   }
-  #container1 img#torqoise-hatch {
+  #container1 :is(img, svg)#torqoise-hatch {
     top: 269px;
     left: 121px;
   }
-  :where(body.page-about) #container1 img#torqoise-hatch, :where(body.page-contact) #container1 img#torqoise-hatch, :where(body.page-gallery) #container1 img#torqoise-hatch {
+  :where(body.page-about) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-contact) #container1 :is(img, svg)#torqoise-hatch, :where(body.page-gallery) #container1 :is(img, svg)#torqoise-hatch {
     display: block;
   }
-  #container1 img#gold-dots {
+  #container1 :is(img, svg)#gold-dots {
     display: block;
     left: 263px;
     width: 280px;
     height: auto;
     z-index: 1;
   }
-  :where(body.page-home) #container1 img#gold-dots {
+  :where(body.page-home) #container1 :is(img, svg)#gold-dots {
     top: 229px;
   }
-  :where(body.page-about) #container1 img#gold-dots, :where(body.page-contact) #container1 img#gold-dots, :where(body.page-gallery) #container1 img#gold-dots {
+  :where(body.page-about) #container1 :is(img, svg)#gold-dots, :where(body.page-contact) #container1 :is(img, svg)#gold-dots, :where(body.page-gallery) #container1 :is(img, svg)#gold-dots {
     top: 272px;
   }
   #container1 img#small-circles {
@@ -1041,15 +1041,15 @@ footer #copyright {
     right: -300px;
     display: block;
   }
-  #container1 img#gold-hatch {
+  #container1 :is(img, svg)#gold-hatch {
     top: 425px;
     right: -32px;
   }
-  #container1 img#white-dots {
+  #container1 :is(img, svg)#white-dots {
     top: 100px;
     right: 245px;
   }
-  #container1 img#white-dots2 {
+  #container1 :is(img, svg)#white-dots2 {
     top: 362px;
     left: 15px;
     display: block;
@@ -1100,13 +1100,13 @@ footer #copyright {
     right: 125px;
     top: 40vh;
   }
-  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
     position: absolute;
     right: 250px;
     top: 50px;
     z-index: 0;
   }
-  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
     position: absolute;
     left: 415px;
     top: 325px;
@@ -1162,8 +1162,19 @@ footer #copyright {
   }
   :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content {
     flex-direction: row;
-    border-bottom: 1px solid #fff;
     padding-bottom: 1em;
+    position: relative;
+  }
+  :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: #fff;
+    transform: scaleX(var(--proj-line, 1));
+    transform-origin: left center;
   }
   :where(body.page-home) .projects section.proj-wrap section.proj-details section.project-content p {
     width: 60%;
@@ -1173,13 +1184,13 @@ footer #copyright {
     flex: 0 0 auto;
     margin: 0 0 0 3em;
   }
-  :where(body.page-home) #container2 img#white-dots4 {
+  :where(body.page-home) #container2 :is(img, svg)#white-dots4 {
     position: absolute;
     top: calc(100vh + 40px);
     width: 300px;
     display: block;
   }
-  :where(body.page-home) #container2 img#torqoise-hatch3 {
+  :where(body.page-home) #container2 :is(img, svg)#torqoise-hatch3 {
     position: absolute;
     top: calc(100vh + 40px);
     display: block;
@@ -1189,7 +1200,7 @@ footer #copyright {
     position: relative;
     z-index: 1;
   }
-  :where(body.page-home) #container3 img#gold-dots3 {
+  :where(body.page-home) #container3 :is(img, svg)#gold-dots3 {
     position: absolute;
     display: block;
     z-index: 0;
@@ -1197,7 +1208,7 @@ footer #copyright {
     top: 31px;
     left: calc(100% - 6.75em);
   }
-  :where(body.page-home) #container3 img#torqoise-hatch4 {
+  :where(body.page-home) #container3 :is(img, svg)#torqoise-hatch4 {
     position: absolute;
     top: 33px;
     display: block;
@@ -1209,13 +1220,13 @@ footer #copyright {
     position: relative;
     z-index: 1;
   }
-  :where(body.page-home) #container4 img#white-dots5 {
+  :where(body.page-home) #container4 :is(img, svg)#white-dots5 {
     position: absolute;
     top: 40px;
     width: 300px;
     display: block;
   }
-  :where(body.page-home) #container4 img#gold-hatch4 {
+  :where(body.page-home) #container4 :is(img, svg)#gold-hatch4 {
     position: absolute;
     top: 97px;
     display: block;
@@ -1227,13 +1238,13 @@ footer #copyright {
   }
 }
 @media (max-width: 575px) {
-  :where(body.page-about) #container1 img#white-dots {
+  :where(body.page-about) #container1 :is(img, svg)#white-dots {
     z-index: 1;
     position: absolute;
     bottom: 0;
     right: 0;
   }
-  :where(body.page-about) #container1 img#gold-hatch {
+  :where(body.page-about) #container1 :is(img, svg)#gold-hatch {
     left: -61px;
     z-index: 1;
     position: absolute;
@@ -1354,13 +1365,13 @@ html.lb-open {
 }
 
 @media (min-width: 576px) {
-  :where(body.page-about) #container1 img#white-dots {
+  :where(body.page-about) #container1 :is(img, svg)#white-dots {
     position: absolute;
     top: 510px;
     right: 5px;
     z-index: 1;
   }
-  :where(body.page-about) #container1 img#gold-hatch {
+  :where(body.page-about) #container1 :is(img, svg)#gold-hatch {
     position: absolute;
     top: 530px;
     right: -200px;
@@ -1759,21 +1770,21 @@ nav #brand {
   left: 0;
   pointer-events: none;
 }
-:where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+:where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
   top: auto;
   bottom: 1.5em;
 }
-:where(body.page-about) #container2 section#background-panel img#white-dots5 {
+:where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
   top: auto;
   bottom: 1.5em;
 }
 
 @media (min-width: 1024px) {
-  :where(body.page-about) #container2 section#background-panel img#torqoise-hatch4 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#torqoise-hatch4 {
     top: 50px;
     bottom: auto;
   }
-  :where(body.page-about) #container2 section#background-panel img#white-dots5 {
+  :where(body.page-about) #container2 section#background-panel :is(img, svg)#white-dots5 {
     display: none;
   }
 }
@@ -1921,4 +1932,8 @@ html.menu-open {
     min-height: calc(100dvh - 70px);
     padding-bottom: 0;
   }
+}
+
+svg.decor-inline {
+  overflow: hidden;
 }

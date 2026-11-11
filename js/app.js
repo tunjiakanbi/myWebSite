@@ -23,21 +23,21 @@ const block8 = document.querySelector("#block-8");
 const block9 = document.querySelector("#block-9");
 const block10 = document.querySelector("#block-10");
 const block11 = document.querySelector("#block-11");
-const torqoise = document.querySelector("#torqoise-hatch");
-const whiteDots = document.querySelector("#white-dots");
-const whiteDots2 = document.querySelector("#white-dots2");
-const goldHatch = document.querySelector("#gold-hatch");
+let torqoise = document.querySelector("#torqoise-hatch");
+let whiteDots = document.querySelector("#white-dots");
+let whiteDots2 = document.querySelector("#white-dots2");
+let goldHatch = document.querySelector("#gold-hatch");
 const smallCircles = document.querySelector("#small-circles");
 const smallCircles2 = document.querySelector("#small-circles2");
 const whiteLine = document.querySelector("#white-line");
 const whiteLine2 = document.querySelector("#white-line2");
 const largeCircles = document.querySelector("#large-circles");
 const largeCircles2 = document.querySelector("#large-circles2");
-const goldDots = document.querySelector("#gold-dots");
-const goldDots2 = document.querySelector("#gold-dots2");
-const whiteDots3 = document.querySelector("#white-dots3");
-const torqoise2 = document.querySelector("#torqoise-hatch2");
-const goldHatch3 = document.querySelector("#gold-hatch3");
+let goldDots = document.querySelector("#gold-dots");
+let goldDots2 = document.querySelector("#gold-dots2");
+let whiteDots3 = document.querySelector("#white-dots3");
+let torqoise2 = document.querySelector("#torqoise-hatch2");
+let goldHatch3 = document.querySelector("#gold-hatch3");
 const smallCircles3 = document.querySelector("#small-circles3");
 const scrollIndicator = document.getElementById("scroll-indicator");
 const scrollHeading = document.querySelector("#scrollHeading");
@@ -94,9 +94,110 @@ let elemLoaded = false;
 
 function init() {
   gsap.from(body, {autoAlpha: 0, duration: 0.25});
-  heroIntro();
-  sectionColors();
-  aboutColor();
+  // the dot grids and hatches are swapped for inline SVG first (see inlineDecor), so their
+  // individual dots and stripes can be animated; if that fails the animations still run
+  const start = () => {
+    heroIntro();
+    sectionColors();
+    aboutColor();
+    projectReveals();
+    decorDrift();
+    // These start a moment after the page begins loading (see inlineDecor), so measure the page
+    // again once everything, images included, has loaded.
+    if (document.readyState === "complete") ScrollTrigger.refresh();
+    else window.addEventListener("load", () => ScrollTrigger.refresh(), { once: true });
+  };
+  inlineDecor().then(start, start);
+}
+
+// ----------------------------------------------------------------- decorations: inline SVG
+// The dot grids and hatches are <img> tags in the HTML. An <img> can only be animated as a whole,
+// so the SVG drawing is fetched (it is already in the browser cache) and put in the page in place
+// of the <img>, keeping its id, classes and size. Then every dot and stripe is its own element.
+// If this cannot happen (slow network, or the page opened straight from disk without a server),
+// the <img> tags stay and each decoration is animated as one piece, exactly as before.
+const DECOR_FILES = /(white-dots|gold-dots|torqoise-hatch|gold-hatch)\.svg$/;
+const DECOR_WAIT = 600; // ms: never hold the intro up for longer than this
+
+function inlineDecor() {
+  const imgs = gsap.utils.toArray("img").filter((img) => DECOR_FILES.test(img.getAttribute("src") || ""));
+  if (!imgs.length || !window.fetch || !window.DOMParser) return Promise.resolve();
+  const files = [...new Set(imgs.map((img) => img.getAttribute("src")))];
+  const load = Promise.all(
+    files.map((src) => fetch(src).then((r) => (r.ok ? r.text() : Promise.reject(new Error(src)))).then((text) => [src, text]))
+  ).then((pairs) => {
+    const source = new Map(pairs);
+    imgs.forEach((img, n) => {
+      const doc = new DOMParser().parseFromString(source.get(img.getAttribute("src")), "image/svg+xml");
+      const svg = doc.documentElement;
+      if (!svg || svg.nodeName.toLowerCase() !== "svg") return;
+      // ids inside the file would repeat across copies: drop them, and give the clip its own name
+      const clipId = "decor-clip-" + n;
+      svg.querySelectorAll("[id]").forEach((el) => {
+        if (el.nodeName.toLowerCase() === "clippath") el.id = clipId;
+        else el.removeAttribute("id");
+      });
+      svg.querySelectorAll("[clip-path]").forEach((el) => el.setAttribute("clip-path", "url(#" + clipId + ")"));
+      svg.querySelectorAll("[data-name]").forEach((el) => el.removeAttribute("data-name"));
+      svg.removeAttribute("data-name");
+      // size like the <img> did: the file's width is the default, and the height follows the
+      // width (whatever the stylesheet sets it to) in the drawing's own proportions
+      const w = parseFloat(svg.getAttribute("width")), h = parseFloat(svg.getAttribute("height"));
+      svg.removeAttribute("height");
+      if (w && h) svg.style.aspectRatio = w + " / " + h;
+      svg.id = img.id;
+      svg.setAttribute("class", (img.className + " decor-inline").trim());
+      svg.setAttribute("aria-hidden", "true");
+      svg.setAttribute("focusable", "false");
+      svg.setAttribute("data-decor", /dots/.test(img.getAttribute("src")) ? "dots" : "hatch");
+      img.replaceWith(document.importNode(svg, true));
+    });
+    // the element references made at the top of this file now point at the new elements
+    torqoise = document.querySelector("#torqoise-hatch");
+    whiteDots = document.querySelector("#white-dots");
+    whiteDots2 = document.querySelector("#white-dots2");
+    goldHatch = document.querySelector("#gold-hatch");
+    goldDots = document.querySelector("#gold-dots");
+    goldDots2 = document.querySelector("#gold-dots2");
+    whiteDots3 = document.querySelector("#white-dots3");
+    torqoise2 = document.querySelector("#torqoise-hatch2");
+    goldHatch3 = document.querySelector("#gold-hatch3");
+  });
+  let late = false;
+  const timeout = new Promise((resolve) => setTimeout(() => { late = true; resolve(); }, DECOR_WAIT));
+  // if the files arrive after the intro has started, leave the <img> tags alone
+  return Promise.race([load.then(() => {}, () => {}), timeout]);
+}
+
+// The dots or stripes inside an inlined decoration ([] for a plain <img>).
+function decorPieces(el) {
+  if (!el || !el.matches || !el.matches("svg.decor-inline")) return [];
+  return gsap.utils.toArray(el.getAttribute("data-decor") === "dots" ? "circle" : "path", el);
+}
+
+// Adds a decoration's arrival to a timeline: dot grids fill in as a wave from the top-left corner,
+// hatch stripes slide in one after another. A plain <img> slides in whole from (x, y) instead.
+function decorArrive(tl, el, at, slide) {
+  const pieces = decorPieces(el);
+  if (!pieces.length) {
+    tl.fromTo(
+      el,
+      { autoAlpha: 0, x: slide.x || 0, y: slide.y || 0 },
+      { autoAlpha: 1, x: 0, y: 0, duration: 0.7, ease: slide.ease || "power3.out", clearProps: "transform" },
+      at
+    );
+    return;
+  }
+  tl.set(el, { autoAlpha: 1 }, at);
+  if (el.getAttribute("data-decor") === "dots") {
+    tl.from(
+      pieces,
+      { scale: 0, transformOrigin: "50% 50%", duration: 0.35, ease: "back.out(2)", stagger: { amount: 0.6, grid: "auto", from: "start" } },
+      at
+    );
+  } else {
+    tl.from(pieces, { autoAlpha: 0, y: 60, duration: 0.5, ease: "power3.out", stagger: 0.09 }, at);
+  }
 }
 
 // ----------------------------------------------------------------- page intro (~4 seconds, every page)
@@ -186,15 +287,9 @@ function heroIntro() {
         "grid"
       );
 
-      // 3. decor: each piece slides a short way into place
-      shownDecor.forEach((d, i) => {
-        tl.fromTo(
-          d.el,
-          { autoAlpha: 0, x: d.x || 0, y: d.y || 0 },
-          { autoAlpha: 1, x: 0, y: 0, duration: 0.7, ease: d.ease || "power3.out", clearProps: "transform" },
-          "decor+=" + i * 0.09
-        );
-      });
+      // 3. decor: each decoration arrives in turn
+      //    (dot grids fill in dot by dot and hatches stripe by stripe: see decorArrive)
+      shownDecor.forEach((d, i) => decorArrive(tl, d.el, "decor+=" + i * 0.09, d));
       //    ...while the large circle outlines draw themselves and their markers pop on
       if (shownCircles.length) {
         const rings = shownCircles.flatMap((svg) => gsap.utils.toArray("circle.cls-1", svg));
@@ -207,6 +302,8 @@ function heroIntro() {
       // 4. settle: the scroll cue arrives last, once there is something to scroll past
       tl.addLabel("settle", "-=0.3");
       if (scrollCue) tl.fromTo(scrollCue, { autoAlpha: 0, y: 20 }, { autoAlpha: 1, y: 0 }, "settle");
+
+      heroIntroLength = tl.duration();
 
       // ---- ambient motion (keeps going after the intro, but only while the hero is on screen)
       const ambient = [];
@@ -294,6 +391,7 @@ function sectionColors() {
           backgroundColor: to,
           ease: "none",
           scrollTrigger: {
+            id: "color",
             trigger: el,
             start: "clamp(top bottom)",
             // distance from the section's top to its text, stretched so the text arrives at the
@@ -342,6 +440,7 @@ function aboutColor() {
           backgroundColor: to,
           ease: "none",
           scrollTrigger: {
+            id: "color",
             start: 0,
             end: () => Math.min(window.innerHeight * ABOUT_COLOR_DISTANCE, ScrollTrigger.maxScroll(window)),
             scrub: 0.3,
@@ -351,6 +450,113 @@ function aboutColor() {
     }
   );
 }
+
+// ----------------------------------------------------------------- home: project reveals
+// Each project is revealed once, the first time it scrolls into view (it does not replay).
+// These are timed, not tied to the scrollbar, so they never fight the scroll-linked colours.
+//   screenshot  rises from the bottom; on desktop it comes from the left, right, left in turn
+//   title, tech slide in from the left
+//   paragraph   rises from the bottom
+//   button      from the right on desktop (where it sits on the right), from the bottom otherwise
+//   divider     (desktop) draws itself left to right - style.scss reads --proj-line
+//   decorations beside the project (tall desktop screens) fill in dot by dot / stripe by stripe
+const REVEAL = { distance: 40, duration: 0.6, gap: 0.1, start: "top 80%" };
+
+function projectReveals() {
+  const projects = gsap.utils.toArray(".projects");
+  if (!projects.length) return;
+  const mm = gsap.matchMedia();
+  mm.add(
+    { desktop: "(min-width: 1024px)", motion: "(prefers-reduced-motion: no-preference)" },
+    (context) => {
+      if (!context.conditions.motion) return; // reduced motion: everything is simply in place
+      const desktop = context.conditions.desktop;
+      const ease = "power3.out";
+      projects.forEach((project, i) => {
+        const shot = project.querySelector("img.proj-img");
+        const details = project.querySelector(".proj-details");
+        if (!shot || !details) return;
+        const title = details.querySelector("h2");
+        const tech = details.querySelector("h3");
+        const content = details.querySelector(".project-content");
+        const text = content.querySelector("p");
+        const button = content.querySelector(".btn");
+
+        // 1. screenshot (its wrapper is the trigger: the screenshot itself is moved)
+        const fromSide = desktop ? (i % 2 === 0 ? -1 : 1) * 60 : 0;
+        gsap.fromTo(
+          shot,
+          { autoAlpha: 0, x: fromSide, y: desktop ? 0 : REVEAL.distance },
+          {
+            autoAlpha: 1, x: 0, y: 0, duration: 0.8, ease, clearProps: "transform",
+            scrollTrigger: { trigger: shot.closest("picture") || project, start: REVEAL.start, once: true },
+          }
+        );
+
+        // 2-6. text block
+        const tl = gsap.timeline({
+          defaults: { duration: REVEAL.duration, ease },
+          scrollTrigger: { trigger: details, start: REVEAL.start, once: true },
+        });
+        tl.fromTo([title, tech], { autoAlpha: 0, x: -REVEAL.distance }, { autoAlpha: 1, x: 0, stagger: REVEAL.gap, clearProps: "transform" }, 0)
+          .fromTo(text, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, clearProps: "transform" }, REVEAL.gap * 2)
+          .fromTo(
+            button,
+            { autoAlpha: 0, x: desktop ? REVEAL.distance : 0, y: desktop ? 0 : 24 },
+            // only x/y are cleared, so the button's own hover styles are untouched
+            { autoAlpha: 1, x: 0, y: 0, clearProps: "transform" },
+            REVEAL.gap * 3
+          )
+          .fromTo(content, { "--proj-line": 0 }, { "--proj-line": 1, duration: 0.8, ease: "power2.inOut", clearProps: "--proj-line" }, REVEAL.gap * 4);
+
+        // decorations beside this project (only laid out on tall desktop screens)
+        const decor = gsap.utils.toArray(":scope > img, :scope > svg", project).filter((el) => el.getClientRects().length > 0);
+        decor.forEach((el, n) => {
+          const dtl = gsap.timeline({ scrollTrigger: { trigger: project, start: "top 70%", once: true } });
+          decorArrive(dtl, el, n * 0.15, { y: REVEAL.distance });
+        });
+      });
+    }
+  );
+}
+
+// ----------------------------------------------------------------- home: decorations drift on scroll
+// Depth: as the page scrolls, each decoration moves a little slower or faster than the page
+// (positive = lags behind, negative = runs ahead). Tied to the scrollbar, and only on the home
+// page. It starts when the intro has finished, so the two never move the same element at once.
+const DRIFT = [
+  ["#torqoise-hatch", 70], ["#white-dots", -50], ["#white-dots2", 40], ["#gold-hatch", -60],
+  ["#small-circles", 90], ["#small-circles2", -40], ["#gold-dots", 50], ["#white-line", -30], ["#white-line2", 30],
+  ["#large-circles", 110], ["#large-circles2", -70],
+  ["#gold-dots2", 60], ["#white-dots3", -50], ["#torqoise-hatch2", 80], ["#gold-hatch3", -60], ["#small-circles3", 50],
+];
+const DRIFT_PROJECT = 50; // decorations beside the projects: px either side of their resting place
+
+function decorDrift() {
+  if (!document.body.classList.contains("page-home")) return;
+  const hero = document.querySelector("#container1");
+  const mm = gsap.matchMedia();
+  mm.add("(prefers-reduced-motion: no-preference)", () => {
+    const build = () => {
+      DRIFT.forEach(([selector, amount]) => {
+        const el = document.querySelector(selector);
+        if (!el || !el.getClientRects().length) return;
+        gsap.to(el, { y: amount, ease: "none", scrollTrigger: { trigger: hero, start: "top top", end: "bottom top", scrub: 0.4 } });
+      });
+      gsap.utils.toArray(".projects").forEach((project) => {
+        gsap.utils.toArray(":scope > img, :scope > svg", project).forEach((el, n) => {
+          if (!el.getClientRects().length) return;
+          const amount = (n % 2 === 0 ? 1 : -1) * DRIFT_PROJECT;
+          gsap.fromTo(el, { y: -amount }, { y: amount, ease: "none", scrollTrigger: { trigger: project, start: "top bottom", end: "bottom top", scrub: 0.4 } });
+        });
+      });
+    };
+    // wait for the intro (which also moves these elements) to finish
+    const wait = gsap.delayedCall(heroIntroLength + 0.1, build);
+    return () => wait.kill();
+  });
+}
+let heroIntroLength = 0; // seconds; set by heroIntro()
 
 // ----------------------------------------------------------------- animation helpers
 function changeScale(elem) {

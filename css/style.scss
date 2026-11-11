@@ -565,7 +565,7 @@ nav {
     }
   }
   //end section block-grid
-  img#torqoise-hatch {
+  :is(img, svg)#torqoise-hatch {
     position: absolute;
     top: 150px;
     left: -25px;
@@ -582,35 +582,35 @@ nav {
     }
     //   display: none;
   }
-  img#torqoise-hatch:hover {
+  :is(img, svg)#torqoise-hatch:hover {
     transform: scale(1.2);
   }
   :where(body.page-home) &, :where(body.page-contact) &, :where(body.page-gallery) & {
-    img#white-dots {
+    :is(img, svg)#white-dots {
       position: absolute;
       top: 510px;
       right: 5px;
       z-index: 1;
     }
-    // img#white-dots {
+    // :is(img, svg)#white-dots {
     //   position: absolute;
     //   top: 510px;
     //   right: 5px;
     //   z-index: 1;
     // }
   }
-  img#white-dots2 {
+  :is(img, svg)#white-dots2 {
     position: absolute;
     display: none;
   }
   :where(body.page-home) &, :where(body.page-contact) &, :where(body.page-gallery) & {
-    img#gold-hatch {
+    :is(img, svg)#gold-hatch {
       position: absolute;
       top: 530px;
       right: -200px;
       z-index: 1;
     }
-    // img#gold-hatch {
+    // :is(img, svg)#gold-hatch {
     //   position: absolute;
     //   top: 530px;
     //   right: -200px;
@@ -660,7 +660,7 @@ nav {
     height: 600px;
     transform: scale(1.2);
   }
-  img#torqoise-hatch, img#white-dots, img#white-dots2, img#gold-hatch, img#small-circles, img#small-circles2, img#gold-dots, img#white-line, #img#white-line2, svg#large-cirlces, svg#large-cirlces2, #desktop-nav, img#gold-dots2, img#white-dots3, img#torqoise-hatch2, img#gold-hatch3, #small-circles3 {
+  :is(img, svg)#torqoise-hatch, :is(img, svg)#white-dots, :is(img, svg)#white-dots2, :is(img, svg)#gold-hatch, img#small-circles, img#small-circles2, :is(img, svg)#gold-dots, img#white-line, #img#white-line2, svg#large-cirlces, svg#large-cirlces2, #desktop-nav, :is(img, svg)#gold-dots2, :is(img, svg)#white-dots3, :is(img, svg)#torqoise-hatch2, :is(img, svg)#gold-hatch3, #small-circles3 {
     visibility: hidden;
     cursor: cell;
   }
@@ -743,11 +743,11 @@ nav {
     padding: 1.5em;
   }
   :where(body.page-home) & {
-    img#white-dots4 {
+    :is(img, svg)#white-dots4 {
       position: relative;
       display: none;
     }
-    img#torqoise-hatch3 {
+    :is(img, svg)#torqoise-hatch3 {
       position: relative;
       display: none;
     }
@@ -803,11 +803,11 @@ nav {
         z-index: 1;
       }
     }
-    // img#white-dots4 {
+    // :is(img, svg)#white-dots4 {
     //     position: relative;
     //     display: none;
     // }
-    // img#torqoise-hatch3 {
+    // :is(img, svg)#torqoise-hatch3 {
     //     position: relative;
     //     display: none;
     // }
@@ -822,13 +822,13 @@ nav {
       svg#large-circles3 {
         display: none;
       }
-      img#torqoise-hatch4 {
+      :is(img, svg)#torqoise-hatch4 {
         position: absolute;
         right: 0px;
         top: 90vh;
         z-index: 0;
       }
-      img#white-dots5 {
+      :is(img, svg)#white-dots5 {
         position: absolute;
         left: -18px;
         top: 90vh;
@@ -840,21 +840,21 @@ nav {
 
 :where(body.page-home) {
   #container3 {
-    img#gold-dots3 {
+    :is(img, svg)#gold-dots3 {
       position: relative;
       display: none;
     }
-    img#torqoise-hatch4 {
+    :is(img, svg)#torqoise-hatch4 {
       position: relative;
       display: none;
     }
   }
   #container4 {
-    img#white-dots5 {
+    :is(img, svg)#white-dots5 {
       position: relative;
       display: none;
     }
-    img#gold-hatch4 {
+    :is(img, svg)#gold-hatch4 {
       position: relative;
       display: none;
     }
@@ -916,7 +916,7 @@ footer {
   }
 }
 // #container2 {
-//   img#white-dots4 {
+//   :is(img, svg)#white-dots4 {
 //     display: none
 //   }
 // }
@@ -930,7 +930,7 @@ footer {
   }
   :where(body.page-home) {
     #container1 {
-      img#torqoise-hatch {
+      :is(img, svg)#torqoise-hatch {
         top: 233px;
         left: 29px;
       }
@@ -967,7 +967,7 @@ footer {
       }
     }
     :where(body.page-about) &, :where(body.page-contact) &, :where(body.page-gallery) & {
-      img#torqoise-hatch {
+      :is(img, svg)#torqoise-hatch {
         display: block;
         top: 321px;
         left: 0px;
@@ -1001,13 +1001,13 @@ footer {
         svg#large-circles3 {
           display: none;
         }
-        img#torqoise-hatch4 {
+        :is(img, svg)#torqoise-hatch4 {
           position: absolute;
           right: 0px;
           top: 122vh;
           z-index: 0;
         }
-        img#white-dots5 {
+        :is(img, svg)#white-dots5 {
           position: absolute;
           left: -18px;
           top: 133vh;
@@ -1039,7 +1039,7 @@ footer {
       }
     }
     :where(body.page-about) &, :where(body.page-contact) &, :where(body.page-gallery) & {
-      img#torqoise-hatch {
+      :is(img, svg)#torqoise-hatch {
         display: block;
         top: 233px;
         left: 29px;
@@ -1098,13 +1098,13 @@ footer {
           right: 0px;
           top: 40vh;
         }
-        img#torqoise-hatch4 {
+        :is(img, svg)#torqoise-hatch4 {
           position: absolute;
           right: 50px;
           top: 50px;
           z-index: 0;
         }
-        img#white-dots5 {
+        :is(img, svg)#white-dots5 {
           position: absolute;
           left: 150px;
           top: 55vh;
@@ -1167,14 +1167,14 @@ footer {
         left: -185px;
       }
     }
-    img#torqoise-hatch {
+    :is(img, svg)#torqoise-hatch {
       top: 269px;
       left: 121px;
       :where(body.page-about) &, :where(body.page-contact) &, :where(body.page-gallery) & {
         display: block;
       }
     }
-    img#gold-dots {
+    :is(img, svg)#gold-dots {
       display: block;
       left: 263px;
       width: 280px;
@@ -1226,15 +1226,15 @@ footer {
       right: -300px;
       display: block;
     }
-    img#gold-hatch {
+    :is(img, svg)#gold-hatch {
       top: 425px;
       right: -32px;
     }
-    img#white-dots {
+    :is(img, svg)#white-dots {
       top: 100px;
       right: 245px;
     }
-    img#white-dots2 {
+    :is(img, svg)#white-dots2 {
       top: 362px;
       left: 15px;
       display: block;
@@ -1296,13 +1296,13 @@ footer {
           right: 125px;
           top: 40vh;
         }
-        img#torqoise-hatch4 {
+        :is(img, svg)#torqoise-hatch4 {
           position: absolute;
           right: 250px;
           top: 50px;
           z-index: 0;
         }
-        img#white-dots5 {
+        :is(img, svg)#white-dots5 {
           position: absolute;
           //   left: 150px;
           left: 415px;
@@ -1376,8 +1376,21 @@ footer {
           padding: 2em 8em;
           section.project-content {
             flex-direction: row;
-            border-bottom: 1px solid $white;
             padding-bottom: 1em;
+            // divider: a line that app.js can draw left to right (--proj-line 0 -> 1) when the
+            // project is revealed. Without the animation it is simply a full line.
+            position: relative;
+            &::after {
+              content: "";
+              position: absolute;
+              left: 0;
+              right: 0;
+              bottom: 0;
+              height: 1px;
+              background: $white;
+              transform: scaleX(var(--proj-line, 1));
+              transform-origin: left center;
+            }
             p {
               width: 60%;
             }
@@ -1391,13 +1404,13 @@ footer {
       }
     }
     #container2 {
-      img#white-dots4 {
+      :is(img, svg)#white-dots4 {
         position: absolute;
         top: calc(100vh + 40px);
         width: 300px;
         display: block;
       }
-      img#torqoise-hatch3 {
+      :is(img, svg)#torqoise-hatch3 {
         position: absolute;
         top: calc(100vh + 40px);
         display: block;
@@ -1407,7 +1420,7 @@ footer {
     #container3 {
       position: relative;
       z-index: 1;
-      img#gold-dots3 {
+      :is(img, svg)#gold-dots3 {
         position: absolute;
         display: block;
         z-index: 0;
@@ -1415,7 +1428,7 @@ footer {
         top: 31px;
         left: calc(100% - 6.75em);
       }
-      img#torqoise-hatch4 {
+      :is(img, svg)#torqoise-hatch4 {
         position: absolute;
         top: 33px;
         display: block;
@@ -1427,13 +1440,13 @@ footer {
     #container4 {
       position: relative;
       z-index: 1;
-      img#white-dots5 {
+      :is(img, svg)#white-dots5 {
         position: absolute;
         top: 40px;
         width: 300px;
         display: block;
       }
-      img#gold-hatch4 {
+      :is(img, svg)#gold-hatch4 {
         position: absolute;
         top: 97px;
         display: block;
@@ -1448,7 +1461,7 @@ footer {
 }
 // @media (min-width: 1024px) {
 //   #container2 {
-//     img#white-dots4 {
+//     :is(img, svg)#white-dots4 {
 //       position: absolute;
 //       top: calc(100vh + 40px);
 //       width: 300px;
@@ -1456,14 +1469,14 @@ footer {
 
 //   @media (max-width: 575px) {
 //     #container1 {
-//       img#white-dots {
+//       :is(img, svg)#white-dots {
 //         position: relative;
 //         top: 0px;
 //         // left: 153px;
 //         left: 137px;
 //         z-index: 1;
 //       }
-//       img#gold-hatch {
+//       :is(img, svg)#gold-hatch {
 //         position: relative;
 //         top: -140px;
 //         // left: -141px;
@@ -1473,7 +1486,7 @@ footer {
 //       img#small-circles {
 //         display: none;
 //     }
-//     img#torqoise-hatch3 {
+//     :is(img, svg)#torqoise-hatch3 {
 //       position: absolute;
 //       top: calc(100vh + 40px);
 //       display: block;
@@ -1487,7 +1500,7 @@ footer {
 @media (max-width: 575px) {
   :where(body.page-about) {
     #container1 {
-      img#white-dots {
+      :is(img, svg)#white-dots {
         // position: relative;
         // top: 0px;
         // left: 137px;
@@ -1496,7 +1509,7 @@ footer {
         bottom: 0;
         right: 0;
       }
-      img#gold-hatch {
+      :is(img, svg)#gold-hatch {
         // position: relative;
         // top: -140px;
         left: -61px;
@@ -1626,13 +1639,13 @@ html.lb-open {
 @media (min-width: 576px) {
   :where(body.page-about) {
     #container1 {
-      img#white-dots {
+      :is(img, svg)#white-dots {
         position: absolute;
         top: 510px;
         right: 5px;
         z-index: 1;
       }
-      img#gold-hatch {
+      :is(img, svg)#gold-hatch {
         position: absolute;
         top: 530px;
         right: -200px;
@@ -2065,11 +2078,11 @@ nav #brand {
     bottom: 0;
     left: 0;
     pointer-events: none;
-    img#torqoise-hatch4 {
+    :is(img, svg)#torqoise-hatch4 {
       top: auto;
       bottom: 1.5em;
     }
-    img#white-dots5 {
+    :is(img, svg)#white-dots5 {
       top: auto;
       bottom: 1.5em;
     }
@@ -2077,11 +2090,11 @@ nav #brand {
 }
 @media (min-width: 1024px) {
   :where(body.page-about) #container2 section#background-panel {
-    img#torqoise-hatch4 {
+    :is(img, svg)#torqoise-hatch4 {
       top: 50px;
       bottom: auto;
     }
-    img#white-dots5 {
+    :is(img, svg)#white-dots5 {
       display: none;
     }
   }
@@ -2251,4 +2264,10 @@ html.menu-open {
     min-height: calc(100dvh - 70px);
     padding-bottom: 0;
   }
+}
+
+// Decorations that app.js has swapped from <img> to inline <svg> (so their dots and stripes can
+// be animated) keep behaving like the images they replace.
+svg.decor-inline {
+  overflow: hidden;
 }

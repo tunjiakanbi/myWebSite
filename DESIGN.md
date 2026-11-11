@@ -116,6 +116,18 @@ Depth comes from the darker surface colour on the lighter ground.
 - Project screenshots are shown whole, never cropped mid-content.
 - Motion: one short intro per page (about 4 seconds), ambient loops only while visible, and a
   plain fade for visitors who prefer reduced motion. See `js/app.js`.
+- Decorations in pieces: the dot grids and hatches are `<img>` tags in the HTML; `js/app.js`
+  swaps them for inline SVG so each dot and stripe can move. In the intro, dot grids fill in as a
+  wave from the top-left and hatch stripes arrive one after another. If the files cannot be
+  fetched, the images stay and slide in whole.
+- Project reveals (home): each project is revealed once, the first time it scrolls into view.
+  Screenshot first (from the left, right, left in turn on desktop; rising from the bottom on
+  smaller screens), then title and tech line from the left, paragraph from below, button from the
+  right on desktop, and the divider drawing left to right. 40px of travel, 0.6s each, 0.1s apart.
+  Timed, never tied to the scrollbar. Settings are in `REVEAL` in `js/app.js`.
+- Scroll drift (home): decorations move a little slower or faster than the page as it scrolls
+  (30 to 110px over the hero's height), for depth. Amounts are in `DRIFT` in `js/app.js`.
+- All of the above are off for reduced motion, and content is never left hidden if GSAP is missing.
 - Scroll colour (home): each project section arrives in a contrasting palette colour and resolves
   to its own background as you scroll to it: sea blue, then torqoise, then green. The stylesheet
   colour is always the destination. Only sea blue, green, torqoise and gold may be used as
