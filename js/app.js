@@ -892,9 +892,8 @@ document.addEventListener("DOMContentLoaded", init);
 // }
 
 // --- (setup) plugins that used to be registered but were never used.
-//     GSDevTools is a development tool and should not ship (it is not in the repo); to use it while
-//     tuning the intro, add <script src="https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/GSDevTools.min.js"></script>
-//     and  GSDevTools.create({ animation: tl })
+//     GSDevTools is a development tool and should not ship; to use it while tuning the intro, add
+//     <script src="js/GSDevTools.min.js"></script> and  GSDevTools.create({ animation: tl })
 // gsap.registerPlugin(GSDevTools, SplitText, TextPlugin, ScrollTrigger);
 
 // --- (start) note to self
