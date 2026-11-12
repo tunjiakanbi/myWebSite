@@ -2161,3 +2161,10 @@ html.nav-hidden nav {
     margin-top: 0.4em;
   }
 }
+
+html.menu-instant nav,
+html.menu-instant nav *,
+html.menu-instant nav *::before,
+html.menu-instant nav *::after {
+  transition: none !important;
+}

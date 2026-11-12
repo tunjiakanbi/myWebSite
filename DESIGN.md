@@ -96,6 +96,8 @@ Depth comes from the darker surface colour on the lighter ground.
 - **Menu overlay**: fixed to the window, so it always fills it; it sits above all page content
   (the scroll cue included) and below the brand and menu button. The page does not scroll while
   it is open, and it closes itself if the window is widened to the desktop layout.
+  It also closes itself, instantly, when the page is left, so pressing Back never returns to a
+  page with the menu still open.
 - **Inputs**: visible label above the field, 16px text, at least 44px tall, 1px border with the
   control radius, gold focus ring. Optional fields say "(optional)" in the label.
 - **Form feedback**: shown on the page next to the button, never in a pop-up: a confirmation on

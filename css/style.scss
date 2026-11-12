@@ -2547,3 +2547,12 @@ html.nav-hidden nav {
     }
   }
 }
+
+// Set briefly by app.js (resetMenu) while it closes the menu as a page is left or restored by
+// Back/Forward: the menu must snap shut, not animate.
+html.menu-instant nav,
+html.menu-instant nav *,
+html.menu-instant nav *::before,
+html.menu-instant nav *::after {
+  transition: none !important;
+}

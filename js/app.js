@@ -118,6 +118,28 @@ hamburger.addEventListener("click", () => {
   syncMenuA11y();
 });
 
+// Back and Forward: browsers restore the previous page from memory exactly as it was left. If a
+// page was left by choosing a link in the open menu, it would come back with the menu still
+// covering it. So the menu is closed, instantly, as the page is left (the copy the browser keeps
+// then has it closed), and checked again when a page is restored, since browsers take that copy
+// at slightly different moments.
+function resetMenu() {
+  const root = document.documentElement;
+  if (landing.classList.contains("open")) {
+    root.classList.add("menu-instant"); // style.scss: no transitions in the nav while this is set
+    landing.classList.remove("open");
+    links.forEach((link) => link.classList.remove("fade"));
+    syncMenuA11y();
+    void landing.offsetWidth; // apply the closed state now, without animating
+  }
+  // back to normal (animated) behaviour once the closed state has been drawn
+  requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("menu-instant")));
+}
+window.addEventListener("pagehide", resetMenu);
+window.addEventListener("pageshow", (e) => {
+  if (e.persisted) resetMenu();
+});
+
 // ----------------------------------------------------------------- animations: setup
 // GSAP 3.15.1 + plugins are self-hosted in /js (see the <script> tags at the end of each page).
 gsap.registerPlugin(SplitText, ScrollTrigger, DrawSVGPlugin);
